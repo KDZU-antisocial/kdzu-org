@@ -10,3 +10,8 @@ workers_dev = true
 [env.production]
 workers_dev = false
 routes = ["kdzu.org/*", "www.kdzu.org/*"]
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "kdzu-static"
+preview_bucket_name = "kdzu-static"
