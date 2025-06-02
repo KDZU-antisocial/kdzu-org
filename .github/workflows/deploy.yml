@@ -15,4 +15,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy ./dist/worker/index.mjs
+          command: deploy ./dist/_worker.js
