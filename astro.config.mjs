@@ -8,4 +8,7 @@ export default defineConfig({
   adapter: cloudflare({
     includeFiles: ['./public/**'],
   }),
+  build: {
+    assets: 'https://assets.kdzu.org/_astro/', // <-- Add this line
+  },
 });
