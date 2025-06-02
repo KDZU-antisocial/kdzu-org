@@ -1,0 +1,34 @@
+# -----------------------------------------------------------------
+# .gitignore
+#
+
+# mac hidden files
+.DS_Store
+**/.DS_Store
+
+# ignore OS generated files
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# other
+*.ogg
+*.mp3
+*.mov
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.psd
+*.pdf
