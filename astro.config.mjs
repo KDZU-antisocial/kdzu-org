@@ -10,6 +10,6 @@ export default defineConfig({
     includeFiles: ['./public/**'],
   }),
   build: {
-    assets: 'https://assets.kdzu.org/_astro/', // Point to your R2 asset Worker domain
+    assets: 'https://static.kdzu.org/_astro/', // Point to your R2 asset Worker domain
   },
 });
