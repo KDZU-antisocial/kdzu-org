@@ -1,6 +1,7 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
+
+const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig({
   site: 'https://kdzu.org',
@@ -8,7 +9,7 @@ export default defineConfig({
   adapter: cloudflare({
     includeFiles: ['./public/**'],
   }),
-  build: {
-    assets: 'https://assets.kdzu.org/_astro/', // <-- Add this line
-  },
+build: {
+  assets: isProd ? 'https://assets.kdzu.org/_astro/' : 'http://localhost:4000/',
+},
 });
