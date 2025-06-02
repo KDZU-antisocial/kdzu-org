@@ -7,9 +7,13 @@ export default defineConfig({
   site: 'https://kdzu.org',
   output: 'server',
   adapter: cloudflare({
-    includeFiles: ['./public/**'],
+    platformProxy: {
+      enabled: true
+    }
   }),
   build: {
-    assets: 'https://static.kdzu.org/_astro/', // Point to your R2 asset Worker domain
+    assets: isProd
+      ? 'https://static.kdzu.org/_astro'
+      : 'http://localhost:4000',
   },
 });
