@@ -9,7 +9,7 @@ export default defineConfig({
   adapter: cloudflare({
     includeFiles: ['./public/**'],
   }),
-build: {
-  assets: isProd ? 'https://assets.kdzu.org/_astro/' : 'http://localhost:4000/',
-},
+  build: {
+    assets: 'https://assets.kdzu.org/_astro/', // Point to your R2 asset Worker domain
+  },
 });
