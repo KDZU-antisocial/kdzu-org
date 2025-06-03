@@ -1,32 +1,30 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 
 const allPosts = await getCollection('blog');
-console.log('Found posts:', allPosts.length, allPosts.map(p => p.slug));
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout>
   <main>
     <h1>Blog</h1>
-    <p>Found {allPosts.length} posts</p>
-    {allPosts.length === 0 ? (
-      <p>No posts found. Check your content collection setup.</p>
-    ) : (
-      <ul>
-        {sortedPosts.map((post) => (
-          <li>
-            <a href={`/blog/${post.slug}/`}>
-              <h2>{post.data.title}</h2>
-              <p>{post.data.description}</p>
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toDateString()}
-              </time>
-            </a>
-          </li>
-        ))}
-      </ul>
-    )}
+    <ul>
+      {sortedPosts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <Image
+              src="../assets/blog/hero.jpg"
+              alt={post.data.title}
+              width={277}
+              height={277}
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
   </main>
 </Layout>

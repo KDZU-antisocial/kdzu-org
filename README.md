@@ -89,7 +89,7 @@ All commands are run from the root of the project, from a terminal:
 
 ## 🤠 Useful Wrangler Commands
 
-Note: I don't have local sudo access so I have to use npx to run these. See installation for more details on that.
+Note: I don't have local sudo access so I have to use npx to run these. See installation for more details on that. Also I don't use these very often as I use `npm run dev` to build my dev, and Github Actions to build my production.
 
 | Command                                 | Action                                             |
 | :-------------------------------------- | :------------------------------------------------- |
