@@ -96,6 +96,78 @@ main {
   /* Subtle gray for list items */
 }
 
+/* Hot New Tracks Table Layout */
+.tracks-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* Space between rows */
+}
+
+.track-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid #333333;
+  /* Subtle border */
+  padding: 1rem;
+  border-radius: 4px;
+  /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+}
+
+.track-info {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  /* Space between labels and data */
+  align-items: center;
+  /* Vertically center labels and data */
+}
+
+.track-labels {
+  flex: 0 0 60px;
+  /* Fixed width for labels column */
+  text-align: center;
+  /* Center align labels horizontally */
+  display: flex;
+  flex-direction: column;
+  /* Stack labels vertically */
+  justify-content: center;
+  /* Vertically center labels */
+  color: #cccccc;
+  /* Subtle gray for labels */
+}
+
+.track-labels p {
+  font-size: 1rem;
+  /* Smaller text size for labels */
+  margin-bottom: 0;
+  /* Remove bottom margin for labels */
+}
+
+.track-data {
+  flex: 1;
+  /* Flexible width for data column */
+  text-align: left;
+  /* Left justify data items */
+  display: flex;
+  flex-direction: column;
+  /* Stack data vertically */
+  justify-content: center;
+  /* Vertically center data */
+  color: #ffffff;
+  /* Bright white for data */
+}
+
+.track-data p {
+  font-size: 1rem;
+  /* Smaller text size for data */
+  margin-bottom: 0;
+  /* Remove bottom margin for data */
+}
+
+
 /* Calendar styling */
 .calendar {
   display: flex;
@@ -126,6 +198,11 @@ main {
   /* Slightly lighter background on hover */
   transform: translateY(-4px);
   /* Lift effect on hover */
+}
+
+.calendar li:last-child {
+  margin-bottom: 3rem;
+  /* Add vertical spacing after the last entry */
 }
 
 .calendar a {
