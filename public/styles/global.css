@@ -1,0 +1,176 @@
+/* Base styles */
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  color: #eaeaea;
+  background-color: #121212;
+  /* Dark mode background */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 700;
+  /* Bold typography for Swiss design */
+  color: #ffffff;
+  /* Bright text for headings */
+  text-transform: uppercase;
+  /* Clean, modern look */
+  letter-spacing: 0.05em;
+  /* Slight spacing for readability */
+}
+
+p {
+  margin: 0 0 1.5em;
+  color: #cccccc;
+  /* Subtle text color for body content */
+  font-size: 1rem;
+}
+
+a {
+  color: #00aaff;
+  /* Bright accent color for links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout styles */
+main {
+  max-width: 960px;
+  /* Centered and constrained width */
+  margin: 0 auto;
+  /* Center the page horizontally */
+  padding: 2rem;
+  /* Add spacing */
+  display: grid;
+  /* Use grid layout for Swiss design */
+  grid-template-columns: 1fr;
+  /* Single column layout */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  /* No rounded corners for a clean design */
+  box-shadow: none;
+  /* Remove shadows for flat design */
+}
+
+/* Buttons */
+button {
+  background-color: #00aaff;
+  /* Bright accent color */
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  /* No rounded corners for Swiss design */
+  font-weight: 600;
+  text-transform: uppercase;
+  /* Clean typography */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0088cc;
+  /* Slightly darker hover effect */
+}
+
+/* Header and Footer */
+header {
+  text-align: left;
+  /* Align text to the left */
+  padding: 2rem 0;
+  /* Top and bottom padding */
+  padding-left: 2rem;
+  /* Add space on the left */
+  border-bottom: 1px solid #333333;
+  /* Clean divider */
+}
+
+footer {
+  text-align: left;
+  /* Align text to the left */
+  padding: 1rem 0;
+  /* Top and bottom padding */
+  padding-left: 2rem;
+  /* Add space on the left */
+  border-top: 1px solid #333333;
+  /* Clean divider */
+  color: #888888;
+  /* Subtle footer text */
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+  color: #cccccc;
+}
+
+/* Media queries */
+@media (max-width: 1200px) {
+  main {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Additional Swiss Design Elements */
+header,
+footer {
+  font-size: 0.9rem;
+  /* Smaller text for headers and footers */
+  letter-spacing: 0.05em;
+  /* Slight spacing for readability */
+}
+
+main {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Responsive grid */
+}

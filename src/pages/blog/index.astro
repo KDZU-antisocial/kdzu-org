@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import heroImage from '../../assets/blog/hero.jpg'; // Import the image
 
 const allPosts = await getCollection('blog');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -17,7 +18,7 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
             <Image
-              src="../assets/blog/hero.jpg"
+              src={heroImage} // Use the imported image
               alt={post.data.title}
               width={277}
               height={277}
