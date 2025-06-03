@@ -10,6 +10,32 @@ This site runs
 
 Installation steps are at the bottom of this document.
 
+### Running Astro 5 as an SSR  + Cloudflare Adapter Structure
+
+See `astro.config.mjs` for my config. When you build an Astro project with:
+
+- output: 'server' (SSR mode)
+- @astrojs/cloudflare adapter
+
+The build output structure is:
+
+```
+dist/
+├── _worker.js/
+│   ├── index.js          ← Main worker entry point
+│   ├── pages/            ← Server-side page modules
+│   │   ├── index.astro.mjs
+│   │   └── ...
+│   └── chunks/           ← Shared code chunks
+└── _astro/               ← Static assets (if any)
+```
+
+#### 🚨 Astro SSR Wackiness
+Astro is doing a very weird thing I couldn't successfully debug. My image src paths are being malformed as <span style="color:red">`/https:/`</span> instead of `https://`. This seems to be a known Astro bug with asset URL generation in SSR builds when using a custom `build.assets` configuration.
+
+#### My 🩹 Fix
+I have a `/scripts/fix-asset-urls.js` file that is called after astro.build in my `package.json`.
+
 ### Local Assets are served with a “serve” server
 
 The `dist/_astro` local folder is served for assets.
