@@ -139,14 +139,6 @@ This will run your through the setup questionairre.
 
 🚨NOTE: I ran this command from the terminal at my `~/Documents/GitHub/kdzu-org` folder, so i just used a `.` in response to "Where should we create your new project?"
 
-### Installing Serve
-
-Serve is used to store static assets in dev via localhost. 
-
-Serve can be installed with
-
-```npm install --save-dev serve```
-
 ### Install wrangler
 I installed wrangler “locally” as I don’t have to sudo access on my Mac 😵‍💫.
 
@@ -157,9 +149,3 @@ Note! This means wrangler commands will need to start with `npx`.
 Example: `npx wrangler foo`
 
 not simply: `wrangler foo` 🙅🏼‍♂️
-
-### Installing npm-run-all
-
-npm-run-all is used by package.json to start both the Astro and Serve local servers with a single command.
-
-```npm install --save-dev npm-run-all```
