@@ -1,20 +1,43 @@
+/* Define CSS variables */
+
+:root {
+  --color-light-text: #d1d5db;
+  /* Light Gray */
+  --color-dark-bg: #121212;
+  /* Dark Black */
+  --color-dark-gray: #1f2937;
+  /* Charcoal */
+  --color-gray: #b0b8c1;
+  /* Muted Gray */
+  --color-bright-white: #f9fafb;
+  /* Off-White */
+  --color-bright-blue: #3b82f6;
+  /* Bright Blue */
+  --color-hover-bg: #374151;
+  /* Slate Gray */
+  --color-footer-text: #f9fafb;
+  /* Muted Gray */
+  --color-card-bg: #1e293b;
+  /* Deep Blue */
+}
+
 /* Base styles */
 body {
   margin: 0;
   font-family: "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
-  color: #eaeaea;
-  /* Light text for dark mode */
-  background-color: #1a1e2b;
-  /* Dark gray with a hint of blue */
+  color: var(--color-light-text);
+  /* Use variable */
+  background-color: var(--color-dark-bg);
+  /* Use variable */
   padding: 0 44px;
 }
 
 h1 {
   font-size: 5rem;
   font-weight: 900;
-  color: #ffffff;
-  /* Bright white for headers */
+  color: var(--color-bright-white);
+  /* Use variable */
   letter-spacing: 0.15em;
   margin: 0 0 1rem;
 }
@@ -22,35 +45,71 @@ h1 {
 h2 {
   font-size: 3rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-bright-white);
+  /* Use variable */
   letter-spacing: 0.1em;
   margin: 0 0 1rem;
 }
 
 h3 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
+  /* Reduced from 2.5rem */
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-bright-white);
+  /* Use variable */
   margin: 0 0 1rem;
+}
+
+h4 {
+  font-size: 1.75rem;
+  /* Reduced from 2rem */
+  font-weight: 500;
+  color: var(--color-bright-white);
+  /* Use variable */
+  margin: 0 0 0.75rem;
 }
 
 p {
   font-size: 1.5rem;
   font-weight: 400;
-  color: #cccccc;
-  /* Subtle gray for body text */
+  color: var(--color-gray);
+  /* Use variable */
   margin: 0 0 1.5rem;
 }
 
 a {
-  color: #00aaff;
-  /* Bright blue for links */
+  color: var(--color-bright-blue);
+  /* Use variable */
   font-weight: 500;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.block-quote {
+  font-size: 1.5rem;
+  /* Slightly larger than body text */
+  font-style: italic;
+  /* Italicize the text */
+  color: var(--color-gray);
+  /* Use muted gray for the text */
+  border-left: 4px solid var(--color-bright-blue);
+  /* Add a colored border */
+  padding-left: 1rem;
+  /* Add spacing between the border and text */
+  margin: 1.5rem 0;
+  /* Add vertical spacing */
+  line-height: 1.8;
+  /* Improve readability */
+}
+
+.block-quote strong {
+  color: var(--color-bright-white);
+  /* Highlight important text */
+  font-weight: bold;
+  /* Make it stand out */
 }
 
 /* Layout styles */
@@ -77,8 +136,8 @@ main {
 .right-column h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
-  /* Bright white for headers */
+  color: var(--color-bright-white);
+  /* Use variable */
   margin-bottom: 1rem;
 }
 
@@ -92,8 +151,8 @@ main {
   margin-bottom: 1rem;
   font-size: 1rem;
   font-weight: 400;
-  color: #cccccc;
-  /* Subtle gray for list items */
+  color: var(--color-gray);
+  /* Use variable */
 }
 
 /* Hot New Tracks Table Layout */
@@ -107,8 +166,8 @@ main {
 .track-row {
   display: flex;
   align-items: center;
-  border: 1px solid #333333;
-  /* Subtle border */
+  border: 1px solid var(--color-dark-gray);
+  /* Use variable */
   padding: 1rem;
   border-radius: 4px;
   /* Rounded corners */
@@ -135,8 +194,8 @@ main {
   /* Stack labels vertically */
   justify-content: center;
   /* Vertically center labels */
-  color: #cccccc;
-  /* Subtle gray for labels */
+  color: var(--color-gray);
+  /* Use variable */
 }
 
 .track-labels p {
@@ -156,8 +215,8 @@ main {
   /* Stack data vertically */
   justify-content: center;
   /* Vertically center data */
-  color: #ffffff;
-  /* Bright white for data */
+  color: var(--color-bright-white);
+  /* Use variable */
 }
 
 .track-data p {
@@ -166,7 +225,6 @@ main {
   margin-bottom: 0;
   /* Remove bottom margin for data */
 }
-
 
 /* Calendar styling */
 .calendar {
@@ -182,10 +240,10 @@ main {
   /* Three rows: date-time, title, location */
   gap: 0.5rem;
   /* Space between rows */
-  background-color: #1a1e2b;
-  /* Dark gray with a hint of blue */
-  border: 1px solid #333333;
-  /* Subtle border */
+  background-color: var(--color-dark-bg);
+  /* Use variable */
+  border: 1px solid var(--color-dark-gray);
+  /* Use variable */
   padding: 1rem;
   border-radius: 4px;
   /* Slight rounding for modern look */
@@ -194,8 +252,8 @@ main {
 }
 
 .calendar li:hover {
-  background-color: #2c3447;
-  /* Slightly lighter background on hover */
+  background-color: var(--color-hover-bg);
+  /* Use variable */
   transform: translateY(-4px);
   /* Lift effect on hover */
 }
@@ -208,8 +266,8 @@ main {
 .calendar a {
   text-decoration: none;
   /* Remove underline for links */
-  color: #ffffff;
-  /* Neutral white for titles */
+  color: var(--color-bright-white);
+  /* Use variable */
 }
 
 .calendar .date-time {
@@ -218,15 +276,15 @@ main {
   /* Align date and time horizontally */
   font-size: 1.25rem;
   font-weight: 700;
-  color: #ffffff;
-  /* Bright white for date and time */
+  color: var(--color-bright-white);
+  /* Use variable */
 }
 
 .calendar .event-title {
   font-size: 1.5rem;
   font-weight: 500;
-  color: #ffffff;
-  /* Neutral white for titles */
+  color: var(--color-bright-white);
+  /* Use variable */
 }
 
 .calendar .location {
@@ -234,8 +292,8 @@ main {
   /* Force location to appear on a new line */
   font-size: 1rem;
   font-weight: 400;
-  color: #cccccc;
-  /* Subtle gray for location */
+  color: var(--color-gray);
+  /* Use variable */
 }
 
 /* Header and Footer */
@@ -244,8 +302,8 @@ header {
   text-align: left;
   padding: 2rem 0;
   padding-left: 2rem;
-  border-bottom: 1px solid #333333;
-  /* Subtle divider */
+  border-bottom: 1px solid var(--color-dark-gray);
+  /* Use variable */
 }
 
 footer {
@@ -253,14 +311,14 @@ footer {
   text-align: left;
   padding: 1rem 0;
   padding-left: 2rem;
-  border-top: 1px solid #333333;
-  /* Subtle divider */
+  border-top: 1px solid var(--color-dark-gray);
+  /* Use variable */
   font-size: 1rem;
   /* Increased font size */
   line-height: 1.6;
   /* Increased line spacing */
-  color: #888888;
-  /* Subtle gray for footer text */
+  color: var(--color-footer-text);
+  /* Use variable */
 }
 
 .footer-grid {
@@ -286,27 +344,38 @@ footer {
 .footer-grid ul li {
   font-size: 1rem;
   /* Increased font size for list items */
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
   /* Adjusted spacing between list items */
 }
 
 .footer-grid p {
   font-size: 1rem;
-  /* Increased font size for paragraphs */
-  margin: 0.5rem 0;
+  /* Keep the current font size */
+  margin: 0.25rem 0;
   /* Adjusted spacing between paragraphs */
+  color: var(--color-bright-white);
+  /* Use bright white for footer text */
 }
 
 .footer-grid a {
   font-size: 1rem;
   /* Increased font size for links */
-  color: #00aaff;
-  /* Bright blue for links */
+  color: var(--color-bright-blue);
+  /* Use variable */
   text-decoration: none;
 }
 
 .footer-grid a:hover {
   text-decoration: underline;
+}
+
+footer p {
+  font-size: 1rem;
+  /* Match the size of .footer-grid p */
+  margin: 0.25rem 0;
+  /* Match the spacing of .footer-grid p */
+  color: var(--color-bright-white);
+  /* Use the same color as .footer-grid p */
 }
 
 /* Media queries */
@@ -322,6 +391,16 @@ footer {
 
   h2 {
     font-size: 2.75rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+    /* Reduced for large screens */
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    /* Reduced for large screens */
   }
 
   p {
@@ -343,6 +422,16 @@ footer {
     font-size: 2.5rem;
   }
 
+  h3 {
+    font-size: 1.75rem;
+    /* Reduced for medium screens */
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    /* Reduced for medium screens */
+  }
+
   p {
     font-size: 1.25rem;
   }
@@ -362,6 +451,16 @@ footer {
     font-size: 2rem;
   }
 
+  h3 {
+    font-size: 1.5rem;
+    /* Reduced for small screens */
+  }
+
+  h4 {
+    font-size: 1rem;
+    /* Reduced for small screens */
+  }
+
   p {
     font-size: 1rem;
   }
@@ -378,6 +477,16 @@ footer {
 
   h2 {
     font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    /* Reduced for mobile */
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    /* Reduced for mobile */
   }
 
   p {
