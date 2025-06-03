@@ -12,10 +12,8 @@ Installation steps are at the bottom of this document.
 
 ### Running dev
 
-Use `npm run dev` to start Astro and Serve
+Use `npm run dev` to start Astro at http://localhost:4321
 
-- Astro runs on http://localhost:4321
-- Serve runs on http://localhost:4000
 
 Check the scripts section of `package.json` to learn more about how this works
 
@@ -49,12 +47,6 @@ Astro is doing a very weird thing I couldn't successfully debug. My image src pa
 
 #### My 🩹 Fix
 I have a `/scripts/fix-asset-urls.js` file that is called after astro.build in my `package.json`.
-
-### Local Assets are served with a “serve” server
-
-The `dist/_astro` local folder is served for assets.
-
-```npx serve dist/_astro -l 4000```
 
 ### Static Asset Handling
 
@@ -117,7 +109,7 @@ Note: I don't have local sudo access so I have to use npx to run these. See inst
   - DNS for this is setup through R2
 
 
-## 🎬 Installing Astro, Serve, and Cloudflare Wrangler
+## 🎬 Installing Astro, and Cloudflare Wrangler
 
 ### Make sure Node is installed and up to date
 
