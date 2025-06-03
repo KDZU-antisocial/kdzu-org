@@ -3,16 +3,18 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npm-run-all --parallel dev:astro dev:serve",
+    "dev:astro": "astro dev",
+    "dev:serve": "serve dist/_astro -l 4000",
     "build": "astro build && node scripts/fix-asset-urls.js",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.3",
     "astro": "^5.8.1"
   },
   "devDependencies": {
+    "npm-run-all": "^4.1.5",
     "serve": "^14.2.4"
   }
 }

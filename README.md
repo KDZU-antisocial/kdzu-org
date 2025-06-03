@@ -10,6 +10,20 @@ This site runs
 
 Installation steps are at the bottom of this document.
 
+### Running dev
+
+Use `npm run dev` to start Astro and Serve
+
+- Astro runs on http://localhost:4321
+- Serve runs on http://localhost:4000
+
+Check the scripts section of `package.json` to learn more about how this works
+
+
+## Deploying with a Github Action
+
+This repo is deployed to Cloudflare when `dev` is merged into the `main` branch. The default branch is set to `dev`.
+
 ### Running Astro 5 as an SSR  + Cloudflare Adapter Structure
 
 See `astro.config.mjs` for my config. When you build an Astro project with:
@@ -64,14 +78,14 @@ done
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                                 | Action                                             |
-| :-------------------------------------- | :------------------------------------------------- |
-| `npm install`                           | Installs dependencies                              |
-| `npm run dev`                           | Starts local dev server at `http://localhost:4321` |
-| `npm run build`                         | Build your production site to `./dist/`            |
-| `npm run preview`                       | Preview your build locally, before deploying       |
-| `npm run astro ...`                     | Run CLI commands like `astro add`, `astro check`   |
-| `npm run astro -- --help`               | Get help using the Astro CLI                       |
+| Command                                 | Action                                                     |
+| :-------------------------------------- | :--------------------------------------------------------- |
+| `npm install`                           | Installs dependencies                                      |
+| `npm run dev`                           | Starts local Astro at `:4321` and local assets at `:4000`  |
+| `npm run build`                         | Build your production site to `./dist/`                    |
+| `npm run preview`                       | Preview your build locally, before deploying               |
+| `npm run astro ...`                     | Run CLI commands like `astro add`, `astro check`           |
+| `npm run astro -- --help`               | Get help using the Astro CLI                               |
 
 ## 🤠 Useful Wrangler Commands
 
@@ -144,3 +158,8 @@ Example: `npx wrangler foo`
 
 not simply: `wrangler foo` 🙅🏼‍♂️
 
+### Installing npm-run-all
+
+npm-run-all is used by package.json to start both the Astro and Serve local servers with a single command.
+
+```npm install --save-dev npm-run-all```
