@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://kdzu.org',
@@ -12,4 +13,5 @@ export default defineConfig({
   build: {
     assets: 'https://static.kdzu.org/_astro'
   },
+  integrations: [mdx()],
 });
