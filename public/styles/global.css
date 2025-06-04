@@ -19,6 +19,9 @@
   /* Muted Gray */
   --color-card-bg: #1e293b;
   /* Deep Blue */
+  --color-bright-red: #ef4444;
+  /* Bright Red */
+
 }
 
 /* Base styles */
@@ -75,6 +78,10 @@ p {
   color: var(--color-gray);
   /* Use variable */
   margin: 0 0 1.5rem;
+}
+
+.text-red {
+  color: var(--color-bright-red);
 }
 
 a {
