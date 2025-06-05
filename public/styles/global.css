@@ -41,7 +41,6 @@ h1 {
   font-weight: 900;
   color: var(--color-bright-white);
   /* Use variable */
-  letter-spacing: 0.15em;
   margin: 0 0 1rem;
 }
 
@@ -50,7 +49,6 @@ h2 {
   font-weight: 700;
   color: var(--color-bright-white);
   /* Use variable */
-  letter-spacing: 0.1em;
   margin: 0 0 1rem;
 }
 
@@ -75,7 +73,7 @@ h4 {
 p {
   font-size: 1.5rem;
   font-weight: 400;
-  color: var(--color-gray);
+  color: var(--color-light-text);
   /* Use variable */
   margin: 0 0 1.5rem;
 }
@@ -331,15 +329,20 @@ footer {
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  /* Adjusted gap between columns */
+  gap: 1rem;
+  /* Reduced gap between columns */
+}
+
+.footer-grid>div {
+  max-width: 300px;
+  /* Reduced width for nav blocks */
 }
 
 .footer-grid h2 {
   font-size: 1.25rem;
   /* Slightly larger header size */
-  margin-bottom: 0.75rem;
-  /* Adjusted spacing below headers */
+  margin-bottom: 0.5rem;
+  /* Reduced spacing below headers */
 }
 
 .footer-grid ul {
@@ -351,15 +354,15 @@ footer {
 .footer-grid ul li {
   font-size: 1rem;
   /* Increased font size for list items */
-  margin: 0.25rem 0;
-  /* Adjusted spacing between list items */
+  margin: 0.15rem 0;
+  /* Reduced spacing between list items */
 }
 
 .footer-grid p {
   font-size: 1rem;
   /* Keep the current font size */
-  margin: 0.25rem 0;
-  /* Adjusted spacing between paragraphs */
+  margin: 0.15rem 0;
+  /* Reduced spacing between paragraphs */
   color: var(--color-bright-white);
   /* Use bright white for footer text */
 }
@@ -475,6 +478,15 @@ footer p {
   button {
     padding: 0.5rem 1rem;
   }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+  }
+
+  .footer-grid>div {
+    max-width: 250px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -502,5 +514,15 @@ footer p {
 
   button {
     padding: 0.4rem 0.8rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    justify-content: start;
+  }
+
+  .footer-grid>div {
+    max-width: 250px;
+    margin: 0;
   }
 }
