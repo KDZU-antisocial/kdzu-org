@@ -18,11 +18,14 @@ pnpm-debug.log*
 .env
 .env.production
 
+# Astro specific files
+src/assets/
+
+# Astroimages
+public/images/
+
 # macOS-specific files
 .DS_Store
 
 # jetbrains setting folder
 .idea/
-
-# Astro specific files
-src/assets/
