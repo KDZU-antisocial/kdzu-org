@@ -18,5 +18,5 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/compile'
     }
   },
-  integrations: [mdx()],
+  integrations: [mdx()]
 });

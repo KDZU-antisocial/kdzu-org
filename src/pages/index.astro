@@ -2,6 +2,13 @@
 import { Image } from 'astro:assets';
 import heroImage from '../assets/kdzu-hero-web-980-386@2x.png'; // Import the image
 import Copyright from '../components/Copyright.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const recentTracks = await getCollection('tracks');
+const sortedTracks = recentTracks
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
 ---
 
 <!DOCTYPE html>
@@ -87,35 +94,30 @@ import Copyright from '../components/Copyright.astro';
 <section>
   <h2>Hot New Tracks We Love</h2>
   <div class="tracks-table">
-    <div class="track-row">
-      <div class="track-info">
-        <div class="track-labels">
-          <p><strong>Artist</strong></p>
-          <p><strong>Song</strong></p>
-          <p><strong>Label</strong></p>
-        </div>
-        <div class="track-data">
-          <p>Unknown Rebel</p>
-          <p>Frequencies of Freedom</p>
-          <p>Underground Beats</p>
-        </div>
-      </div>
-    </div>
-    <div class="track-row">
-      <div class="track-info">
-        <div class="track-labels">
-          <p><strong>Artist</strong></p>
-          <p><strong>Song</strong></p>
-          <p><strong>Label</strong></p>
-        </div>
-        <div class="track-data">
-          <p>The Echo Chamber</p>
-          <p>Shadows in the Noise</p>
-          <p>Reverb Records</p>
+    {sortedTracks.map((track) => (
+      <div class="track-row">
+        <div class="track-info">
+          <div class="track-labels">
+            <p><strong>Artist</strong></p>
+            <p><strong>Song</strong></p>
+            <p><strong>Label</strong></p>
+          </div>
+          <div class="track-data">
+            <p>{track.data.artist}</p>
+            <p>{track.data.title}</p>
+            <p>
+              {track.data.labelLink ? (
+                <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
+                  {track.data.label}
+                </a>
+              ) : (
+                track.data.label
+              )}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Add more rows as needed -->
+    ))}
   </div>
 </section>
       </div>

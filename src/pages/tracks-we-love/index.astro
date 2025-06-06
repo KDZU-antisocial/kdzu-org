@@ -1,0 +1,146 @@
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const tracks = await getCollection('tracks');
+const sortedTracks = tracks
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tracks We Love - KDZU</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Tracks We Love</h1>
+    </header>
+    <main>
+      <div class="tracks-grid">
+        {sortedTracks.map((track) => (
+          <article class="track-card">
+            <a href={`/tracks-we-love/${track.slug}`}>
+              <div class="track-image">
+                <Image
+                  src={track.data.heroImage}
+                  alt={`${track.data.artist} - ${track.data.title}`}
+                  width={960}
+                  height={960}
+                />
+              </div>
+              <div class="track-info">
+                <h3>{track.data.title}</h3>
+                <p class="artist">{track.data.artist}</p>
+                <p class="label">
+                  {track.data.labelLink ? (
+                    <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
+                      {track.data.label}
+                    </a>
+                  ) : (
+                    track.data.label
+                  )}
+                </p>
+              </div>
+            </a>
+            <div class="track-links">
+              {track.data.youtube && (
+                <a href={track.data.youtube} target="_blank" rel="noopener noreferrer" class="youtube">
+                  YouTube
+                </a>
+              )}
+              {track.data.bandcamp && (
+                <a href={track.data.bandcamp} target="_blank" rel="noopener noreferrer" class="bandcamp">
+                  Bandcamp
+                </a>
+              )}
+              {track.data.spotify && (
+                <a href={track.data.spotify} target="_blank" rel="noopener noreferrer" class="spotify">
+                  Spotify
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .track-card {
+    background: var(--color-card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .track-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .track-image {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .track-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .track-info {
+    padding: 1rem;
+  }
+
+  .track-info h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .track-info .artist {
+    color: var(--color-bright-white);
+    margin: 0 0 0.25rem;
+  }
+
+  .track-info .label {
+    color: var(--color-gray);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .track-links {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-top: 1px solid var(--color-dark-gray);
+  }
+
+  .track-links a {
+    color: var(--color-bright-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .track-links a:hover {
+    background-color: var(--color-hover-bg);
+  }
+
+  .youtube { background-color: #ff0000; }
+  .bandcamp { background-color: #629aa9; }
+  .spotify { background-color: #1db954; }
+</style> 
