@@ -34,6 +34,9 @@ body {
   background-color: var(--color-dark-bg);
   /* Use variable */
   padding: 0 44px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h1 {
@@ -42,6 +45,8 @@ h1 {
   color: var(--color-bright-white);
   /* Use variable */
   margin: 0 0 1rem;
+  grid-column: 1 / -1;
+  /* Ensure h1 spans all columns */
 }
 
 h2 {
@@ -119,6 +124,7 @@ a:hover {
 
 /* Layout styles */
 main {
+  width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
   /* Two-thirds for main content, one-third for right column */
@@ -128,14 +134,17 @@ main {
 
 .main-content {
   text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .right-column {
+  grid-column: 2;
+  /* Place the right column in the second column */
   padding: 1rem;
   border-radius: 4px;
-  /* Rounded corners for modern look */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
 }
 
 .right-column h2 {
@@ -182,11 +191,9 @@ main {
 
 .track-info {
   display: flex;
-  flex: 1;
-  gap: 1rem;
-  /* Space between labels and data */
-  align-items: center;
-  /* Vertically center labels and data */
+  flex-direction: column;
+  gap: 0.25rem;
+  /* Add space between artist and label */
 }
 
 .track-labels {
@@ -229,6 +236,25 @@ main {
   /* Smaller text size for data */
   margin-bottom: 0;
   /* Remove bottom margin for data */
+}
+
+.track-info .label {
+  color: var(--color-gray);
+  margin: 0;
+  font-size: 1rem;
+  /* Match the artist font size */
+  margin-top: 0.25rem;
+  /* Add space between artist and label */
+}
+
+.track-info h3 {
+  font-size: 1.5rem;
+  /* Increase track name size */
+}
+
+.track-info .artist {
+  font-size: 0.9rem;
+  /* Decrease artist name size */
 }
 
 /* Calendar styling */
@@ -312,6 +338,8 @@ header {
 }
 
 footer {
+  grid-column: 1 / -1;
+  /* Span all columns */
   width: 100%;
   text-align: left;
   padding: 1rem 0;
@@ -324,6 +352,7 @@ footer {
   /* Increased line spacing */
   color: var(--color-footer-text);
   /* Use variable */
+  margin-top: auto;
 }
 
 .footer-grid {
@@ -450,7 +479,7 @@ footer p {
 @media (max-width: 768px) {
   main {
     grid-template-columns: 1fr;
-    padding: 1rem;
+    /* Stack columns on mobile */
   }
 
   h1 {
@@ -525,4 +554,34 @@ footer p {
     max-width: 250px;
     margin: 0;
   }
+}
+
+/* Ensure the tracks-grid always appears underneath the h1 */
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns for larger breakpoints */
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.blog-grid {
+  grid-column: 1 / -1;
+  /* Span all columns */
+}
+
+@media (max-width: 768px) {
+  .tracks-grid {
+    grid-template-columns: 1fr;
+    /* 1 column for mobile breakpoints */
+  }
+}
+
+/* Override grid layout for tracks-we-love page */
+body .tracks-we-love main,
+.tracks-we-love main {
+  display: block !important;
+  grid-template-columns: none;
+  gap: 0;
 }

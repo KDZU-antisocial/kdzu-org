@@ -9,8 +9,8 @@ const sortedTracks = tracks
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout>
-  <main>
+<body class="tracks-we-love">
+  <Layout>
     <h1>Tracks We Love</h1>
     <div class="tracks-grid">
       {sortedTracks.map((track) => (
@@ -133,6 +133,6 @@ const sortedTracks = tracks
       .bandcamp { background-color: #629aa9; }
       .spotify { background-color: #1db954; }
     </style>
-  </main>
-  <Footer />
-</Layout> 
+    <Footer />
+  </Layout>
+</body> 
