@@ -2,9 +2,9 @@
 title: "Fight the Power"
 artist: "Public Enemy"
 label: "Def Jam"
-labelLink: ""
+labelLink: "https://defjamshop.com/"
 youtube: "https://www.youtube.com/watch?v=mmo3HFa2vjgbandcaban"
-bandcamp: ""
+bandcamp: "https://publicenemy.bandcamp.com/"
 spotify: "https://open.spotify.com/track/1yo16b3u0lptm6Cs7lx4AD?si=75359ba3ae2d4e94"
 pubDate: 2025-06-05
 heroImage: "/tracks/fight-the-power.jpg"
