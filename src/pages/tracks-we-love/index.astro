@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import Footer from '../../components/Footer.astro';
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks
@@ -133,4 +134,5 @@ const sortedTracks = tracks
       .spotify { background-color: #1db954; }
     </style>
   </main>
+  <Footer />
 </Layout> 

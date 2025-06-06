@@ -1,31 +1,35 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro'; // Import the Footer component
 import { Image } from 'astro:assets';
-import heroImage from '../../assets/blog/hero.jpg'; // Import the image
 
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = await getCollection('blog');
+const sortedPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout>
   <main>
     <h1>Blog</h1>
-    <ul>
+    <div class="blog-grid">
       {sortedPosts.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}/`}>
-            <h2>{post.data.title}</h2>
+        <article class="blog-card">
+          <a href={`/blog/${post.slug}`}>
+            <h3>{post.data.title}</h3>
             <p>{post.data.description}</p>
-            <Image
-              src={heroImage} // Use the imported image
-              alt={post.data.title}
-              width={277}
-              height={277}
-            />
+            {post.data.heroImage && (
+              <Image
+                src={post.data.heroImage}
+                alt={post.data.title}
+                width={960}
+                height={960}
+              />
+            )}
           </a>
-        </li>
+        </article>
       ))}
-    </ul>
+    </div>
   </main>
+  <Footer />
 </Layout>
