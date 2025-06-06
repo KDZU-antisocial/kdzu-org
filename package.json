@@ -4,12 +4,16 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/fix-asset-urls.js",
+    "build": "astro build && node scripts/fix-asset-urls.js && node scripts/watch-and-upload.js",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.4",
     "@astrojs/mdx": "^4.3.0",
-    "astro": "^5.9.0"
+    "astro": "^5.9.0",
+    "aws-sdk": "^2.1692.0",
+    "chokidar": "^4.0.3",
+    "dotenv": "^16.5.0",
+    "nodemon": "^3.1.10"
   }
 }

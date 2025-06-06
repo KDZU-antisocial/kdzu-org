@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import Footer from '../../components/Footer.astro';
 
 const tracks = await getCollection('tracks');
@@ -17,11 +16,11 @@ const sortedTracks = tracks
         <article class="track-card">
           <a href={`/tracks-we-love/${track.slug}`}>
             <div class="track-image">
-              <Image
+              <img
                 src={track.data.heroImage}
                 alt={`${track.data.artist} - ${track.data.title}`}
-                width={960}
-                height={960}
+                width="960"
+                height="960"
               />
             </div>
             <div class="track-info">
