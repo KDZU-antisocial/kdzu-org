@@ -12,36 +12,48 @@ interface Props {
       spotify?: string;
     };
     slug: string;
+    body: string;
   };
 }
 
 const { track } = Astro.props;
+const hasContent = track.body && track.body.trim().length > 0;
 ---
 
 <article class="track-card">
-  <a href={`/tracks-we-love/${track.slug}`}>
-    <div class="track-image">
-      <img
-        src={track.data.heroImage}
-        alt={`${track.data.artist} - ${track.data.title}`}
-        width="320"
-        height="320"
-      />
+  <div class="track-image">
+    <img
+      src={track.data.heroImage}
+      alt={`${track.data.artist} - ${track.data.title}`}
+      width="320"
+      height="320"
+    />
+  </div>
+  <div class="track-info">
+    <h3>{track.data.title}</h3>
+    <p class="artist">{track.data.artist}</p>
+    <p class="label">
+      {track.data.labelLink ? (
+        <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
+          {track.data.label}
+        </a>
+      ) : (
+        track.data.label
+      )}
+    </p>
+    <div class="markdown">
+      {hasContent && (
+        <div class="review-header">
+          <svg class="review-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+          </svg>
+          <span class="review-source">KDZU</span>
+        </div>
+      )}
+      <slot />
     </div>
-    <div class="track-info">
-      <h3>{track.data.title}</h3>
-      <p class="artist">{track.data.artist}</p>
-      <p class="label">
-        {track.data.labelLink ? (
-          <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
-            {track.data.label}
-          </a>
-        ) : (
-          track.data.label
-        )}
-      </p>
-    </div>
-  </a>
+  </div>
   <div class="track-links">
     {track.data.youtube && (
       <div class="link-wrapper">
@@ -74,4 +86,37 @@ const { track } = Astro.props;
       </div>
     )}
   </div>
-</article> 
+</article>
+
+<style>
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.25rem 0 0;
+  }
+
+  .review-icon {
+    color: var(--color-bright-white);
+  }
+
+  .review-source {
+    color: var(--color-bright-red);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .track-info h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .track-info .artist {
+    color: var(--color-bright-white);
+    margin: 0 0 0rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+</style> 

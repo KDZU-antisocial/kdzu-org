@@ -9,10 +9,12 @@ const sortedTracks = recentTracks
 ---
 
 <section>
-  <h2>🔥 Hot New Tracks We Love</h2>
+  <h2>🔥 Hot Tracks We Love</h2>
   <div class="tracks-list">
     {sortedTracks.map((track) => (
-      <TrackCard track={track} />
+      <TrackCard track={track}>
+        {track.body}
+      </TrackCard>
     ))}
   </div>
 </section> 

@@ -10,4 +10,4 @@ pubDate: 2025-06-05
 heroImage: "https://static.kdzu.org/fight-the-power.jpg"
 ---
 
-A powerful anthem of resistance and hope, blending industrial beats with ethereal vocals. The track explores themes of digital freedom and collective action in the face of surveillance capitalism. 
+A powerful anthem of resistance and hope, blending industrial beats with ethereal vocals.
