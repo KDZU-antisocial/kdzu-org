@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
+import TrackCard from '../../components/TrackCard.astro';
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks
@@ -13,48 +14,7 @@ const sortedTracks = tracks
     <h1>Tracks We Love</h1>
     <div class="tracks-grid">
       {sortedTracks.map((track) => (
-        <article class="track-card">
-          <a href={`/tracks-we-love/${track.slug}`}>
-            <div class="track-image">
-              <img
-                src={track.data.heroImage}
-                alt={`${track.data.artist} - ${track.data.title}`}
-                width="320"
-                height="320"
-              />
-            </div>
-            <div class="track-info">
-              <h3>{track.data.title}</h3>
-              <p class="artist">{track.data.artist}</p>
-              <p class="label">
-                {track.data.labelLink ? (
-                  <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
-                    {track.data.label}
-                  </a>
-                ) : (
-                  track.data.label
-                )}
-              </p>
-            </div>
-          </a>
-          <div class="track-links">
-            {track.data.youtube && (
-              <a href={track.data.youtube} target="_blank" rel="noopener noreferrer" class="youtube">
-                YouTube
-              </a>
-            )}
-            {track.data.bandcamp && (
-              <a href={track.data.bandcamp} target="_blank" rel="noopener noreferrer" class="bandcamp">
-                Bandcamp
-              </a>
-            )}
-            {track.data.spotify && (
-              <a href={track.data.spotify} target="_blank" rel="noopener noreferrer" class="spotify">
-                Spotify
-              </a>
-            )}
-          </div>
-        </article>
+        <TrackCard track={track} />
       ))}
     </div>
     <Footer />
