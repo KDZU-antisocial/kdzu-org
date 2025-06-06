@@ -1,13 +1,8 @@
 ---
 import Copyright from '../components/Copyright.astro';
-import Footer from '../components/Footer.astro'; // Import the Footer component
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-
-const recentTracks = await getCollection('tracks');
-const sortedTracks = recentTracks
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
+import Footer from '../components/Footer.astro';
+import HotNewTracks from '../components/HotNewTracks.astro';
+import UpcomingEvents from '../components/UpcomingEvents.astro';
 ---
 
 <!DOCTYPE html>
@@ -20,17 +15,17 @@ const sortedTracks = recentTracks
   </head>
   <body>
     <header>
-      <h1>KDZU</h1>
-      <p>We are an underground radio station that exists to share the excitements of music and powers of creativity with other people. The US Federal Communications Commission (FCC) does not recognize KDZU as a real station. But if there is a mixer, DJs, human connection, and maybe even catharsis, is that not real?</p>
-    </header>
-    <main>
       <img
         src="https://static.kdzu.org/kdzu-hero-web-980-386@2x.png"
         alt="KDZU Hero"
-        width="980"
-        height="386"
-        style="width:100%;height:auto;display:block;margin-bottom:2rem;"
+        width="300"
+        height="116"
+        style="width:300px;height:auto;display:block;margin-bottom:1rem;"
       />
+      <h1>KDZU</h1>
+      <p>KDZU is an underground radio station that exists to share the excitements of music and powers of creativity with other people. The US Federal Communications Commission (FCC) does not recognize KDZU as a real station. But if there is a mixer, DJs, human connection, and maybe even catharsis, is that not real?</p>
+    </header>
+    <main>
       <div class="main-content">
         <section>
           <h2>Current Projects</h2>
@@ -62,75 +57,43 @@ const sortedTracks = recentTracks
         </section> -->
       </div>
       <div class="right-column">
-        <section>
-          <h2>Upcoming Events</h2>
-          <ul class="calendar">
-            <li>
-              <a href="/events/midnight-frequencies">
-                <div class="date-time">
-                  <span class="date">June 5</span>
-                  <span class="time">12:00 AM</span>
-                </div>
-                <span class="event-title">Midnight Frequencies</span>
-                <span class="location"><strong>Location:</strong> KDZU.org</span>
-              </a>
-            </li>
-            <li>
-              <a href="/events/rebel-beats">
-                <div class="date-time">
-                  <span class="date">July 26</span>
-                  <span class="time">9:00 AM to 9:00 PM</span>
-                </div>
-                <span class="event-title">Road Concerts: Rim of the World</span>
-                <span class="location"><strong>Location:</strong> KDZU.org</span>
-              </a>
-            </li>
-            <li>
-              <a href="/events/art-airwaves">
-                <div class="date-time">
-                  <span class="date">July 27</span>
-                  <span class="time">9:00 AM to 6:00 PM</span>
-                </div>
-                <span class="event-title">Road Concerts: Rim of the World</span>
-                <span class="location"><strong>Location:</strong> KDZU.org</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h2>🔥 Hot New Tracks We Love</h2>
-          <div class="tracks-table">
-            {sortedTracks.map((track) => (
-              <div class="track-row">
-                <div class="track-image">
-                  <img
-                    src={track.data.heroImage}
-                    alt={`${track.data.artist} - ${track.data.title}`}
-                    width="960"
-                    height="960"
-                  />
-                </div>
-                <div class="track-info">
-                  <div class="track-data">
-                    <p>{track.data.artist}</p>
-                    <p>{track.data.title}</p>
-                    <p>
-                      {track.data.labelLink ? (
-                        <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
-                          {track.data.label}
-                        </a>
-                      ) : (
-                        track.data.label
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        <UpcomingEvents />
+        <HotNewTracks />
       </div>
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  .track-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid var(--color-dark-gray);
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .track-image {
+    width: 240px;
+    height: 240px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .track-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .track-info {
+    width: 100%;
+  }
+
+  .track-data p {
+    margin: 0.25rem 0;
+  }
+</style>

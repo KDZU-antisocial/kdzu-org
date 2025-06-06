@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const recentTracks = await getCollection('tracks');
+const sortedTracks = recentTracks
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
+---
+
+<section>
+  <h2>🔥 Hot New Tracks We Love</h2>
+  <div class="tracks-table">
+    {sortedTracks.map((track) => (
+      <div class="track-row">
+        <div class="track-image">
+          <img
+            src={track.data.heroImage}
+            alt={`${track.data.artist} - ${track.data.title}`}
+            width="240"
+            height="240"
+          />
+        </div>
+        <div class="track-info">
+          <div class="track-data">
+            <p>{track.data.artist}</p>
+            <p>{track.data.title}</p>
+            <p>
+              {track.data.labelLink ? (
+                <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
+                  {track.data.label}
+                </a>
+              ) : (
+                track.data.label
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section> 
