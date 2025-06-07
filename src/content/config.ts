@@ -12,4 +12,20 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const tracks = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    artist: z.string(),
+    artistLink: z.string().url().optional(),
+    label: z.string(),
+    labelLink: z.string().url().optional(),
+    youtube: z.string().url().optional(),
+    bandcamp: z.string().url().optional(),
+    spotify: z.string().url().optional(),
+    pubDate: z.coerce.date(),
+    heroImage: z.string(),
+  }),
+});
+
+export const collections = { blog, tracks };

@@ -1,37 +1,37 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import Footer from '../../components/Footer.astro';
 
-const { slug } = Astro.params;
-const posts = await getCollection('blog');
-const post = posts.find(p => p.slug === slug);
-
-if (!post) {
-  return new Response(null, {
-    status: 404,
-    statusText: 'Not found'
-  });
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
+
+const post = await Astro.props;
 ---
 
-<Layout>
-  <article>
-    <header>
+<body class="blog-post">
+  <Layout>
+    <article>
       <h1>{post.data.title}</h1>
-      <p>{post.data.description}</p>
-      <time datetime={post.data.pubDate.toISOString()}>
-        {post.data.pubDate.toDateString()}
-      </time>
       {post.data.heroImage && (
-        <Image
-          src="../assets/blog/hero.jpg"
-          alt={post.data.title}
-          width={960}
-          height={960}
-        />
+        <div class="hero-image">
+          <img
+            src={post.data.heroImage}
+            alt={post.data.title}
+            width="960"
+            height="540"
+          />
+        </div>
       )}
-    </header>
-    <p>{post.data.description}</p>
-  </article>
-</Layout>
+      <div class="content">
+        {post.data.description}
+      </div>
+    </article>
+    <Footer />
+  </Layout>
+</body>

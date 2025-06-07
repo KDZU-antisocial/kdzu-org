@@ -1,7 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import heroImage from '../assets/kdzu-hero-web-980-386@2x.png'; // Import the image
 import Copyright from '../components/Copyright.astro';
+import Footer from '../components/Footer.astro';
+import HotNewTracks from '../components/HotNewTracks.astro';
+import UpcomingEvents from '../components/UpcomingEvents.astro';
 ---
 
 <!DOCTYPE html>
@@ -14,31 +15,38 @@ import Copyright from '../components/Copyright.astro';
   </head>
   <body>
     <header>
+      <img
+        src="https://static.kdzu.org/kdzu-hero-web-980-386@2x.png"
+        alt="KDZU Hero"
+        width="300"
+        height="116"
+        style="width:300px;height:auto;display:block;margin-bottom:1rem;"
+      />
       <h1>KDZU</h1>
-      <p>We are an underground radio station that exists to share the excitements of music and powers of creativity with other people. The US Federal Communications Commission (FCC) does not recognize KDZU as a real station. But if there is a mixer, DJs, human connection, and maybe even catharsis, is that not real?</p>
+      <p>KDZU is an underground radio station that exists to share the excitements of music and powers of creativity with other people. The US Federal Communications Commission (FCC) does not recognize KDZU as a real station. But if there is a mixer, DJs, human connection, and maybe even catharsis, is that not real?</p>
     </header>
     <main>
-			<div class="main-content">
+      <div class="main-content">
         <section>
-					<h2>Current Projects</h2>
+          <h2>Current Projects</h2>
           <h3>Discovering OMSA's Rover Spacecraft</h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
           <h3>Basslines from the Broken Earth: Wormhole Transmissions from the Rim of the World</h3>
-					<p>At 3:03 AM on the summer solstice, our in-studio receiver lit up with a strange new frequency—not our music, but a pulsing transmission filled with future weather reports, fungal poetry, and glitching voices repeating the sentence "Highway 18. Mile marker * garbled signal * Rim of the World."</p> 
-					<blockquote class="block-quote">
-						"Highway 18. Mile marker * garbled signal * Rim of the World."
-					</blockquote>
-					<p>Our SDR display flickered, went black, relit, and then locked onto a voice that sounded like rust and rain. "The root-net is live. Tune in. The Earth is speaking. You are a caregiver of my signal now."</p>
-					<blockquote class="block-quote">
-						“The root-net is live. Tune in. The Earth is speaking. You are a caregiver of my signal now.”
-					</blockquote>
-					<p>We packed in the van and raced to find and re-broadcast radio transmissions from a wormhole at the Rim of the World.</p>
-					<p class="text-red"><strong>Here's what we know so far.</strong></p>
-					<p>Beneath the cracked asphalt of Highway 18, a pine grove began a slow and silent transformation. Parched by the dry air and stressed by the relentless heat, the trees turned to the road's toxic leavings—metals from brake dust, batteries, and discarded electronics for sustenance. Their roots absorbed these elements and fused them with fungal threads into a glittering system of earthen circuitry. Over time, a giant hidden living underground capacitor formed—part plant and part machine.</p>
-					<p>Then, on the lightning-charged summer solstice night, the roots ignited with neural electricity. The ground split. Time sheared. And at the forest's edge, a wormhole opened—pulsing with Earth's subharmoics and spilling out futures no longer willing to wait for our arrival.</p>
+          <p>At 3:03 AM on the summer solstice, our in-studio receiver lit up with a strange new frequency—not our music, but a pulsing transmission filled with future weather reports, fungal poetry, and glitching voices repeating the sentence "Highway 18. Mile marker * garbled signal * Rim of the World."</p> 
+          <blockquote class="block-quote">
+            "Highway 18. Mile marker * garbled signal * Rim of the World."
+          </blockquote>
+          <p>Our SDR display flickered, went black, relit, and then locked onto a voice that sounded like rust and rain. "The root-net is live. Tune in. The Earth is speaking. You are a caregiver of my signal now."</p>
+          <blockquote class="block-quote">
+            "The root-net is live. Tune in. The Earth is speaking. You are a caregiver of my signal now."
+          </blockquote>
+          <p>We packed in the van and raced to find and re-broadcast radio transmissions from a wormhole at the Rim of the World.</p>
+          <p class="text-red"><strong>Here's what we know so far.</strong></p>
+          <p>Beneath the cracked asphalt of Highway 18, a pine grove began a slow and silent transformation. Parched by the dry air and stressed by the relentless heat, the trees turned to the road's toxic leavings—metals from brake dust, batteries, and discarded electronics for sustenance. Their roots absorbed these elements and fused them with fungal threads into a glittering system of earthen circuitry. Over time, a giant hidden living underground capacitor formed—part plant and part machine.</p>
+          <p>Then, on the lightning-charged summer solstice night, the roots ignited with neural electricity. The ground split. Time sheared. And at the forest's edge, a wormhole opened—pulsing with Earth's subharmoics and spilling out futures no longer willing to wait for our arrival.</p>
           <p>We think our crew at KDZU caught the wormhole's transmissions first as the wormhole broadcast was stepping on the signal of our transmitter. Forever paranoid (for good reason), we thought it might be Federal Agents and eventaully figured out it was a transmission from Earth and from what seem like future timelines.</p>
-				</section>
-        <section>
+        </section>
+        <!-- <section>
 					<h2>Past Projects</h2>
           <h3>Discovering OMSA's Rover Spacecraft</h3>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
@@ -46,172 +54,46 @@ import Copyright from '../components/Copyright.astro';
 					<p>Join us in our quest to create, explore, and resist the mundane.</p>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
-        </section>
+        </section> -->
       </div>
       <div class="right-column">
-				<section>
-					<h2>Upcoming Events</h2>
-					<ul class="calendar">
-						<li>
-							<a href="/events/midnight-frequencies">
-								<div class="date-time">
-									<span class="date">June 5</span>
-									<span class="time">12:00 AM</span>
-								</div>
-								<span class="event-title">Midnight Frequencies</span>
-								<span class="location"><strong>Location:</strong> KDZU.org</span>
-							</a>
-						</li>
-						<li>
-							<a href="/events/rebel-beats">
-								<div class="date-time">
-									<span class="date">July 26</span>
-									<span class="time">9:00 AM to 9:00 PM</span>
-								</div>
-								<span class="event-title">Road Concerts: Rim of the World</span>
-								<span class="location"><strong>Location:</strong> KDZU.org</span>
-							</a>
-						</li>
-						<li>
-							<a href="/events/art-airwaves">
-								<div class="date-time">
-									<span class="date">July 27</span>
-									<span class="time">9:00 AM to 6:00 PM</span>
-								</div>
-								<span class="event-title">Road Concerts: Rim of the World</span>
-								<span class="location"><strong>Location:</strong> KDZU.org</span>
-							</a>
-						</li>
-					</ul>
-				</section>
-<section>
-  <h2>Hot New Tracks We Love</h2>
-  <div class="tracks-table">
-    <div class="track-row">
-      <div class="track-info">
-        <div class="track-labels">
-          <p><strong>Artist</strong></p>
-          <p><strong>Song</strong></p>
-          <p><strong>Label</strong></p>
-        </div>
-        <div class="track-data">
-          <p>Unknown Rebel</p>
-          <p>Frequencies of Freedom</p>
-          <p>Underground Beats</p>
-        </div>
-      </div>
-    </div>
-    <div class="track-row">
-      <div class="track-info">
-        <div class="track-labels">
-          <p><strong>Artist</strong></p>
-          <p><strong>Song</strong></p>
-          <p><strong>Label</strong></p>
-        </div>
-        <div class="track-data">
-          <p>The Echo Chamber</p>
-          <p>Shadows in the Noise</p>
-          <p>Reverb Records</p>
-        </div>
-      </div>
-    </div>
-    <!-- Add more rows as needed -->
-  </div>
-</section>
+        <UpcomingEvents />
+        <HotNewTracks />
       </div>
     </main>
-    <footer>
-      <div class="footer-grid">
-        <div>
-          <h2>KDZU</h2>
-          <nav>
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/tracks-we-love">Tracks We Love</a></li>
-              <li><a href="/faq">FAQ</a></li>
-              <li><a href="/privacy">Privacy</a></li>
-            </ul>
-          </nav>
-        </div>
-        <div>
-          <h2>Projects</h2>
-          <ul>
-            <li><a href="/road-concert">Road Concert</a></li>
-            <li><a href="/unearthing-the-rover">Unearthing the Rover</a></li>
-          </ul>
-        </div>
-        <div>
-          <h2>Contact Us</h2>
-          <p>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px; margin-top: -3px;">
-              <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" fill="#ffffff"/>
-            </svg>
-            <a href="mailto:kdzu@kdzu.org">kdzu@kdzu.org</a>
-          </p>
-          <p>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px;">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/>
-            </svg>
-            <a href="https://instagram.com/kdzu_antisocial">@kdzu_antisocial</a>
-          </p>
-          <p>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px; margin-top: -3px;">
-              <path d="M21.258 13.99c-.274 1.41-2.456 2.955-4.962 3.421-1.306.234-2.655.35-4.01.35-1.355 0-2.704-.116-4.01-.35-2.506-.466-4.688-2.01-4.962-3.421-.12-.602.06-1.22.48-1.66.42-.44 1.02-.66 1.62-.66.6 0 1.2.22 1.62.66.42.44.6 1.058.48 1.66.274 1.41 2.456 2.955 4.962 3.421 1.306.234 2.655.35 4.01.35 1.355 0 2.704-.116 4.01-.35 2.506-.466 4.688-2.01 4.962-3.421.12-.602-.06-1.22-.48-1.66-.42-.44-1.02-.66-1.62-.66-.6 0-1.2.22-1.62.66-.42.44-.6 1.058-.48 1.66z" fill="#ffffff"/>
-            </svg>
-            <a href="https://instagram.com/kdzu_antisocial">@kdzu_antisocial</a>
-          </p>
-        </div>
-        <div>
-          <h2>Swinging the Hammer</h2>
-          <nav>
-            <ul>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="https://archive.org/download/139brechtashortorganumforthetheatre/139-Brecht_A_Short_Organum_for_the_Theatre.pdf" target="_blank" rel="noopener noreferrer">Organum (pdf)</a></li>
-              <li><a href="https://prowrestling.fandom.com/wiki/Kayfabe" target="_blank" rel="noopener noreferrer">Kayfabe</a></li>
-            </ul>
-            <p style="font-size: 0.9rem; font-style: italic; margin-top: 1rem;">"Art is not a mirror held up to reality but a hammer with which to shape it."</p>
-            <p style="font-size: 0.9rem; margin-top: 0.5rem;">— Bertolt Brecht</p>
-          </nav>
-        </div>
-        <div>
-          <h2>Newsletter</h2>
-          <p><a href="http://buttondown.com/kdzu">Sign up</a> for the V.O.I.C.E. of KDZU email newsletter! Entrust your precious email address to us and brace yourself for some super-strength weirdness and positivity!</p>
-        </div>
-        <div>
-          <h2>Call the KDZU Red Phone</h2>
-          <p>Call us at (775) 566-KDZU. Call anytime 24 hours a day, 7 days a week. </p>
-
-        </div>
-      </div>
-      <Copyright />
-    </footer>
-    <script>
-      // Update year on January 1st
-      const updateYear = () => {
-        const now = new Date();
-        const year = now.getFullYear();
-        const yearElement = document.getElementById('current-year');
-        if (yearElement) {
-          yearElement.textContent = year.toString();
-        }
-      };
-      
-      // Run on page load
-      updateYear();
-      
-      // Update at midnight on January 1st
-      const scheduleNextUpdate = () => {
-        const now = new Date();
-        const nextYear = new Date(now.getFullYear() + 1, 0, 1); // January 1st of next year
-        const timeUntilUpdate = nextYear.getTime() - now.getTime();
-        
-        setTimeout(() => {
-          updateYear();
-          scheduleNextUpdate(); // Schedule the next update
-        }, timeUntilUpdate);
-      };
-      
-      scheduleNextUpdate();
-    </script>
+    <Footer />
   </body>
 </html>
+
+<style>
+  .track-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid var(--color-dark-gray);
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .track-image {
+    width: 240px;
+    height: 240px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .track-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .track-info {
+    width: 100%;
+  }
+
+  .track-data p {
+    margin: 0.25rem 0;
+  }
+</style>
