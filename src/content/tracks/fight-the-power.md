@@ -11,4 +11,4 @@ pubDate: 2025-06-05
 heroImage: "https://static.kdzu.org/images/tracks/fight-the-power.jpg"
 ---
 
-A powerful anthem of resistance and hope, blending industrial beats with ethereal vocals.
+A theme song for the collective that started all of this. Fear of a Black Planet feels especially poignant right now.
