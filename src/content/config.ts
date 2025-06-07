@@ -17,6 +17,7 @@ const tracks = defineCollection({
   schema: z.object({
     title: z.string(),
     artist: z.string(),
+    artistLink: z.string().url().optional(),
     label: z.string(),
     labelLink: z.string().url().optional(),
     youtube: z.string().url().optional(),

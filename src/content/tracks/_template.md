@@ -1,13 +1,19 @@
 ---
-title: "Track Title"
-artist: "Artist Name"
-label: "Label Name"
-labelLink: "https://label-website.com"
-youtube: "https://youtube.com/watch?v=..."
-bandcamp: "https://artist.bandcamp.com"
-spotify: "https://open.spotify.com/track/..."
-pubDate: 2024-03-21
-heroImage: "https://static.kdzu.org/track-image.jpg"
+# Required fields
+title: "Track Title" # The name of the track
+artist: "Artist Name" # The name of the artist/band
+artistLink: "https://artist-website.com" # Optional: Link to artist's website
+label: "Label Name" # The record label that released the track
+labelLink: "https://label-website.com" # Optional: Link to the label's website
+heroImage: "https://static.kdzu.org/tracks/track-image.jpg" # Image should be at least 400x400px
+pubDate: 2024-03-21 # Use today's date in YYYY-MM-DD format
+
+# Optional streaming links
+youtube: "https://youtube.com/watch?v=..." # Optional: YouTube link
+bandcamp: "https://artist.bandcamp.com" # Optional: Bandcamp link
+spotify: "https://open.spotify.com/track/..." # Optional: Spotify link
+
+# Write an optional KDZU DJ review below the frontmatter. Keep it to about 80 chars (one line.)
 ---
 
 Write your track review here. Keep it concise but descriptive. Focus on the sound, mood, and impact of the track. 

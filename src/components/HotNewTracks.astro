@@ -2,19 +2,57 @@
 import { getCollection } from 'astro:content';
 import TrackCard from './TrackCard.astro';
 
-const recentTracks = await getCollection('tracks');
-const sortedTracks = recentTracks
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 6);
+const tracks = await getCollection('tracks');
+const sortedTracks = tracks.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const latestTracks = sortedTracks.slice(0, 3);
 ---
 
-<section>
-  <h2>🔥 Hot Tracks We Love</h2>
-  <div class="tracks-list">
-    {sortedTracks.map((track) => (
+<section class="hot-new-tracks">
+  <h2>
+    <span class="fire-icon">🔥</span>
+    Hot Tracks We Love
+  </h2>
+  <div class="tracks-grid">
+    {latestTracks.map((track) => (
       <TrackCard track={track}>
         {track.body}
       </TrackCard>
     ))}
   </div>
-</section> 
+</section>
+
+<style>
+  .hot-new-tracks {
+    margin: 2rem 0;
+  }
+
+  .hot-new-tracks h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .fire-icon {
+    font-size: 1.2em;
+  }
+
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Remove padding when in right sidebar */
+  :global(.right-column) .tracks-grid {
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .tracks-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style> 

@@ -7,5 +7,5 @@ youtube: "https://youtube.com/watch?v=example3"
 bandcamp: "https://bandcamp.com/track3"
 spotify: "https://open.spotify.com/track/example3"
 pubDate: 2023-01-03
-heroImage: "https://static.kdzu.org/test-track-3.jpg"
+heroImage: "https://static.kdzu.org/images/tracks/test-track-3.jpg"
 --- 

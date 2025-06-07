@@ -194,7 +194,7 @@ main {
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  margin-bottom: 1rem;
+  /* margin-bottom: rem; */
 }
 
 .track-image img {
@@ -261,7 +261,7 @@ main {
 }
 
 .track-card .track-info {
-  padding: 1rem;
+  padding: .5rem 1rem 1rem 1rem;
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -692,7 +692,7 @@ footer p {
   /* 3 columns for larger breakpoints */
   gap: 2rem;
   padding: 2rem;
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 .blog-grid {
@@ -888,4 +888,11 @@ body .tracks-we-love main,
 
 .tracks-grid .track-card:hover {
   transform: translateY(-4px);
+}
+
+/* Override for artist links */
+.track-card .artist a {
+  display: inline;
+  flex: none;
+  font-weight: inherit;
 }

@@ -4,6 +4,7 @@ interface Props {
     data: {
       title: string;
       artist: string;
+      artistLink?: string;
       label: string;
       labelLink?: string;
       heroImage: string;
@@ -31,7 +32,15 @@ const hasContent = track.body && track.body.trim().length > 0;
   </div>
   <div class="track-info">
     <h3>{track.data.title}</h3>
-    <p class="artist">{track.data.artist}</p>
+    <p class="artist">
+      {track.data.artistLink ? (
+        <a href={track.data.artistLink} target="_blank" rel="noopener noreferrer">
+          {track.data.artist}
+        </a>
+      ) : (
+        track.data.artist
+      )}
+    </p>
     <p class="label">
       {track.data.labelLink ? (
         <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
@@ -114,9 +123,39 @@ const hasContent = track.body && track.body.trim().length > 0;
 
   .track-info .artist {
     color: var(--color-bright-white);
-    margin: 0 0 0rem;
+    margin: 0 0 0.25rem;
     font-size: 1.1rem;
     font-weight: 300;
     opacity: 0.9;
+  }
+
+  .track-info .artist a {
+    color: var(--color-bright-blue);
+    text-decoration: none;
+    font-weight: 300;
+  }
+
+  .track-info .artist a:hover {
+    text-decoration: underline;
+  }
+
+  .track-info .label {
+    color: var(--color-gray);
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .track-info .label a {
+    color: var(--color-bright-blue);
+    text-decoration: none;
+    font-weight: 300;
+  }
+
+  .track-info .label a:hover {
+    text-decoration: underline;
   }
 </style> 
