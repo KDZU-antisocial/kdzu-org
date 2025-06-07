@@ -8,7 +8,12 @@ const navItems = [
 ---
 
 <nav class="top-nav">
-  <ul>
+  <button class="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
     {navItems.map(item => (
       <li>
         <a href={item.href}>{item.text}</a>
@@ -19,7 +24,7 @@ const navItems = [
 
 <style>
   .top-nav {
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
 
   .top-nav ul {
@@ -41,6 +46,24 @@ const navItems = [
     color: var(--color-bright-white);
   }
 
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-light-text);
+    margin: 6px 0;
+    transition: all 0.3s ease;
+  }
+
   @media (max-width: 768px) {
     .top-nav ul {
       gap: 1rem;
@@ -52,9 +75,68 @@ const navItems = [
   }
 
   @media (max-width: 480px) {
-    .top-nav ul {
+    .hamburger {
+      display: block;
+      position: fixed;
+      top: .5rem;
+      right: 2rem;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--color-dark-bg);
+      display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+    }
+
+    .nav-links.active {
+      transform: translateX(0);
+    }
+
+    .nav-links a {
+      font-size: 1.5rem;
+      color: var(--color-bright-white);
     }
   }
-</style> 
+</style>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  const links = document.querySelectorAll('.nav-links a');
+
+  hamburger?.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks?.classList.toggle('active');
+  });
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger?.classList.remove('active');
+      navLinks?.classList.remove('active');
+    });
+  });
+</script> 

@@ -11,6 +11,7 @@ const { title, subtitle } = Astro.props;
 
 <header>
   <div class="header-content">
+    <TopNavigation />
     <img
       src="https://static.kdzu.org/kdzu-hero-web-980-386@2x.png"
       alt="KDZU Hero"
@@ -18,7 +19,6 @@ const { title, subtitle } = Astro.props;
       height="116"
       class="header-logo"
     />
-    <TopNavigation />
     <h1>{title}</h1>
     {subtitle && <p>{subtitle}</p>}
   </div>
