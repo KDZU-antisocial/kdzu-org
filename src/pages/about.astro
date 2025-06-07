@@ -18,7 +18,7 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
   <body class="about-page">
     <Header 
       title="About KDZU" 
-      subtitle="Learn more about our underground radio station and mission."
+      subtitle="If you are wondering what the heck KDZU is, you may have come to the right page."
     />
     <main>
       <div class="main-content">
@@ -33,9 +33,9 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
           <p>We curate and share music that pushes boundaries, tell stories through sound, and create connections between artists and listeners. Our programming includes:</p>
           <ul>
             <li>Live DJ sets and mixes</li>
-            <li>Artist interviews and features</li>
+            <li>Get into trouble</li>
             <li>Music discovery and recommendations</li>
-            <li>Community events and collaborations</li>
+            <li>Collaborations with other artists, DJs, and stations</li>
           </ul>
           
           <h2>Join Us</h2>
@@ -66,7 +66,30 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
 
   .about-page ul li {
     color: var(--color-light-text);
-    font-size: 1.5rem;
     margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 1440px) {
+    .about-page ul li {
+      font-size: 1.375rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .about-page ul li {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-page ul li {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-page ul li {
+      font-size: 0.9rem;
+    }
   }
 </style> 
