@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<header>
+  <div class="header-content">
+    <img
+      src="https://static.kdzu.org/kdzu-hero-web-980-386@2x.png"
+      alt="KDZU Hero"
+      width="300"
+      height="116"
+      class="header-logo"
+    />
+    <h1>{title}</h1>
+    {subtitle && <p>{subtitle}</p>}
+  </div>
+</header> 

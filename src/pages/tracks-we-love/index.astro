@@ -3,22 +3,36 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import TrackCard from '../../components/TrackCard.astro';
+import Copyright from '../../components/Copyright.astro';
+import Header from '../../components/Header.astro';
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
 ---
 
-<body class="tracks-we-love">
-  <Layout>
-    <h1>Tracks We Love</h1>
-    <div class="tracks-grid">
-      {sortedTracks.map((track) => (
-        <TrackCard track={track}>
-          {track.body}
-        </TrackCard>
-      ))}
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tracks We Love - KDZU</title>
+    <link rel="stylesheet" href={cssUrl} />
+  </head>
+  <body class="tracks-we-love">
+    <Header title="Tracks We Love" />
+    <main>
+      <div class="tracks-grid">
+        {sortedTracks.map((track) => (
+          <TrackCard track={track}>
+            {track.body}
+          </TrackCard>
+        ))}
+      </div>
+    </main>
     <Footer />
-  </Layout>
-</body> 
+  </body>
+</html> 

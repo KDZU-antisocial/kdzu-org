@@ -440,14 +440,68 @@ main {
   /* Use variable */
 }
 
-/* Header and Footer */
+/* Header styles */
 header {
   width: 100%;
   text-align: left;
   padding: 2rem 0;
-  padding-left: 1rem;
+  padding-left: 44px;
   border-bottom: 1px solid var(--color-dark-gray);
-  /* Use variable */
+  box-sizing: border-box;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-logo {
+  width: 400px;
+  height: auto;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 1440px) {
+  header {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-content {
+    width: auto;
+  }
+
+  header {
+    padding-left: 2rem;
+  }
+
+  .header-logo {
+    width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding-left: 1rem;
+  }
+
+  .header-logo {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding-left: 1rem;
+  }
+
+  .header-logo {
+    width: 100%;
+  }
 }
 
 footer {
@@ -565,11 +619,15 @@ footer p {
 @media (max-width: 1024px) {
   main {
     grid-template-columns: 1fr 320px;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .right-column {
     max-width: 320px;
+  }
+
+  header {
+    padding-left: 1rem;
   }
 
   h1 {
@@ -596,11 +654,15 @@ footer p {
 @media (max-width: 768px) {
   main {
     grid-template-columns: 1fr 320px;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .right-column {
     max-width: 320px;
+  }
+
+  header {
+    padding-left: 1rem;
   }
 
   h1 {
@@ -649,10 +711,7 @@ footer p {
   }
 
   header {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    box-sizing: border-box;
+    padding-left: 1rem;
   }
 
   main {
@@ -925,4 +984,15 @@ body .tracks-we-love main,
   display: inline;
   flex: none;
   font-weight: inherit;
+}
+
+/* Override grid layout for privacy policy page */
+body.privacy-policy main {
+  display: block !important;
+  grid-template-columns: 1fr !important;
+}
+
+body.privacy-policy .main-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
