@@ -1,0 +1,60 @@
+---
+const navItems = [
+  { href: '/', text: 'Home' },
+  { href: '/tracks-we-love', text: 'Tracks We Love' },
+  { href: '/privacy-policy', text: 'Privacy' },
+  { href: '/about', text: 'About KDZU' }
+];
+---
+
+<nav class="top-nav">
+  <ul>
+    {navItems.map(item => (
+      <li>
+        <a href={item.href}>{item.text}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .top-nav {
+    margin-bottom: 1rem;
+  }
+
+  .top-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .top-nav a {
+    color: var(--color-light-text);
+    text-decoration: none;
+    font-size: 1.25rem;
+    transition: color 0.2s ease;
+  }
+
+  .top-nav a:hover {
+    color: var(--color-bright-white);
+  }
+
+  @media (max-width: 768px) {
+    .top-nav ul {
+      gap: 1rem;
+    }
+
+    .top-nav a {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .top-nav ul {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style> 

@@ -1,4 +1,6 @@
 ---
+import TopNavigation from './TopNavigation.astro';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -16,6 +18,7 @@ const { title, subtitle } = Astro.props;
       height="116"
       class="header-logo"
     />
+    <TopNavigation />
     <h1>{title}</h1>
     {subtitle && <p>{subtitle}</p>}
   </div>
