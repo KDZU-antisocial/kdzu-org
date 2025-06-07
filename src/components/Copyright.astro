@@ -1,0 +1,32 @@
+<div class="copyright-section" style="margin-top: 3rem;">
+  <p>🄯 <span id="current-year"></span> KDZU Antennaobscura!</p>
+</div>
+
+<script>
+  // Update year on January 1st
+  const updateYear = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+      yearElement.textContent = year.toString();
+    }
+  };
+  
+  // Run on page load
+  updateYear();
+  
+  // Update at midnight on January 1st
+  const scheduleNextUpdate = () => {
+    const now = new Date();
+    const nextYear = new Date(now.getFullYear() + 1, 0, 1); // January 1st of next year
+    const timeUntilUpdate = nextYear.getTime() - now.getTime();
+    
+    setTimeout(() => {
+      updateYear();
+      scheduleNextUpdate(); // Schedule the next update
+    }, timeUntilUpdate);
+  };
+  
+  scheduleNextUpdate();
+</script> 

@@ -2,7 +2,7 @@
 title: 'My Second Blog Post'
 description: 'This is my second blog post using Astro content collections.'
 pubDate: 2024-01-15
-heroImage: 'https://static.kdzu.org/blog/second-post/hero.jpg'
+heroImage: 'https://static.kdzu.org/hero.jpg'
 tags: ['astro', 'blogging', 'web development']
 ---
 

@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+import TrackCard from '../../components/TrackCard.astro';
+
+const tracks = await getCollection('tracks');
+const sortedTracks = tracks
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<body class="tracks-we-love">
+  <Layout>
+    <h1>Tracks We Love</h1>
+    <div class="tracks-grid">
+      {sortedTracks.map((track) => (
+        <TrackCard track={track}>
+          {track.body}
+        </TrackCard>
+      ))}
+    </div>
+    <Footer />
+  </Layout>
+</body> 

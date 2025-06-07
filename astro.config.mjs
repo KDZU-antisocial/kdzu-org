@@ -13,5 +13,10 @@ export default defineConfig({
   build: {
     assets: 'https://static.kdzu.org/_astro'
   },
-  integrations: [mdx()],
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/compile'
+    }
+  },
+  integrations: [mdx()]
 });

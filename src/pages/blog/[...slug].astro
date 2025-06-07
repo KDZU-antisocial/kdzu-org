@@ -1,37 +1,37 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
 
-// Get the slug from the URL
-const { slug } = Astro.params;
-
-// Get all posts and find the matching one
-const posts = await getCollection('blog');
-const post = posts.find(p => p.slug === slug);
-
-// If no post found, return 404
-if (!post) {
-  return new Response(null, {
-    status: 404,
-    statusText: 'Not found'
-  });
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
 
-const { Content } = await post.render();
+const post = await Astro.props;
 ---
 
-<Layout>
-  <article>
-    <header>
+<body class="blog-post">
+  <Layout>
+    <article>
       <h1>{post.data.title}</h1>
-      <p>{post.data.description}</p>
-      <time datetime={post.data.pubDate.toISOString()}>
-        {post.data.pubDate.toDateString()}
-      </time>
       {post.data.heroImage && (
-        <img src={post.data.heroImage} alt={post.data.title} />
+        <div class="hero-image">
+          <img
+            src={post.data.heroImage}
+            alt={post.data.title}
+            width="960"
+            height="540"
+          />
+        </div>
       )}
-    </header>
-    <Content />
-  </article>
-</Layout>
+      <div class="content">
+        {post.data.description}
+      </div>
+    </article>
+    <Footer />
+  </Layout>
+</body>
