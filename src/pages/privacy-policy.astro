@@ -1,0 +1,122 @@
+---
+import Copyright from '../components/Copyright.astro';
+import Footer from '../components/Footer.astro';
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - KDZU</title>
+    <link rel="stylesheet" href={cssUrl} />
+  </head>
+  <body>
+    <header>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: {new Date().toLocaleDateString()}</p>
+    </header>
+    <main>
+      <div class="main-content">
+        <section>
+          <h2>Introduction</h2>
+          <p>At KDZU, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information when you visit our website.</p>
+
+          <h2>Information We Collect</h2>
+          <p>We collect minimal information necessary to provide our services:</p>
+          <ul>
+            <li>Email address (if you subscribe to our newsletter)</li>
+            <li>Basic usage data (pages visited, time spent on site)</li>
+            <li>Information you voluntarily provide through our contact forms</li>
+          </ul>
+
+          <h2>How We Use Your Information</h2>
+          <p>We use your information to:</p>
+          <ul>
+            <li>Send you our newsletter (if you've subscribed)</li>
+            <li>Improve our website and services</li>
+            <li>Respond to your inquiries</li>
+            <li>Share music and content you might enjoy</li>
+          </ul>
+
+          <h2>Media and Content</h2>
+          <p>We embed media players from other sites, such as youtube.com, vimeo.com, spotify.com and others. We cannot control the tracking they do. If we hear about particularly concerning privacy practices, we will do our best to block it or try to get media from other sources.</p>
+          
+          <p>We try to avoid uploading photos of people with embedded location data (EXIF GPS) included. Visitors (most likely bots) to the website can download these images and extract this location data from photos on the website. This data could be used to compromise a person's privacy.</p>
+
+          <h2>Cookies</h2>
+          <p>We don't intentionally set cookies. If we have set one by mistake we will remedy it. We use Cloudflare DNS and R2 for hosting our site.</p>
+
+          <h2>Embedded Content from Other Websites</h2>
+          <p>Things we post on this site often include embedded content (e.g. videos, sound files, images, pdfs, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited this other website.</p>
+
+          <p>These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interactions with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p>
+
+          <p>For example, if we embed a youtube.com video you can expect youtube.com to be tracking you. We don't access this data, but we want to be clear that our web pages are exposing you to tracking by third parties.</p>
+
+          <h2>Data Storage and Security</h2>
+          <p>Your data is stored securely using industry-standard practices. We use Cloudflare for hosting and security, and our newsletter service (Buttondown) for email communications.</p>
+
+          <h2>Third-Party Services</h2>
+          <p>We use the following third-party services:</p>
+          <ul>
+            <li>Cloudflare (hosting and security)</li>
+            <li>Buttondown (newsletter)</li>
+            <li>GitHub (code hosting)</li>
+            <li>Various media platforms (YouTube, Vimeo, Spotify) for embedded content</li>
+          </ul>
+
+          <h2>Your Rights</h2>
+          <p>You have the right to:</p>
+          <ul>
+            <li>Access your personal data</li>
+            <li>Correct inaccurate data</li>
+            <li>Request deletion of your data</li>
+            <li>Opt-out of communications</li>
+          </ul>
+
+          <h2>Contact Us</h2>
+          <p>If you have any questions about this privacy policy, please contact us at:</p>
+          <p><a href="mailto:kdzu@kdzu.org">kdzu@kdzu.org</a></p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .main-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--color-light-text);
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+</style> 
