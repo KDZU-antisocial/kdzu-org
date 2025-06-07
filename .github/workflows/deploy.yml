@@ -30,6 +30,14 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           
+      - name: Upload public files to R2
+        run: |
+          find public -type f | while read file; do
+            npx wrangler r2 object put kdzu-static/"${file#public/}" --file "$file"
+          done
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          
       - name: Deploy to Cloudflare Workers
         run: npx wrangler deploy --env production
         env:
