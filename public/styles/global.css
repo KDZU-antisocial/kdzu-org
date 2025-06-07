@@ -127,6 +127,8 @@ a:hover {
 /* Layout styles */
 main {
   width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
@@ -451,14 +453,14 @@ header {
 }
 
 .header-content {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
 }
 
 .header-logo {
-  width: 400px;
+  width: 100%;
   height: auto;
   display: block;
   margin: 1rem 0;
@@ -502,42 +504,17 @@ header {
   header {
     padding-left: 2rem;
   }
-
-  .header-logo {
-    width: 400px;
-  }
 }
 
 @media (max-width: 768px) {
   header {
     padding-left: 1rem;
   }
-
-  .header-logo {
-    width: 100%;
-  }
-
-  .top-nav ul {
-    gap: 1rem;
-  }
-
-  .top-nav a {
-    font-size: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
   header {
     padding-left: 1rem;
-  }
-
-  .header-logo {
-    width: 100%;
-  }
-
-  .top-nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
   }
 }
 
