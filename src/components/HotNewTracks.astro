@@ -4,7 +4,7 @@ import TrackCard from './TrackCard.astro';
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const latestTracks = sortedTracks.slice(0, 3);
+const latestTracks = sortedTracks.slice(0, 2);
 ---
 
 <section class="hot-new-tracks">
@@ -18,6 +18,9 @@ const latestTracks = sortedTracks.slice(0, 3);
         {track.body}
       </TrackCard>
     ))}
+  </div>
+  <div style="text-align: center; margin-top: 1rem;">
+    <span style="color: var(--color-bright-white);">Check out more </span><a href="/tracks-we-love">Tracks We Love</a>
   </div>
 </section>
 
