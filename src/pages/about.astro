@@ -1,0 +1,95 @@
+---
+import Copyright from '../components/Copyright.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About KDZU - Antennaobscura!</title>
+    <link rel="stylesheet" href={cssUrl} />
+  </head>
+  <body class="about-page">
+    <Header 
+      title="About KDZU" 
+      subtitle="If you are wondering what the heck KDZU is, you may have come to the right page."
+    />
+    <main>
+      <div class="main-content">
+        <section>
+          <h2>Our Mission</h2>
+          <p>KDZU is an underground radio station that exists to share the excitements of music and powers of creativity with other people. The US Federal Communications Commission (FCC) does not recognize KDZU as a real station. But if there is a mixer, DJs, human connection, and maybe even catharsis, is that not real?</p>
+          
+          <h2>Our Story</h2>
+          <p>This is a very long story. We'll tell it some other time.</p>
+          
+          <h2>What We Do</h2>
+          <p>We curate and share music that pushes boundaries, tell stories through sound, and create connections between artists and listeners. Our programming includes:</p>
+          <ul>
+            <li>Live DJ sets and mixes</li>
+            <li>Get into trouble</li>
+            <li>Music discovery and recommendations</li>
+            <li>Collaborations with other artists, DJs, and stations</li>
+          </ul>
+          
+          <h2>Join Us</h2>
+          <p>Whether you're an artist, a music lover, or just curious about underground radio, there's a place for you in the KDZU community. Follow us on social media, tune in to our broadcasts, or reach out to get involved.</p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .about-page main {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-page .main-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .about-page ul {
+    list-style: disc;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-page ul li {
+    color: var(--color-light-text);
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 1440px) {
+    .about-page ul li {
+      font-size: 1.375rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .about-page ul li {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-page ul li {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-page ul li {
+      font-size: 0.9rem;
+    }
+  }
+</style> 
