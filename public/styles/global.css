@@ -32,10 +32,7 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
   color: var(--color-light-text);
-  /* Use variable */
   background-color: var(--color-dark-bg);
-  /* Use variable */
-  padding: 0 44px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -45,35 +42,28 @@ h1 {
   font-size: 5rem;
   font-weight: 900;
   color: var(--color-bright-white);
-  /* Use variable */
   margin: 0 0 1rem;
   grid-column: 1 / -1;
-  /* Ensure h1 spans all columns */
 }
 
 h2 {
   font-size: 3rem;
   font-weight: 700;
   color: var(--color-bright-white);
-  /* Use variable */
   margin: 0 0 1rem;
 }
 
 h3 {
   font-size: 2.25rem;
-  /* Reduced from 2.5rem */
   font-weight: 600;
   color: var(--color-bright-white);
-  /* Use variable */
   margin: 0 0 1rem;
 }
 
 h4 {
   font-size: 1.75rem;
-  /* Reduced from 2rem */
   font-weight: 500;
   color: var(--color-bright-white);
-  /* Use variable */
   margin: 0 0 0.75rem;
 }
 
@@ -81,7 +71,6 @@ p {
   font-size: 1.5rem;
   font-weight: 400;
   color: var(--color-light-text);
-  /* Use variable */
   margin: 0 0 1.5rem;
 }
 
@@ -91,7 +80,6 @@ p {
 
 a {
   color: var(--color-bright-blue);
-  /* Use variable */
   font-weight: 500;
   text-decoration: none;
 }
@@ -102,26 +90,17 @@ a:hover {
 
 .block-quote {
   font-size: 1.5rem;
-  /* Slightly larger than body text */
   font-style: italic;
-  /* Italicize the text */
   color: var(--color-gray);
-  /* Use muted gray for the text */
   border-left: 4px solid var(--color-bright-blue);
-  /* Add a colored border */
   padding-left: 1rem;
-  /* Add spacing between the border and text */
   margin: 1.5rem 0;
-  /* Add vertical spacing */
   line-height: 1.8;
-  /* Improve readability */
 }
 
 .block-quote strong {
   color: var(--color-bright-white);
-  /* Highlight important text */
   font-weight: bold;
-  /* Make it stand out */
 }
 
 /* Layout styles */
@@ -132,7 +111,7 @@ main {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
-  padding: 2rem;
+  padding: 2rem 44px;
   box-sizing: border-box;
 }
 
@@ -156,7 +135,6 @@ main {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-bright-white);
-  /* Use variable */
   margin-bottom: 1rem;
 }
 
@@ -171,7 +149,6 @@ main {
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-gray);
-  /* Use variable */
 }
 
 /* Hot New Tracks Table Layout */
@@ -195,7 +172,6 @@ main {
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  /* margin-bottom: rem; */
 }
 
 .track-image img {
@@ -272,10 +248,6 @@ main {
   margin: 0 0 0.5rem;
   font-size: 1.5rem;
   font-weight: 700;
-  /* Remove overflow handling to allow wrapping */
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis; */
-  /* white-space: nowrap; */
 }
 
 .track-card .track-info .artist {
@@ -317,7 +289,6 @@ main {
   flex-direction: row;
   gap: 1.4rem;
   padding: 0 0 1rem 0;
-  /* border-top: 1px solid var(--color-dark-gray); */
   width: 100%;
   box-sizing: border-box;
   justify-content: center;
@@ -377,77 +348,65 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* Space between cards */
 }
 
 .calendar li {
   display: grid;
   grid-template-rows: auto auto auto;
-  /* Three rows: date-time, title, location */
   gap: 0.5rem;
-  /* Space between rows */
   background-color: var(--color-dark-bg);
-  /* Use variable */
   border: 1px solid var(--color-dark-gray);
-  /* Use variable */
   padding: 1rem;
   border-radius: 4px;
-  /* Slight rounding for modern look */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
 }
 
 .calendar li:hover {
   background-color: var(--color-medium-gray);
-  /* Use variable */
   transform: translateY(-4px);
-  /* Lift effect on hover */
 }
 
 .calendar li:last-child {
   margin-bottom: 3rem;
-  /* Add vertical spacing after the last entry */
 }
 
 .calendar a {
   text-decoration: none;
-  /* Remove underline for links */
   color: var(--color-bright-white);
-  /* Use variable */
 }
 
 .calendar .date-time {
   display: flex;
   justify-content: space-between;
-  /* Align date and time horizontally */
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-bright-white);
-  /* Use variable */
 }
 
 .calendar .event-title {
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--color-bright-white);
-  /* Use variable */
 }
 
 .calendar .location {
   display: block;
-  /* Force location to appear on a new line */
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-gray);
-  /* Use variable */
 }
 
 /* Header styles */
 header {
-  width: 100%;
+  width: 100vw;
   text-align: left;
-  padding: 2rem 0;
-  padding-left: 44px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   border-bottom: 1px solid var(--color-dark-gray);
   box-sizing: border-box;
 }
@@ -457,13 +416,24 @@ header {
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  padding: 0;
+}
+
+.header-content h1 {
+  padding: 2rem 44px 0;
+  margin: 0 0 1rem;
+}
+
+.header-content p {
+  padding: 0 44px 2rem;
+  margin: 0;
 }
 
 .header-logo {
   width: 100%;
   height: auto;
   display: block;
-  margin: 1rem 0;
+  margin: 0;
 }
 
 /* Top Navigation styles */
@@ -491,8 +461,16 @@ header {
 }
 
 @media (max-width: 1440px) {
-  header {
-    padding-left: 2rem;
+  .header-content h1 {
+    padding: 2rem 2rem 0;
+  }
+
+  .header-content p {
+    padding: 0 2rem 2rem;
+  }
+
+  main {
+    padding: 2rem 2rem;
   }
 }
 
@@ -501,38 +479,86 @@ header {
     width: auto;
   }
 
+  .header-content h1 {
+    padding: 2rem 2rem 0;
+  }
+
+  .header-content p {
+    padding: 0 2rem 2rem;
+  }
+
+  main {
+    grid-template-columns: 1fr 320px;
+    padding: 1rem 2rem;
+  }
+
+  .right-column {
+    max-width: 320px;
+  }
+
   header {
-    padding-left: 2rem;
+    padding-left: 0;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 1.25rem;
   }
 }
 
 @media (max-width: 768px) {
-  header {
-    padding-left: 1rem;
+  .header-content h1 {
+    padding: 1rem 1rem 0;
+  }
+
+  .header-content p {
+    padding: 0 1rem 1rem;
+  }
+
+  main {
+    padding: 1rem 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  header {
-    padding-left: 1rem;
+  .header-content h1 {
+    padding: 1rem 1rem 0;
+  }
+
+  .header-content p {
+    padding: 0 1rem 1rem;
+  }
+
+  main {
+    padding: 1rem 1rem;
   }
 }
 
 footer {
   grid-column: 1 / -1;
-  /* Span all columns */
   width: 100%;
   text-align: left;
   padding: 1rem 0;
   padding-left: 2rem;
   border-top: 1px solid var(--color-dark-gray);
-  /* Use variable */
   font-size: 1rem;
-  /* Increased font size */
   line-height: 1.6;
-  /* Increased line spacing */
   color: var(--color-footer-text);
-  /* Use variable */
   margin-top: auto;
 }
 
@@ -540,19 +566,15 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  /* Reduced gap between columns */
 }
 
 .footer-grid>div {
   max-width: 300px;
-  /* Reduced width for nav blocks */
 }
 
 .footer-grid h2 {
   font-size: 1.25rem;
-  /* Slightly larger header size */
   margin-bottom: 0.5rem;
-  /* Reduced spacing below headers */
 }
 
 .footer-grid ul {
@@ -563,25 +585,18 @@ footer {
 
 .footer-grid ul li {
   font-size: 1rem;
-  /* Increased font size for list items */
   margin: 0.15rem 0;
-  /* Reduced spacing between list items */
 }
 
 .footer-grid p {
   font-size: 1rem;
-  /* Keep the current font size */
   margin: 0.15rem 0;
-  /* Reduced spacing between paragraphs */
   color: var(--color-bright-white);
-  /* Use bright white for footer text */
 }
 
 .footer-grid a {
   font-size: 1rem;
-  /* Increased font size for links */
   color: var(--color-bright-blue);
-  /* Use variable */
   text-decoration: none;
 }
 
@@ -591,18 +606,15 @@ footer {
 
 footer p {
   font-size: 1rem;
-  /* Match the size of .footer-grid p */
   margin: 0.25rem 0;
-  /* Match the spacing of .footer-grid p */
   color: var(--color-bright-white);
-  /* Use the same color as .footer-grid p */
 }
 
 /* Media queries */
 @media (max-width: 1440px) {
   main {
     grid-template-columns: 1fr 320px;
-    padding: 2rem;
+    padding: 2rem 2rem;
   }
 
   .right-column {
@@ -633,7 +645,7 @@ footer p {
 @media (max-width: 1024px) {
   main {
     grid-template-columns: 1fr 320px;
-    padding: 1rem;
+    padding: 1rem 2rem;
   }
 
   .right-column {
@@ -641,7 +653,7 @@ footer p {
   }
 
   header {
-    padding-left: 1rem;
+    padding-left: 0;
   }
 
   h1 {
@@ -668,15 +680,11 @@ footer p {
 @media (max-width: 768px) {
   main {
     grid-template-columns: 1fr 320px;
-    padding: 1rem;
+    padding: 1rem 1rem;
   }
 
   .right-column {
     max-width: 320px;
-  }
-
-  header {
-    padding-left: 1rem;
   }
 
   h1 {
@@ -724,14 +732,10 @@ footer p {
     padding: 0 1rem;
   }
 
-  header {
-    padding: 2rem 1rem 0 1rem;
-  }
-
   main {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 1rem 1rem;
     gap: 1rem;
   }
 
@@ -788,7 +792,6 @@ footer p {
 .tracks-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3 columns for larger breakpoints */
   gap: 2rem;
   padding: 2rem;
   margin-top: 0;
@@ -796,13 +799,11 @@ footer p {
 
 .blog-grid {
   grid-column: 1 / -1;
-  /* Span all columns */
 }
 
 @media (max-width: 768px) {
   .tracks-grid {
     grid-template-columns: 1fr;
-    /* 1 column for mobile breakpoints */
   }
 }
 
