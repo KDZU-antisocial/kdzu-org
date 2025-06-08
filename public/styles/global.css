@@ -58,6 +58,7 @@ h3 {
   font-weight: 600;
   color: var(--color-bright-white);
   margin: 0 0 1rem;
+  line-height: 1.2;
 }
 
 h4 {
@@ -618,14 +619,16 @@ header {
 footer {
   grid-column: 1 / -1;
   width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   text-align: left;
-  padding: 1rem 0;
-  padding-left: 2rem;
+  padding: 1rem 44px;
   border-top: 1px solid var(--color-dark-gray);
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-footer-text);
   margin-top: auto;
+  box-sizing: border-box;
 }
 
 .footer-grid {
