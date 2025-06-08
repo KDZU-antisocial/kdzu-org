@@ -3,7 +3,6 @@ const navItems = [
   { href: '/', text: 'Home' },
   { href: '/tracks-we-love', text: 'Tracks We Love' },
   { href: '/about', text: 'About KDZU' },
-  { href: '/privacy-policy', text: 'Privacy' }
 ];
 ---
 
@@ -25,6 +24,7 @@ const navItems = [
 <style>
   .top-nav {
     margin-bottom: 0;
+    margin-right: 2rem;
     display: flex;
     justify-content: flex-end;
   }
@@ -38,7 +38,7 @@ const navItems = [
   }
 
   .top-nav a {
-    color: var(--color-light-text);
+    color: var(--color-bright-white);
     text-decoration: none;
     font-size: 1.25rem;
     transition: color 0.2s ease;
@@ -46,6 +46,7 @@ const navItems = [
 
   .top-nav a:hover {
     color: var(--color-bright-white);
+    opacity: 0.8;
   }
 
   .hamburger {
@@ -61,7 +62,7 @@ const navItems = [
     display: block;
     width: 24px;
     height: 2px;
-    background-color: var(--color-light-text);
+    background-color: var(--color-bright-white);
     margin: 6px 0;
     transition: all 0.3s ease;
   }
