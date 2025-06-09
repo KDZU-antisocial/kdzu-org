@@ -9,4 +9,4 @@ spotify: "https://open.spotify.com/track/0XfctcVRjDPYUfcFEqvqrV?si=94caa9f330da4
 pubDate: 2025-06-06
 heroImage: "https://static.kdzu.org/images/tracks/the-deep-sleep-of-evil-men.jpg"
 --- 
-This is the jam Hades plays on his boat's party speaker as he paddles your ass to Hell. Instrumental psychosis as coping mechanism.
+This is the jam Hades plays on his boat's party speaker as he paddles your ass to Hell.
