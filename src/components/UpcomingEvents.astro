@@ -1,44 +1,18 @@
 ---
-interface Event {
-  date: string;
-  time: string;
-  title: string;
-  location: string;
-  link: string;
-}
+import { getCollection } from 'astro:content';
+import EventCard from './EventCard.astro';
 
-const events: Event[] = [
-  {
-    date: "July 26",
-    time: "9:00 AM to 9:00 PM",
-    title: "Road Concerts: Rim of the World",
-    location: "KDZU.org",
-    link: "/events/rebel-beats"
-  },
-  {
-    date: "July 27",
-    time: "9:00 AM to 6:00 PM",
-    title: "Road Concerts: Rim of the World",
-    location: "KDZU.org",
-    link: "/events/art-airwaves"
-  }
-];
+const events = await getCollection('events');
+const sortedEvents = events.sort((a, b) => {
+  return a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
+});
 ---
 
 <section>
   <h2>Upcoming Events</h2>
   <ul class="calendar">
-    {events.map((event) => (
-      <li>
-        <a href={event.link}>
-          <div class="date-time">
-            <span class="date">{event.date}</span>
-            <span class="time">{event.time}</span>
-          </div>
-          <span class="event-title">{event.title}</span>
-          <span class="location"><strong>Location:</strong> {event.location}</span>
-        </a>
-      </li>
+    {sortedEvents.map((event) => (
+      <EventCard event={event} />
     ))}
   </ul>
 </section> 

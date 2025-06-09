@@ -1,0 +1,75 @@
+---
+interface Props {
+  event: {
+    data: {
+      date: string;
+      time: string;
+      title: string;
+      subtitle?: string;
+      subtitleLink?: string;
+      location: string;
+      address1?: string;
+      address2?: string;
+      addressLink?: string;
+      link?: string;
+      dayOfWeek?: string;
+    };
+    body: string;
+  };
+}
+
+const { event } = Astro.props;
+const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link, dayOfWeek } = event.data;
+---
+
+<li>
+  <div class="event-content">
+    <div class="date-time">
+      <span>{dayOfWeek && `${dayOfWeek} `}{date}</span>
+      <span>{time}</span>
+    </div>
+    <h3 class="event-title">
+      {link ? <a href={link}>{title}</a> : title}
+    </h3>
+    {subtitle && (
+      <div class="subtitle">
+        {subtitleLink ? <a href={subtitleLink}>{subtitle}</a> : subtitle}
+      </div>
+    )}
+    {event.body && (
+      <div class="markdown">
+        <Fragment set:html={event.body} />
+      </div>
+    )}
+  </div>
+  <div class="event-footer">
+    <div class="location">{location}</div>
+    {(address1 || address2) && (
+      <div class="address">
+        {addressLink ? (
+          <a href={addressLink} class="address-link">
+            <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div class="address-lines">
+              {address1 && <div class="address-line">{address1}</div>}
+              {address2 && <div class="address-line">{address2}</div>}
+            </div>
+          </a>
+        ) : (
+          <>
+            <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <div class="address-lines">
+              {address1 && <div class="address-line">{address1}</div>}
+              {address2 && <div class="address-line">{address2}</div>}
+            </div>
+          </>
+        )}
+      </div>
+    )}
+  </div>
+</li> 
