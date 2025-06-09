@@ -1,27 +1,16 @@
 ---
 import TopNavigation from './TopNavigation.astro';
-
-interface Props {
-  title: string;
-  subtitle: string;
-}
-
-const { title, subtitle } = Astro.props;
 ---
 
 <header>
   <div class="header-content">
     <TopNavigation />
     <div class="header-image-wrapper">
-      <img
-      src="https://static.kdzu.org/images/kdzu-header-1440@2x.jpg"
-      alt="KDZU Hero"
-      width="1440"
-      height="600"
-      class="header-logo"
-      />
+      <img class="header-logo" src="https://static.kdzu.org/images/kdzu-header-1440@2x.jpg" alt="KDZU Header" />
     </div>
-    <h1>{title}</h1>
-    <p>{subtitle}</p>
+    <div class="header-text">
+      <div class="site-title">KDZU!</div>
+      <div class="site-subtitle">ANTENNAOBSCURA!</div>
+    </div>
   </div>
 </header> 

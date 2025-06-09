@@ -23,7 +23,18 @@
   /* Darker Gray */
   --color-bright-red: #ef4444;
   /* Bright Red */
+  --color-bold-red: #ff0000;
 
+}
+
+/* Font faces */
+@font-face {
+  font-family: 'Detroit 05 Base';
+  src: url('https://static.kdzu.org/fonts/Detroit05Base.woff2') format('woff2'),
+    url('https://static.kdzu.org/fonts/Detroit05Base.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Base styles */
@@ -537,23 +548,61 @@ header {
   width: 100%;
   box-sizing: border-box;
   padding: 0;
+  position: relative;
 }
 
-.header-content h1 {
-  padding: 2rem 44px 0;
-  margin: 0 0 1rem;
-}
-
-.header-content p {
-  padding: 0 44px 2rem;
-  margin: 0;
-}
-
-.header-logo {
+.header-image-wrapper {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 50vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.header-image-wrapper .header-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-text {
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -2rem;
+}
+
+.site-title {
+  padding: 0;
   margin: 0;
+  font-family: "Detroit 05 Base", sans-serif;
+  font-size: 20rem;
+  font-weight: 900;
+  color: var(--color-bold-red);
+  opacity: 0.9;
+  text-align: center;
+  width: 100%;
+  line-height: 1;
+  margin-bottom: -4rem;
+}
+
+.site-subtitle {
+  padding: 0;
+  margin: 0;
+  font-family: "Detroit 05 Base", sans-serif;
+  font-size: 4.8rem;
+  font-weight: 700;
+  color: var(--color-bright-white);
+  opacity: 0.9;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
 }
 
 /* Top Navigation styles */
@@ -1127,4 +1176,35 @@ body.privacy-policy main {
 body.privacy-policy .main-content {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.subtitle {
+  font-size: 2rem;
+  color: var(--color-light-text);
+  margin: -1rem 0 2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 1440px) {
+  .subtitle {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .subtitle {
+    font-size: 1rem;
+  }
 }
