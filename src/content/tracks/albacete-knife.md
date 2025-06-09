@@ -2,6 +2,7 @@
 title: "Albacete Knife"
 artist: "Al Wooten"
 label: "TRULE"
+labelLink: "https://trule.bandcamp.com/"
 heroImage: "https://static.kdzu.org/images/tracks/albacete-knife.jpg"
 pubDate: 2025-06-08
 youtube: "https://www.youtube.com/watch?v=t4bsDgoWSMU"
