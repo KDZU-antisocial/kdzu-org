@@ -316,43 +316,36 @@ main {
 .calendar {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0 0 2rem 0;
-  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
   .calendar {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
   }
 }
 
 .calendar li {
-  display: grid;
-  grid-template-rows: auto auto auto auto auto auto;
-  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-dark-bg);
   border: 1px solid var(--color-dark-gray);
   padding: 1rem;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
-  height: fit-content;
-  align-items: start;
-  margin-bottom: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .calendar li:hover {
   background-color: var(--color-medium-gray);
   transform: translateY(-4px);
-}
-
-.calendar a {
-  text-decoration: none;
-  color: var(--color-bright-white);
 }
 
 .calendar .date-time {
@@ -361,6 +354,7 @@ main {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-bright-white);
+  margin-bottom: 1rem;
 }
 
 .calendar .event-title {
@@ -391,7 +385,8 @@ main {
   font-size: 1rem;
   font-weight: 500;
   color: var(--color-gray);
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
 }
 
 .calendar .address {
@@ -427,7 +422,6 @@ main {
   flex-direction: column;
   gap: 0.25rem;
   flex: 1;
-  margin-bottom: 1rem;
 }
 
 .calendar .address-line {
@@ -455,6 +449,8 @@ main {
   font-size: 1.5rem;
   line-height: 1.6;
   font-weight: 400;
+  flex: 1;
+  min-height: 0;
 }
 
 @media (max-width: 1440px) {
@@ -496,6 +492,14 @@ main {
   .calendar .address-link,
   .calendar .address-line {
     font-size: 0.9rem;
+  }
+
+  .calendar {
+    gap: 2rem;
+  }
+
+  .calendar li {
+    margin-bottom: 0;
   }
 }
 
