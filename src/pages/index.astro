@@ -2,11 +2,17 @@
 import Copyright from '../components/Copyright.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import HotNewTracks from '../components/HotNewTracks.astro';
 import UpcomingEvents from '../components/UpcomingEvents.astro';
+import TrackCard from '../components/TrackCard.astro';
+import { getCollection } from 'astro:content';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+
+const tracks = await getCollection('tracks');
+const sortedTracks = tracks
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6); // Get only the 6 most recent tracks
 ---
 
 <!DOCTYPE html>
@@ -16,6 +22,14 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KDZU - Antennaobscura!</title>
     <link rel="stylesheet" href={cssUrl} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="https://static.kdzu.org/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="https://static.kdzu.org/favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="https://static.kdzu.org/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#191919" />
   </head>
   <body>
     <Header 
@@ -26,8 +40,6 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
       <div class="main-content">
         <section>
           <h2>Current Projects</h2>
-          <!-- <h3>Discovering OMSA's Rover Spacecraft</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p> -->
           <h3>Basslines from the Broken Earth: Wormhole Transmissions from the Rim of the World</h3>
           <p>At 3:03 AM on the summer solstice, our in-studio receiver lit up with a strange new frequency—not our music, but a pulsing transmission filled with future weather reports, fungal poetry, and glitching voices repeating the sentence "Highway 18. Mile marker * garbled signal * Rim of the World."</p> 
           <blockquote class="block-quote">
@@ -43,19 +55,24 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
           <p>Then, on the lightning-charged summer solstice night, the roots ignited with neural electricity. The ground split. Time sheared. And at the forest's edge, a wormhole opened—pulsing with Earth's subharmoics and spilling out futures no longer willing to wait for our arrival.</p>
           <p>We think our crew at KDZU caught the wormhole's transmissions first as the wormhole broadcast was stepping on the signal of our transmitter. Forever paranoid (for good reason), we thought it might be Federal Agents and eventaully figured out it was a transmission from Earth and from what seem like future timelines.</p>
         </section>
-        <!-- <section>
-					<h2>Past Projects</h2>
-          <h3>Discovering OMSA's Rover Spacecraft</h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
-          <h3>Collaborators Local artists and dreamers</h3>
-					<p>Join us in our quest to create, explore, and resist the mundane.</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In suscipit placeat veritatis rem et facilis odio aperiam eveniet, provident natus? Veniam, itaque quia. Facilis dignissimos rem eligendi, at quas enim?</p>
-        </section> -->
+
+        <section>
+          <h2>🔥 Hot Tracks We Love</h2>
+          <div class="tracks-grid">
+            {sortedTracks.map((track) => (
+              <TrackCard track={{
+                data: track.data,
+                slug: track.id,
+                body: track.body || ''
+              }}>
+                {track.body}
+              </TrackCard>
+            ))}
+          </div>
+        </section>
       </div>
       <div class="right-column">
         <UpcomingEvents />
-        <HotNewTracks />
       </div>
     </main>
     <Footer />
