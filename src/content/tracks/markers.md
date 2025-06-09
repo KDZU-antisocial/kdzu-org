@@ -8,4 +8,4 @@ spotify: "https://open.spotify.com/track/22EGVxtx39EtLiQ45sbZSR?si=65bfaa6396bd4
 pubDate: 2025-06-06
 heroImage: "https://static.kdzu.org/images/tracks/markers.jpg"
 --- 
-The concussive technoid gurgling glitches of your robot enemy withering on the floor after you've pierced it's heart.
+The concussive technoid gurgling glitches of your robot enemy withering on the floor after you've pierced its heart.
