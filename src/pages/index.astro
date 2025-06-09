@@ -2,8 +2,8 @@
 import Copyright from '../components/Copyright.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import UpcomingEvents from '../components/UpcomingEvents.astro';
 import TrackCard from '../components/TrackCard.astro';
+import EventCard from '../components/EventCard.astro';
 import { getCollection } from 'astro:content';
 
 const isDev = import.meta.env.DEV;
@@ -11,8 +11,17 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .sort((a, b) => {
+    const dateA = a.data.pubDate?.valueOf() || 0;
+    const dateB = b.data.pubDate?.valueOf() || 0;
+    return dateB - dateA;
+  })
   .slice(0, 6); // Get only the 6 most recent tracks
+
+const events = await getCollection('events');
+const sortedEvents = events.sort((a, b) => {
+  return a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
+});
 ---
 
 <!DOCTYPE html>
@@ -38,6 +47,14 @@ const sortedTracks = tracks
     />
     <main>
       <div class="main-content">
+        <section>
+          <h2>Upcoming Events</h2>
+          <ul class="calendar">
+            {sortedEvents.map((event) => (
+              <EventCard event={event} />
+            ))}
+          </ul>
+        </section>
         <section>
           <h2>Current Projects</h2>
           <h3>Basslines from the Broken Earth: Wormhole Transmissions from the Rim of the World</h3>
@@ -70,9 +87,6 @@ const sortedTracks = tracks
             ))}
           </div>
         </section>
-      </div>
-      <div class="right-column">
-        <UpcomingEvents />
       </div>
     </main>
     <Footer />

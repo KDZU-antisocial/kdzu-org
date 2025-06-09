@@ -1,0 +1,30 @@
+---
+interface Props {
+  event: {
+    data: {
+      date: string;
+      time: string;
+      title: string;
+      location: string;
+      link?: string;
+    };
+    body: string;
+  };
+}
+
+const { event } = Astro.props;
+---
+
+<li>
+  <a href={event.data.link || '#'}>
+    <div class="date-time">
+      <span class="date">{event.data.date}</span>
+      <span class="time">{event.data.time}</span>
+    </div>
+    <span class="event-title">{event.data.title}</span>
+    <span class="location"><strong>Location:</strong> {event.data.location}</span>
+    <div class="markdown">
+      {event.body}
+    </div>
+  </a>
+</li> 
