@@ -444,6 +444,19 @@ main {
   margin-top: 0.24rem;
 }
 
+.calendar .event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.calendar .event-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
 .calendar li .markdown {
   color: var(--color-light-text);
   font-size: 1.5rem;
