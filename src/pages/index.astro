@@ -39,6 +39,7 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KDZU - Antennaobscura!</title>
+    <link rel="preload" href="https://static.kdzu.org/fonts/Detroit05Base.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href={cssUrl} />
     
     <!-- Favicon -->
@@ -50,12 +51,10 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
     <meta name="theme-color" content="#191919" />
   </head>
   <body>
-    <Header 
-      title="YES!" 
-      subtitle="KDZU is an underground radio station that exists to share the excitements of music and powers of creativity with other people. The US Federal Communications Commission (FCC) does not recognize KDZU as a real station. But if there is a mixer, DJs, human connection, and maybe even catharsis, is that not real?"
-    />
+    <Header />
     <main>
 			<div class="main-content">
+        <h1>Welcome</h1>
         <section>
           <h2>Upcoming Events</h2>
           <ul class="calendar">

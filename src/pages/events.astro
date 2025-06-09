@@ -50,12 +50,10 @@ const sortedPastEvents = pastEvents.sort((a, b) => {
     <meta name="theme-color" content="#191919" />
   </head>
   <body>
-    <Header 
-      title="Events" 
-      subtitle="Upcoming events and gatherings! Join us!"
-    />
+    <Header />
     <main>
       <div class="main-content">
+        <h1>Events</h1>
         <section>
           <ul class="calendar">
             {sortedUpcomingEvents.map((event) => (

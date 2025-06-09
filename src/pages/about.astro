@@ -16,12 +16,11 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
     <link rel="stylesheet" href={cssUrl} />
   </head>
   <body class="about-page">
-    <Header 
-      title="About KDZU" 
-      subtitle="If you are wondering what the heck KDZU is, you may have come to the right page."
-    />
+    <Header />
     <main>
       <div class="main-content">
+        <h1>About KDZU</h1>
+        <p class="subtitle">If you are wondering what the heck KDZU is, you may have come to the right page.</p>
         <section>
           <h2>Our Mission</h2>
           <p>KDZU is an underground radio station that exists to share the excitements of music and powers of creativity with other people. The US Federal Communications Commission (FCC) does not recognize KDZU as a real station. But if there is a mixer, DJs, human connection, and maybe even catharsis, is that not real?</p>
@@ -50,11 +49,6 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
   .about-page main {
     display: block !important;
     grid-template-columns: 1fr !important;
-  }
-
-  .about-page .main-content {
-    max-width: 800px;
-    margin: 0 auto;
   }
 
   .about-page ul {
