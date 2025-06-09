@@ -344,8 +344,8 @@ main {
 }
 
 .calendar li:hover {
-  background-color: var(--color-medium-gray);
-  transform: translateY(-4px);
+  background-color: var(--color-dark-bg);
+  transform: none;
 }
 
 .calendar .date-time {
@@ -371,21 +371,22 @@ main {
 }
 
 .calendar .subtitle a {
-  color: var(--color-gray);
+  color: var(--color-bright-blue);
   text-decoration: none;
 }
 
 .calendar .subtitle a:hover {
-  color: var(--color-bright-white);
+  color: var(--color-bright-blue);
   text-decoration: underline;
 }
 
 .calendar .location {
   display: block;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--color-gray);
   margin-top: auto;
+  margin-bottom: 0.25rem;
   padding-top: 1rem;
 }
 
@@ -459,7 +460,6 @@ main {
 
 .calendar li .markdown {
   color: var(--color-light-text);
-  font-size: 1.5rem;
   line-height: 1.6;
   font-weight: 400;
   flex: 1;
