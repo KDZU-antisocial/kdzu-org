@@ -19,7 +19,16 @@ const sortedTracks = tracks
   .slice(0, 6); // Get only the 6 most recent tracks
 
 const events = await getCollection('events');
-const sortedEvents = events.sort((a, b) => {
+const today = new Date();
+today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+const upcomingEvents = events.filter(event => {
+  const eventDate = new Date(event.data.date);
+  eventDate.setHours(0, 0, 0, 0);
+  return eventDate >= today;
+});
+
+const sortedEvents = upcomingEvents.sort((a, b) => {
   return a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
 });
 ---

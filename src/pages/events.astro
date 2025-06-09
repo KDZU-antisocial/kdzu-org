@@ -9,7 +9,26 @@ const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
 
 const events = await getCollection('events');
-const sortedEvents = events.sort((a, b) => {
+const today = new Date();
+today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+const upcomingEvents = events.filter(event => {
+  const eventDate = new Date(event.data.date);
+  eventDate.setHours(0, 0, 0, 0);
+  return eventDate >= today;
+});
+
+const pastEvents = events.filter(event => {
+  const eventDate = new Date(event.data.date);
+  eventDate.setHours(0, 0, 0, 0);
+  return eventDate < today;
+});
+
+const sortedUpcomingEvents = upcomingEvents.sort((a, b) => {
+  return new Date(a.data.date).valueOf() - new Date(b.data.date).valueOf();
+});
+
+const sortedPastEvents = pastEvents.sort((a, b) => {
   return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
 });
 ---
@@ -39,11 +58,22 @@ const sortedEvents = events.sort((a, b) => {
       <div class="main-content">
         <section>
           <ul class="calendar">
-            {sortedEvents.map((event) => (
+            {sortedUpcomingEvents.map((event) => (
               <EventCard event={event} />
             ))}
           </ul>
         </section>
+
+        {sortedPastEvents.length > 0 && (
+          <section>
+            <h2>Past Events</h2>
+            <ul class="calendar">
+              {sortedPastEvents.map((event) => (
+                <EventCard event={event} />
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
     </main>
     <Footer />
