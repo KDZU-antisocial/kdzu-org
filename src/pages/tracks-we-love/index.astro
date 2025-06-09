@@ -23,14 +23,20 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
     <link rel="stylesheet" href={cssUrl} />
   </head>
   <body class="tracks-we-love">
-    <Header title="Tracks We Love" />
+    <Header />
     <main>
-      <div class="tracks-grid">
-        {sortedTracks.map((track) => (
-          <TrackCard track={track}>
-            {track.body}
-          </TrackCard>
-        ))}
+      <div class="main-content">
+        <h1>Tracks We Love</h1>
+        <div class="tracks-grid">
+          {sortedTracks.map((track) => (
+            <TrackCard track={{
+              data: track.data,
+              body: track.body || ''
+            }}>
+              {track.body}
+            </TrackCard>
+          ))}
+        </div>
       </div>
     </main>
     <Footer />
