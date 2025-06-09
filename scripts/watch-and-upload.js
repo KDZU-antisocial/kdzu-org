@@ -44,7 +44,8 @@ const pathsToWatch = [
   'public/images',
   'public/tracks',
   'public/styles',
-  'public/scripts'
+  'public/scripts',
+  'public/favicon'
 ];
 
 // Initialize watcher
