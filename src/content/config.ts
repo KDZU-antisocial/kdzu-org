@@ -34,7 +34,12 @@ const events = defineCollection({
     date: z.string(),
     time: z.string(),
     title: z.string(),
+    subtitle: z.string().optional(),
+    subtitleLink: z.string().optional(),
     location: z.string(),
+    address1: z.string().optional(),
+    address2: z.string().optional(),
+    addressLink: z.string().optional(),
     link: z.string().optional(),
     pubDate: z.coerce.date(),
   })
