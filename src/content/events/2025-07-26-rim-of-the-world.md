@@ -1,5 +1,6 @@
 ---
-date: "Sat 2025.07.26"
+date: "2025.07.26"
+dayOfWeek: "Sat"
 time: "9:00 AM to 9:00 PM"
 title: "Basslines from the Broken Earth"
 subtitle: "Road Concerts: Rim of the World"

@@ -41,6 +41,7 @@ const events = defineCollection({
     address2: z.string().optional(),
     addressLink: z.string().optional(),
     link: z.string().optional(),
+    dayOfWeek: z.string().optional(),
     pubDate: z.coerce.date(),
   })
 });

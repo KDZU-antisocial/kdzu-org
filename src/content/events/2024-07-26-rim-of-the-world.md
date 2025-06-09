@@ -1,5 +1,6 @@
 ---
 date: "2024-07-26"
+dayOfWeek: "Mon"
 time: "9:00 AM to 9:00 PM"
 title: "Road Concerts: Rim of the World"
 subtitle: "Wormhole Transmission Site"

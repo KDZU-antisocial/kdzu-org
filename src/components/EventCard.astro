@@ -12,18 +12,19 @@ interface Props {
       address2?: string;
       addressLink?: string;
       link?: string;
+      dayOfWeek?: string;
     };
     body: string;
   };
 }
 
 const { event } = Astro.props;
-const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link } = event.data;
+const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link, dayOfWeek } = event.data;
 ---
 
 <li>
   <div class="date-time">
-    <span>{date}</span>
+    <span>{dayOfWeek && `${dayOfWeek} `}{date}</span>
     <span>{time}</span>
   </div>
   <h3 class="event-title">

@@ -10,7 +10,7 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
 
 const events = await getCollection('events');
 const sortedEvents = events.sort((a, b) => {
-  return a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
+  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
 });
 ---
 
@@ -33,12 +33,11 @@ const sortedEvents = events.sort((a, b) => {
   <body>
     <Header 
       title="Events" 
-      subtitle="Upcoming events and gatherings"
+      subtitle="Upcoming events and gatherings! Join us!"
     />
     <main>
       <div class="main-content">
         <section>
-          <h2>Events</h2>
           <ul class="calendar">
             {sortedEvents.map((event) => (
               <EventCard event={event} />
