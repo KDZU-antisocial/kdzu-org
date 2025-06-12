@@ -14,9 +14,7 @@ Installation steps are at the bottom of this document.
 
 Use `npm run dev` to start Astro at http://localhost:4321
 
-
 Check the scripts section of `package.json` to learn more about how this works
-
 
 ## Deploying with a Github Action
 
