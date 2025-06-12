@@ -1,8 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 
+interface SitemapUrl {
+  url: string;
+  lastmod?: Date;
+  priority: number;
+  changefreq: string;
+}
+
 // Get all pages
-const pages = [
+const pages: SitemapUrl[] = [
   { url: '/', priority: 1.0, changefreq: 'daily' },
   { url: '/about', priority: 0.8, changefreq: 'monthly' },
   { url: '/events', priority: 0.9, changefreq: 'weekly' },
@@ -12,7 +19,7 @@ const pages = [
 
 // Get all tracks
 const tracks = await getCollection('tracks');
-const trackUrls = tracks.map(track => ({
+const trackUrls: SitemapUrl[] = tracks.map(track => ({
   url: `/tracks-we-love/${track.slug}`,
   lastmod: track.data.pubDate,
   priority: 0.7,
@@ -21,7 +28,7 @@ const trackUrls = tracks.map(track => ({
 
 // Get all events
 const events = await getCollection('events');
-const eventUrls = events.map(event => ({
+const eventUrls: SitemapUrl[] = events.map(event => ({
   url: `/events/${event.slug}`,
   lastmod: event.data.pubDate,
   priority: 0.7,
@@ -32,19 +39,22 @@ const eventUrls = events.map(event => ({
 const allUrls = [...pages, ...trackUrls, ...eventUrls];
 
 // Format date to YYYY-MM-DD
-function formatDate(date) {
+function formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
 }
 
 // Get current date for pages without lastmod
 const today = formatDate(new Date());
+
+// Set the output to static.kdzu.org
+const baseUrl = 'https://static.kdzu.org';
 ---
 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {allUrls.map(({ url, lastmod, priority, changefreq }) => (
     <url>
-      <loc>https://kdzu.org{url}</loc>
+      <loc>{baseUrl}{url}</loc>
       <lastmod>{lastmod ? formatDate(lastmod) : today}</lastmod>
       <changefreq>{changefreq}</changefreq>
       <priority>{priority}</priority>
