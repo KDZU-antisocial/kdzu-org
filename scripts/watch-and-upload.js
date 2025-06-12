@@ -45,7 +45,8 @@ const pathsToWatch = [
   'public/tracks',
   'public/styles',
   'public/scripts',
-  'public/favicon'
+  'public/favicon',
+  'dist'  // Add dist directory to watch for generated files
 ];
 
 // Initialize watcher
@@ -59,8 +60,10 @@ const handleFileChange = async (filepath) => {
   console.log(`\nProcessing file: ${filepath}`);
   
   try {
-    // Get the relative path from public directory
-    const relativePath = path.relative('public', filepath);
+    // Get the relative path from public directory or dist directory
+    const relativePath = filepath.startsWith('dist/') 
+      ? filepath.replace('dist/', '')
+      : path.relative('public', filepath);
     console.log('Relative path:', relativePath);
     
     // Check if file exists
@@ -122,7 +125,8 @@ function getContentType(filepath) {
     '.js': 'application/javascript',
     '.json': 'application/json',
     '.html': 'text/html',
-    '.txt': 'text/plain'
+    '.txt': 'text/plain',
+    '.xml': 'application/xml'  // Add XML content type
   };
   return contentTypes[ext] || 'application/octet-stream';
 }
