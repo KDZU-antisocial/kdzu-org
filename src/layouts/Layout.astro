@@ -1,6 +1,7 @@
 ---
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+const isLinksPage = Astro.url.pathname === '/links';
 ---
 
 <!DOCTYPE html>
@@ -13,13 +14,15 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/about/">About</a></li>
-        </ul>
-      </nav>
+      {!isLinksPage && (
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </nav>
+      )}
     </header>
     <main>
       <slot />
