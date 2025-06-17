@@ -2,9 +2,9 @@
 title: "Send Out"
 artist: "Pinch"
 artistLink: "https://pinch-tectonic.bandcamp.com"
-label: "Pinch-Tectonic"
+label: "Tectonic"
 labelLink: "https://pinch-tectonic.bandcamp.com"
-heroImage: "images/tracks/send_out.jpg"
+heroImage: "https://static.kdzu.org/images/tracks/send_out.jpg"
 pubDate: 2025-06-17
 bandcamp: "https://pinch-tectonic.bandcamp.com/track/send-out"
 youtube: "https://www.youtube.com/watch?v=B8hLB7C743A"
