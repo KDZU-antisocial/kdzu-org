@@ -4,7 +4,7 @@ artist: "Black Sites"
 artistLink: "https://tresorberlin.bandcamp.com"
 label: "Tresor"
 labelLink: "https://tresorberlin.bandcamp.com"
-heroImage: "https://static.kdzu.org/images/tracks/images/tracks/flikk.jpg"
+heroImage: "https://static.kdzu.org/images/tracks/flikk.jpg"
 pubDate: 2025-06-17
 bandcamp: "https://tresorberlin.bandcamp.com/track/flikk"
 youtube: "https://www.youtube.com/watch?v=NQfMbPI-uAc"
