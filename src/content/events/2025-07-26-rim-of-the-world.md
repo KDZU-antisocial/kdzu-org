@@ -9,7 +9,7 @@ location: "4000' Level pullout CA-18"
 address1: "Rim of the World Highway"
 address2: "San Bernardino, California, 92404"
 addressLink: "https://maps.app.goo.gl/jaXo2TVr8WMdHeWM6"
-pubDate: 2025-06-08
+pubDate: 2025-06-07
 
 ---
 
