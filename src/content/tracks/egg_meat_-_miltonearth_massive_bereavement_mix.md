@@ -11,4 +11,4 @@ youtube: "https://www.youtube.com/watch?v=c2M4p7xVpMI"
 
 ---
 
-A Massive Bereavement makes this weird Egg Meat track even weirder. Bleak. Fucked. LOVING IT.
+Massive Bereavement makes this weird Egg Meat track even weirder. Bleak. Fucked. LOVING IT.
