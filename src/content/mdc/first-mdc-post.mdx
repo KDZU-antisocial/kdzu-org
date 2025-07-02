@@ -1,0 +1,75 @@
+---
+title: 'First MDC Post'
+description: 'This is the first post in the Mutually Demurred Construction series.'
+pubDate: 2024-12-15
+tags: ['mdc', 'construction', 'design']
+---
+
+import PhotoWithCaption from '../../components/PhotoWithCaption.astro';
+import PhotoGrid from '../../components/PhotoGrid.astro';
+
+# First MDC Post
+
+This is the content of the first MDC post. You can write about construction projects, design ideas, or any other topics related to Mutually Demurred Construction.
+
+## Project Photos
+
+<PhotoWithCaption 
+  src="https://picsum.photos/800/500" 
+  alt="Construction site overview" 
+  caption="The initial state of our construction project site."
+/>
+
+## Design Process Documentation
+
+<PhotoGrid 
+  photos={[
+    { 
+      src: "https://picsum.photos/400/300?random=10", 
+      alt: "Design sketch 1",
+      caption: "Initial concept sketch"
+    },
+    { 
+      src: "https://picsum.photos/400/300?random=11", 
+      alt: "Design sketch 2",
+      caption: "Refined design approach"
+    }
+  ]}
+  columns={2}
+/>
+
+## Key Points
+
+- Point 1
+- Point 2
+- Point 3
+
+## Construction Progress
+
+<PhotoGrid 
+  photos={[
+    { 
+      src: "https://picsum.photos/300/200?random=12", 
+      alt: "Progress photo 1"
+    },
+    { 
+      src: "https://picsum.photos/300/200?random=13", 
+      alt: "Progress photo 2"
+    },
+    { 
+      src: "https://picsum.photos/300/200?random=14", 
+      alt: "Progress photo 3"
+    }
+  ]}
+  columns={3}
+/>
+
+More content can go here... 
+
+## Final Result
+
+<PhotoWithCaption 
+  src="https://picsum.photos/800/600" 
+  alt="Completed project" 
+  caption="The finished construction project showcasing our design principles."
+/> 

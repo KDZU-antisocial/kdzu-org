@@ -1,0 +1,86 @@
+---
+title: 'First Blog Post'
+description: 'This is the first post of our blog.'
+pubDate: 2024-01-01
+tags: ['astro', 'blogging', 'learning in public']
+---
+
+import PhotoWithCaption from '../../components/PhotoWithCaption.astro';
+import PhotoGrid from '../../components/PhotoGrid.astro';
+
+# First Blog Post
+
+Welcome to our blog! This is the first post where we'll be sharing our thoughts and experiences.
+
+## Example Photo with Caption
+
+<PhotoWithCaption 
+  src="https://picsum.photos/800/600" 
+  alt="A beautiful landscape" 
+  caption="This is an example photo with a caption. You can use any image URL here."
+/>
+
+## Example Photo Grid
+
+<PhotoGrid 
+  photos={[
+    { 
+      src: "https://picsum.photos/400/300?random=1", 
+      alt: "First grid photo",
+      caption: "First photo in the grid"
+    },
+    { 
+      src: "https://picsum.photos/400/300?random=2", 
+      alt: "Second grid photo",
+      caption: "Second photo in the grid"
+    },
+    { 
+      src: "https://picsum.photos/400/300?random=3", 
+      alt: "Third grid photo",
+      caption: "Third photo in the grid"
+    },
+    { 
+      src: "https://picsum.photos/400/300?random=4", 
+      alt: "Fourth grid photo",
+      caption: "Fourth photo in the grid"
+    }
+  ]}
+  columns={2}
+/>
+
+## Three Column Grid Example
+
+<PhotoGrid 
+  photos={[
+    { 
+      src: "https://picsum.photos/300/200?random=5", 
+      alt: "Three column photo 1"
+    },
+    { 
+      src: "https://picsum.photos/300/200?random=6", 
+      alt: "Three column photo 2"
+    },
+    { 
+      src: "https://picsum.photos/300/200?random=7", 
+      alt: "Three column photo 3"
+    }
+  ]}
+  columns={3}
+/>
+
+## Regular Markdown Content
+
+You can still use regular markdown content alongside your components:
+
+- **Bold text** and *italic text*
+- Lists like this one
+- [Links](https://example.com)
+- And more!
+
+### Code blocks
+
+```javascript
+console.log('Hello, world!');
+```
+
+This is a great way to create rich, interactive blog posts with beautiful photo layouts! 
