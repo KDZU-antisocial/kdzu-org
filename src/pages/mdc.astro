@@ -1,10 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import Copyright from '../components/Copyright.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+
+const posts = await getCollection('mdc');
+const sortedPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!DOCTYPE html>
@@ -21,23 +26,52 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
       <div class="main-content">
         <h1>MDC</h1>
         <p class="subtitle">Mutually Demurred Construction</p>
-        <section>
-          <h2>About MDC</h2>
-          <p>This is the MDC page. You can customize this content to fit your needs.</p>
-          
-          <h2>Content</h2>
-          <p>Add your content here. This could be information about MDC, links, or any other content you'd like to share.</p>
-          
-          <h2>Features</h2>
-          <ul>
-            <li>Feature 1</li>
-            <li>Feature 2</li>
-            <li>Feature 3</li>
-          </ul>
-          
-          <h2>Get Started</h2>
-          <p>Ready to explore MDC? Check out the links below or get in touch with us.</p>
-        </section>
+        
+        <div class="mdc-grid">
+          {sortedPosts.map((post) => (
+            <article class="mdc-card">
+              <a href={`/mdc/${post.slug}`}>
+                {post.data.heroImage && (
+                  <div class="mdc-image">
+                    <img
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      width="960"
+                      height="540"
+                    />
+                  </div>
+                )}
+                <div class="mdc-content">
+                  <h3>{post.data.title}</h3>
+                  <p class="mdc-description">{post.data.description}</p>
+                  <div class="mdc-meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                    {post.data.tags.length > 0 && (
+                      <div class="mdc-tags">
+                        {post.data.tags.map((tag) => (
+                          <span class="tag">{tag}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+        
+        {sortedPosts.length === 0 && (
+          <section>
+            <h2>No Posts Yet</h2>
+            <p>No MDC posts have been published yet. Check back soon!</p>
+          </section>
+        )}
       </div>
     </main>
     <Footer />
@@ -50,38 +84,115 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
     grid-template-columns: 1fr !important;
   }
 
-  .mdc-page ul {
-    list-style: disc;
-    padding-left: 2rem;
-    margin-bottom: 1.5rem;
+  .mdc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
   }
 
-  .mdc-page ul li {
-    color: var(--color-light-text);
-    margin-bottom: 0.5rem;
+  .mdc-card {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .mdc-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .mdc-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .mdc-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .mdc-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mdc-content {
+    padding: 1.5rem;
+  }
+
+  .mdc-content h3 {
+    margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
+    color: var(--color-text);
   }
 
-  @media (max-width: 1440px) {
-    .mdc-page ul li {
-      font-size: 1.375rem;
-    }
+  .mdc-description {
+    color: var(--color-light-text);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
-  @media (max-width: 1024px) {
-    .mdc-page ul li {
-      font-size: 1.25rem;
-    }
+  .mdc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .mdc-meta time {
+    color: var(--color-light-text);
+    font-size: 0.9rem;
+  }
+
+  .mdc-tags {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: var(--color-accent);
+    color: var(--color-background);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
   }
 
   @media (max-width: 768px) {
-    .mdc-page ul li {
-      font-size: 1rem;
+    .mdc-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .mdc-content {
+      padding: 1rem;
+    }
+
+    .mdc-content h3 {
+      font-size: 1.25rem;
+    }
+
+    .mdc-meta {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
   @media (max-width: 480px) {
-    .mdc-page ul li {
+    .mdc-content h3 {
+      font-size: 1.125rem;
+    }
+
+    .mdc-description {
       font-size: 0.9rem;
     }
   }

@@ -1,0 +1,20 @@
+---
+title: 'Second MDC Post'
+description: 'Another post in the Mutually Demurred Construction series about design principles.'
+pubDate: 2024-12-10
+tags: ['mdc', 'design', 'principles']
+---
+
+# Second MDC Post
+
+This is another post in the MDC series. Here we explore design principles and construction methodologies.
+
+## Design Principles
+
+- Principle 1: Form follows function
+- Principle 2: Less is more
+- Principle 3: Context matters
+
+## Construction Notes
+
+Important considerations for any construction project... 
