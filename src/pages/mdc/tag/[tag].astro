@@ -144,7 +144,9 @@ const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.da
     font-size: 0.9rem;
   }
   .mdc-tags {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
     margin-top: 0.25rem;
   }
   .tag {
