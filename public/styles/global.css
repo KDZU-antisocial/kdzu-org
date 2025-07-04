@@ -55,6 +55,7 @@ h1 {
   color: var(--color-bright-white);
   margin: 0 0 1rem;
   grid-column: 1 / -1;
+  line-height: 1.1;
 }
 
 h2 {
