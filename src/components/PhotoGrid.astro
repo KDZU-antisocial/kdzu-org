@@ -1,0 +1,70 @@
+---
+const { photos, columns = 2, gap = "1.5rem" } = Astro.props;
+---
+
+<div class="photo-grid" style={`--columns: ${columns}; --gap: ${gap};`}>
+  {photos.map((photo: any) => (
+    <figure class="photo-grid-item">
+      <img 
+        src={photo.src} 
+        alt={photo.alt} 
+        loading="lazy"
+      />
+      {photo.caption && <figcaption>{photo.caption}</figcaption>}
+    </figure>
+  ))}
+</div>
+
+<style>
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns, 2), 1fr);
+    gap: var(--gap, 1.5rem);
+    margin: 2rem 0;
+  }
+  
+  .photo-grid-item {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .photo-grid-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .photo-grid-item img:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .photo-grid-item figcaption {
+    font-size: 0.9em;
+    color: var(--color-light-text, #666);
+    margin-top: 0.5em;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .photo-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .photo-grid-item figcaption {
+      font-size: 0.85em;
+      margin-top: 0.4em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .photo-grid {
+      gap: 0.75rem;
+    }
+  }
+</style> 

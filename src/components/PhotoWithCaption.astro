@@ -1,0 +1,54 @@
+---
+const { src, alt, caption, width = "100%", height = "auto" } = Astro.props;
+---
+
+<figure class="photo-with-caption">
+  <img 
+    src={src} 
+    alt={alt} 
+    width={width} 
+    height={height}
+    loading="lazy"
+  />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .photo-with-caption {
+    text-align: center;
+    margin: 2rem 0;
+    max-width: 100%;
+  }
+  
+  .photo-with-caption img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .photo-with-caption img:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .photo-with-caption figcaption {
+    font-size: 0.95em;
+    color: var(--color-light-text, #666);
+    margin-top: 0.75em;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 768px) {
+    .photo-with-caption {
+      margin: 1.5rem 0;
+    }
+    
+    .photo-with-caption figcaption {
+      font-size: 0.9em;
+      margin-top: 0.5em;
+    }
+  }
+</style> 

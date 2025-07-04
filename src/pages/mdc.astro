@@ -1,0 +1,266 @@
+---
+import { getCollection } from 'astro:content';
+import Copyright from '../components/Copyright.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+
+const posts = await getCollection('mdc');
+const sortedPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MDC - KDZU</title>
+    <link rel="stylesheet" href={cssUrl} />
+  </head>
+  <body class="mdc-page">
+    <Header />
+    <main>
+      <div class="main-content">
+        <h1>MDC</h1>
+        <p class="subtitle">We are activating the OMSA [Obsolete Monuments Space Agency] MDC mission.</p>
+        <h2>Our Phone Call from "Avid Listener"</h2>
+        <p>In March of 2025, we received a phone call on the KDZU Red Phone from a person identifying themselves only 
+          as “Avid Listener,” sharing details about some OMSA [Outlaw Mechanics Sabotaging the Afterlife] members who had 
+          resided in the Southern California area in the 1990s. By itself, this information isn’t news to us. We knew 
+          members spread out pretty far after the Great Raid on the Memphis Pyramid in 1994. There are little bits of 
+          written evidence and word-of-mouth tales that members of the group scattered to St. Louis, Minneapolis, Baton 
+          Rouge, and out west to Tucson, Denver, and Goldfield, Nevada. So… Los Angeles does not seem very far-fetched. 
+          But there was not, to our knowledge, any existing evidence of OMSA [Our Memory Survives in the Aether] 
+          <em>missions</em> that happened in Southern California. That is, until Avid shared bits of an actual mission 
+          in the Los Angeles area. Yes, <em>in Los Angeles</em>, where we have a station!
+        </p>
+
+        <p>
+          Here is a summary of what Avid described as the mission. Avid is incarcerated, so our phone call was 
+          interrupted <em>multiple times</em> by the prison's automated collect call interruptor. But we will do our 
+          best to glue together all the moments of our conversation here.
+        </p> 
+          
+        <h3>The NASA JPL "Rocky" Inspiration</h3>
+          <p>
+            Avid told us that a group of OMSA [Our Mostly Sometimes Always] members, who lived in the Pyramid, had 
+            become intrigued by the NASA Jet Propulsion Laboratory (JPL) “Rocky” series of robotics projects, which 
+            were developed in the late 1980s and early 1990s. Based on our research about the collective’s RAD 
+            (Research, Artmaking, and Development) happening in the Pyramid, this seems plausible. The group had been 
+            interested in the JPL's orbiter and lander work. It seems reasonable that some RAD on rovers and terrestrial 
+            robotics would be in that same set of enthusiasms and tasks. 
+          </p>
+          
+          <h4>Research, Artmaking, and Development (RAD)</h4>
+
+          <p>
+            <em>NOTE:</em> In the small pieces of writing we have read, authored by group members, we noticed that the 
+            group self-described their research and development as “RAD,” short for Research, Artmaking, and 
+            Development. We will use their terminology here to describe their working methods. Our use of “RAD” is 
+            intended to be respectful of the group's word choices and also to provide more accurate descriptions of 
+            their processes. Inspired by this idea, we will also use the term “RAD” to describe our own working methods.
+          </p>
+          
+          <h3>The Elusive Importance of Waterways</h3>
+          <p>
+            Avid Listener also mentioned, with some repeated statements, that the group was particularly interested in 
+            establishing research outposts at sites that felt harmonious with the working environment of the Memphis 
+            Pyramid and the nearby Mississippi River. The Pyramid served as their architectural epicenter for 
+            scientific research, artmaking, and engineering development. The nearby Mississippi River waterway was 
+            important to the group both culturally and practically, serving as a venue for recreation, field testing, 
+            and transportation. Avid's details about this currently seem anomalous, unless perhaps there's something 
+            we should consider about the Pacific Ocean, the Los Angeles River, the California Aqueduct, or some other 
+            Southern Californian waterway. This could have simply been Avid repeating themselves due to the constant 
+            interruptions from the prison's collect call system. We don't know. But for now, we consider Avid's reasons 
+            sound, if also elusive and inconclusive.
+          </p>
+          
+          <h3>"I'll get you something."</h3>
+          <p>
+            Avid left our conversation with a brief statement of appreciation for our work, a statement of solidarity, 
+            and a vague “I'll get you something.” We didn't understand what this last part meant until a couple of 
+            weeks ago, when we received a letter in the mail from Avid sent to our KDZU Sonic Exoskeleton location in 
+            Goldfield, Nevada.
+          </p>
+          
+          <p>
+            We are now neck deep in this project (are we, though?), so we decided to create separate posts here, 
+            journaling our activities.
+          </p>
+          
+        
+        <div class="mdc-grid">
+          {sortedPosts.map((post) => (
+            <article class="mdc-card">
+              <a href={`/mdc/${post.slug}`}>
+                {post.data.heroImage && (
+                  <div class="mdc-image">
+                    <img
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      width="960"
+                      height="540"
+                    />
+                  </div>
+                )}
+                <div class="mdc-content">
+                  <h3>{post.data.title}</h3>
+                  <p class="mdc-description">{post.data.description}</p>
+                  <div class="mdc-meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                    {post.data.tags.length > 0 && (
+                      <div class="mdc-tags">
+                        {post.data.tags.map((tag) => (
+                          <a class="tag" href={`/mdc/tag/${encodeURIComponent(tag)}`}>{tag}</a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+        
+        {sortedPosts.length === 0 && (
+          <section>
+            <h2>No Posts Yet</h2>
+            <p>No MDC posts have been published yet. Check back soon!</p>
+          </section>
+        )}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .mdc-page main {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .mdc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .mdc-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .mdc-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .mdc-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .mdc-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .mdc-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mdc-content {
+    padding: 1.5rem;
+  }
+
+  .mdc-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .mdc-description {
+    color: var(--color-light-text);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .mdc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .mdc-meta time {
+    color: var(--color-light-text);
+    font-size: 0.9rem;
+  }
+
+  .mdc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .tag {
+    background: var(--color-tag-bg);
+    color: var(--color-accent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .mdc-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .mdc-content {
+      padding: 1rem;
+    }
+
+    .mdc-content h3 {
+      font-size: 1.25rem;
+    }
+
+    .mdc-meta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mdc-content h3 {
+      font-size: 1.125rem;
+    }
+
+    .mdc-description {
+      font-size: 0.9rem;
+    }
+  }
+</style> 

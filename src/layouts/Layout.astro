@@ -13,17 +13,6 @@ const isLinksPage = Astro.url.pathname === '/links';
     <link rel="stylesheet" href={cssUrl} />
   </head>
   <body>
-    <header>
-      {!isLinksPage && (
-        <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/about/">About</a></li>
-          </ul>
-        </nav>
-      )}
-    </header>
     <main>
       <slot />
     </main>
