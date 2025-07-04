@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('mdc');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const post = await Astro.props;
+const rendered = await post.render();
+console.log('Rendered post.render():', rendered);
+console.log('Astro.props in component:', Astro.props);
+console.log('post in component:', post);
+---
+
+<Layout>
+  <Header />
+  <main class="main-content mdc-post-page">
+    {post && post.data ? (
+      <article class="mdc-post">
+        <h1>{post.data.title}</h1>
+        <div class="mdc-post-meta">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          {post.data.tags.length > 0 && (
+            <div class="mdc-post-tags">
+              {post.data.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        {post.data.heroImage && (
+          <div class="mdc-post-hero">
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              width="960"
+              height="540"
+            />
+          </div>
+        )}
+        <div class="mdc-post-description">{post.data.description}</div>
+        <div class="mdc-post-content">
+          <rendered.Content />
+        </div>
+        <footer class="mdc-post-footer">
+          <a href="/mdc" class="back-link">← Back to MDC</a>
+        </footer>
+      </article>
+    ) : (
+      <div class="error-message">
+        <h1>Post Not Found</h1>
+        <p>The requested post could not be found.</p>
+        <p>Debug info: post = {JSON.stringify(post)}</p>
+        <p>Astro.props = {JSON.stringify(Astro.props)}</p>
+        <a href="/mdc" class="back-link">← Back to MDC</a>
+      </div>
+    )}
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .mdc-post-page main {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+  .mdc-post {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .mdc-post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .mdc-post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: var(--color-accent);
+    color: var(--color-background);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .mdc-post-hero {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .mdc-post-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .mdc-post-description {
+    color: var(--color-light-text);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+  }
+  .mdc-post-content {
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+  .mdc-post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .back-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover {
+    color: var(--color-text);
+  }
+  .error-message {
+    text-align: center;
+    padding: 2rem;
+  }
+</style> 

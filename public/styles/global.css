@@ -1,7 +1,7 @@
 /* Define CSS variables */
 
 :root {
-  --color-light-text: #92969e;
+  --color-light-text: #c6cdd8;
   /* Light Gray */
   --color-dark-bg: #191919;
   /* Dark Black for the site background */
@@ -24,7 +24,7 @@
   --color-bright-red: #ef4444;
   /* Bright Red */
   --color-bold-red: #ff0000;
-
+  --color-tag-bg: #2d2d2d;
 }
 
 /* Font faces */
@@ -55,6 +55,7 @@ h1 {
   color: var(--color-bright-white);
   margin: 0 0 1rem;
   grid-column: 1 / -1;
+  line-height: 1.1;
 }
 
 h2 {
