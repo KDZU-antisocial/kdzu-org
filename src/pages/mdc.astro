@@ -25,8 +25,8 @@ const sortedPosts = posts
     <main>
       <div class="main-content">
         <h1>MDC</h1>
-        <p class="subtitle">Discovering the OMSA [Obsolete Monuments Space Agency] MDC Mission</p>
-        <p>In July 2025</p>
+        <p class="subtitle">Re-animating the OMSA [Obsolete Monuments Space Agency] MDC mission robots.</p>
+        <p>In July 2025 we found the site of the OMSA MDC mission robots and we are re-animating them.</p>
         
         <div class="mdc-grid">
           {sortedPosts.map((post) => (
@@ -56,7 +56,7 @@ const sortedPosts = posts
                     {post.data.tags.length > 0 && (
                       <div class="mdc-tags">
                         {post.data.tags.map((tag) => (
-                          <span class="tag">{tag}</span>
+                          <a class="tag" href={`/mdc/tag/${encodeURIComponent(tag)}`}>{tag}</a>
                         ))}
                       </div>
                     )}
@@ -93,7 +93,7 @@ const sortedPosts = posts
   }
 
   .mdc-card {
-    background: var(--color-background);
+    background: var(--color-card-bg);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     overflow: hidden;
@@ -154,9 +154,8 @@ const sortedPosts = posts
   }
 
   .mdc-tags {
-    display: flex;
-    gap: 0.25rem;
-    flex-wrap: wrap;
+    display: block;
+    margin-top: 0.25rem;
   }
 
   .tag {
