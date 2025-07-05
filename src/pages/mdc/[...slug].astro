@@ -4,21 +4,15 @@ import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 
-export const prerender = true;
+const { slug } = Astro.params;
+const posts = await getCollection('mdc');
+const post = posts.find(p => p.slug === slug);
 
-export async function getStaticPaths() {
-  const posts = await getCollection('mdc');
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: post,
-  }));
+if (post) {
+  const rendered = await post.render();
+  console.log('Rendered post.render():', rendered);
+  console.log('post in component:', post);
 }
-
-const post = await Astro.props;
-const rendered = await post.render();
-console.log('Rendered post.render():', rendered);
-console.log('Astro.props in component:', Astro.props);
-console.log('post in component:', post);
 ---
 
 <Layout>
@@ -55,7 +49,7 @@ console.log('post in component:', post);
         )}
         <div class="mdc-post-description">{post.data.description}</div>
         <div class="mdc-post-content">
-          <rendered.Content />
+          {post && (await post.render()).Content}
         </div>
         <footer class="mdc-post-footer">
           <a href="/mdc" class="back-link">← Back to MDC</a>
@@ -66,7 +60,7 @@ console.log('post in component:', post);
         <h1>Post Not Found</h1>
         <p>The requested post could not be found.</p>
         <p>Debug info: post = {JSON.stringify(post)}</p>
-        <p>Astro.props = {JSON.stringify(Astro.props)}</p>
+        <p>Slug = {slug}</p>
         <a href="/mdc" class="back-link">← Back to MDC</a>
       </div>
     )}
