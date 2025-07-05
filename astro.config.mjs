@@ -10,9 +10,6 @@ export default defineConfig({
       enabled: true
     }
   }),
-  build: {
-    assets: 'https://static.kdzu.org/_astro'
-  },
   image: {
     service: {
       entrypoint: 'astro/assets/services/compile'
