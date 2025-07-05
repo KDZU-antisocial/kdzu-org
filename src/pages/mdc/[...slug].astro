@@ -8,8 +8,9 @@ const { slug } = Astro.params;
 const posts = await getCollection('mdc');
 const post = posts.find(p => p.slug === slug);
 
+let rendered = null;
 if (post) {
-  const rendered = await post.render();
+  rendered = await post.render();
   console.log('Rendered post.render():', rendered);
   console.log('post in component:', post);
 }
@@ -49,7 +50,7 @@ if (post) {
         )}
         <div class="mdc-post-description">{post.data.description}</div>
         <div class="mdc-post-content">
-          {post && (await post.render()).Content}
+          {rendered && <rendered.Content />}
         </div>
         <footer class="mdc-post-footer">
           <a href="/mdc" class="back-link">← Back to MDC</a>
