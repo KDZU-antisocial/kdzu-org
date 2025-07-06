@@ -1,0 +1,73 @@
+---
+title: "Video Component Example Post"
+description: "This post demonstrates how to use the Vimeo video component in MDX content with various configurations."
+pubDate: 2025-01-15
+heroImage: "https://static.kdzu.org/images/kdzu-header-1440@2x.jpg"
+tags: ["video", "component", "example"]
+---
+
+# Video Component Example
+
+This post shows how to use the Vimeo video component in your MDX content. You can embed videos with various customizations.
+
+## Basic Video Embed
+
+Here's a simple video embed:
+
+<VimeoVideo videoId="148751763" />
+
+## Customized Video
+
+Here's a video with custom styling:
+
+<VimeoVideo 
+  videoId="148751763"
+  color="#ff6b6b"
+  title={false}
+  byline={false}
+  portrait={false}
+/>
+
+## Autoplay Video
+
+This video will autoplay when the page loads (muted for browser compatibility):
+
+<VimeoVideo 
+  videoId="148751763"
+  autoplay={true}
+  muted={true}
+  loop={true}
+/>
+
+## Video with Start Time
+
+This video starts at 30 seconds:
+
+<VimeoVideo 
+  videoId="148751763"
+  startTime={30}
+/>
+
+## Minimal Controls
+
+A video with minimal player interface:
+
+<VimeoVideo 
+  videoId="148751763"
+  controls={false}
+  pip={false}
+  title={false}
+  byline={false}
+  portrait={false}
+/>
+
+## Usage in Content
+
+You can place videos anywhere in your content, and they'll be responsive and properly styled. The component automatically handles:
+
+- Responsive design
+- Accessibility features
+- Custom styling options
+- Performance optimization
+
+The videos will work seamlessly with your existing content and styling. 
