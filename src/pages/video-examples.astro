@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import VimeoVideo from '../components/VimeoVideo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Header />
+  <main class="main-content">
+    <div class="container">
+      <h1>Vimeo Video Component Examples</h1>
+      
+      <section class="example-section">
+        <h2>Basic Video</h2>
+        <p>Simple video with default settings:</p>
+        <VimeoVideo videoId="148751763" />
+      </section>
+
+      <section class="example-section">
+        <h2>Custom Styled Video</h2>
+        <p>Video with custom color and no title/byline:</p>
+        <VimeoVideo 
+          videoId="148751763"
+          color="#ff6b6b"
+          title={false}
+          byline={false}
+          portrait={false}
+        />
+      </section>
+
+      <section class="example-section">
+        <h2>Autoplay Video (Muted)</h2>
+        <p>Video that autoplays when the page loads (muted for browser compatibility):</p>
+        <VimeoVideo 
+          videoId="148751763"
+          autoplay={true}
+          muted={true}
+          loop={true}
+        />
+      </section>
+
+      <section class="example-section">
+        <h2>Custom Aspect Ratio</h2>
+        <p>Video with 4:3 aspect ratio:</p>
+        <VimeoVideo 
+          videoId="148751763"
+          aspectRatio="4:3"
+        />
+      </section>
+
+      <section class="example-section">
+        <h2>Video with Start Time</h2>
+        <p>Video that starts at 30 seconds:</p>
+        <VimeoVideo 
+          videoId="148751763"
+          startTime={30}
+        />
+      </section>
+
+      <section class="example-section">
+        <h2>Minimal Controls</h2>
+        <p>Video with minimal player interface:</p>
+        <VimeoVideo 
+          videoId="148751763"
+          controls={false}
+          pip={false}
+          title={false}
+          byline={false}
+          portrait={false}
+        />
+      </section>
+
+      <section class="example-section">
+        <h2>Custom Styling</h2>
+        <p>Video with custom CSS classes:</p>
+        <VimeoVideo 
+          videoId="148751763"
+          className="custom-video-style"
+          style="border: 3px solid #333; border-radius: 12px;"
+        />
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .example-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-background);
+  }
+
+  .example-section h2 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .example-section p {
+    margin-bottom: 1.5rem;
+    color: var(--color-light-text);
+  }
+
+  .custom-video-style {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+
+  .custom-video-style:hover {
+    transform: scale(1);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    .example-section {
+      margin: 2rem 0;
+      padding: 1rem;
+    }
+  }
+</style> 
