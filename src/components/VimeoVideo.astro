@@ -28,7 +28,7 @@ export interface Props {
   quality?: 'auto' | '240p' | '360p' | '540p' | '720p' | '1080p' | '2k' | '4k';
   
   // Accessibility
-  title?: string; // For screen readers
+  accessibilityTitle?: string; // For screen readers
   description?: string; // For screen readers
   
   // Styling
@@ -48,13 +48,13 @@ const {
   controls = true,
   pip = true,
   color = '#00adef',
-  title: showTitle = false,
+  title: showTitle = true,
   byline = false,
   portrait = false,
   startTime = 0,
   endTime,
   quality = 'auto',
-  title: accessibilityTitle,
+  accessibilityTitle,
   description,
   className = '',
   style = ''
@@ -86,6 +86,16 @@ const buildVimeoUrl = () => {
   if (startTime > 0) params.append('t', startTime.toString());
   if (endTime) params.append('end', endTime.toString());
   if (quality !== 'auto') params.append('quality', quality);
+  
+  // Disable social interaction buttons and features
+  params.append('dnt', '1'); // Do Not Track
+  params.append('transparent', '0'); // Disable transparent background
+  params.append('logo', '0'); // Hide Vimeo logo
+  params.append('badge', '0'); // Hide Vimeo badge
+  params.append('watch_icon', '0'); // Hide watch icon
+  params.append('showinfo', '0'); // Hide video info
+  params.append('modestbranding', '1'); // Minimal branding
+  params.append('rel', '0'); // Don't show related videos
   
   return `https://player.vimeo.com/video/${videoId}?${params.toString()}`;
 };
