@@ -1,0 +1,50 @@
+---
+import SocialMeta from '../components/SocialMeta.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  pubDate?: Date;
+  tags?: string[];
+  type?: 'article' | 'website';
+}
+
+const {
+  title,
+  description,
+  image = 'https://static.kdzu.org/images/kdzu-header-1440@2x.jpg',
+  pubDate,
+  tags = [],
+  type = 'article'
+} = Astro.props;
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | KDZU!</title>
+    <link rel="stylesheet" href={cssUrl} />
+    <SocialMeta 
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+    />
+    {pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
+    {tags.length > 0 && tags.map(tag => <meta property="article:tag" content={tag} />)}
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>&copy; 2025 KDZU</p>
+    </footer>
+  </body>
+</html> 
