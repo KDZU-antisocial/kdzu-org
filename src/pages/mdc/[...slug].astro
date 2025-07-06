@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import PostLayout from '../../layouts/PostLayout.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 
@@ -16,10 +16,16 @@ if (post) {
 }
 ---
 
-<Layout>
-  <Header />
-  <main class="main-content mdc-post-page">
-    {post && post.data ? (
+{post && post.data ? (
+  <PostLayout 
+    title={post.data.title}
+    description={post.data.description}
+    image={post.data.heroImage || 'https://static.kdzu.org/images/kdzu-header-1440@2x.jpg'}
+    pubDate={post.data.pubDate}
+    tags={post.data.tags}
+  >
+    <Header />
+    <main class="main-content mdc-post-page">
       <article class="mdc-post">
         <h1>{post.data.title}</h1>
         <div class="mdc-post-meta">
@@ -56,7 +62,13 @@ if (post) {
           <a href="/mdc" class="back-link">← Back to MDC</a>
         </footer>
       </article>
-    ) : (
+    </main>
+    <Footer />
+  </PostLayout>
+) : (
+  <PostLayout title="Post Not Found">
+    <Header />
+    <main class="main-content mdc-post-page">
       <div class="error-message">
         <h1>Post Not Found</h1>
         <p>The requested post could not be found.</p>
@@ -64,10 +76,10 @@ if (post) {
         <p>Slug = {slug}</p>
         <a href="/mdc" class="back-link">← Back to MDC</a>
       </div>
-    )}
-  </main>
-  <Footer />
-</Layout>
+    </main>
+    <Footer />
+  </PostLayout>
+)}
 
 <style>
   .mdc-post-page main {

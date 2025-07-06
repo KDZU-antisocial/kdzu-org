@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import PostLayout from '../../layouts/PostLayout.astro';
 import Footer from '../../components/Footer.astro';
 
 export const prerender = true;
@@ -17,8 +17,14 @@ const post = await Astro.props;
 const rendered = await post.render();
 ---
 
-<body class="blog-post">
-  <Layout>
+<PostLayout 
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.heroImage || 'https://static.kdzu.org/images/kdzu-header-1440@2x.jpg'}
+  pubDate={post.data.pubDate}
+  tags={post.data.tags}
+>
+  <body class="blog-post">
     <article>
       <h1>{post.data.title}</h1>
       {post.data.heroImage && (
@@ -36,5 +42,5 @@ const rendered = await post.render();
       </div>
     </article>
     <Footer />
-  </Layout>
-</body>
+  </body>
+</PostLayout>
