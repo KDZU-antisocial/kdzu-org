@@ -1,4 +1,6 @@
 ---
+import SocialMeta from '../components/SocialMeta.astro';
+
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
 const isLinksPage = Astro.url.pathname === '/links';
@@ -11,6 +13,7 @@ const isLinksPage = Astro.url.pathname === '/links';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KDZU!</title>
     <link rel="stylesheet" href={cssUrl} />
+    <SocialMeta />
   </head>
   <body>
     <main>
