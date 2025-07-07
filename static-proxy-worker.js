@@ -19,7 +19,8 @@ async function handleRequest(request, env) {
     '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', // images
     '.mp3', '.wav', '.ogg', '.m4a', '.flac', // audio
     '.mp4', '.webm', // video
-    '.css', '.js', '.json', '.xml', '.txt' // other static files
+    '.css', '.js', '.json', '.xml', '.txt', // other static files
+    '.webmanifest', '.manifest' // web app manifests
   ]
   
   const extension = path.substring(path.lastIndexOf('.')).toLowerCase()
@@ -61,7 +62,9 @@ async function handleRequest(request, env) {
     '.xml': 'application/xml',
     '.txt': 'text/plain',
     '.html': 'text/html',
-    '.htm': 'text/html'
+    '.htm': 'text/html',
+    '.webmanifest': 'application/manifest+json',
+    '.manifest': 'application/manifest+json'
   }
   
   // Get MIME type
