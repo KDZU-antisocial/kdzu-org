@@ -8,6 +8,7 @@ import { getCollection } from 'astro:content';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+const fontUrl = isDev ? '/fonts/Detroit05Base.woff2' : 'https://static.kdzu.org/fonts/Detroit05Base.woff2';
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks
@@ -39,8 +40,9 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KDZU - Antennaobscura!</title>
-    <link rel="preload" href="/fonts/Detroit05Base.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href={cssUrl} />
+    {isDev && <link rel="stylesheet" href="/styles/dev-override.css" />}
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="https://static.kdzu.org/favicon/favicon.svg" />
