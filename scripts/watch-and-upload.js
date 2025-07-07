@@ -43,6 +43,7 @@ listBuckets();
 const pathsToWatch = [
   'public/images',
   'public/tracks',
+  'public/audio',
   'public/styles',
   'public/scripts',
   'public/favicon',
@@ -126,7 +127,12 @@ function getContentType(filepath) {
     '.json': 'application/json',
     '.html': 'text/html',
     '.txt': 'text/plain',
-    '.xml': 'application/xml'  // Add XML content type
+    '.xml': 'application/xml',  // Add XML content type
+    '.mp3': 'audio/mpeg',  // Add MP3 content type
+    '.wav': 'audio/wav',  // Add WAV content type
+    '.ogg': 'audio/ogg',  // Add OGG content type
+    '.m4a': 'audio/mp4',  // Add M4A content type
+    '.flac': 'audio/flac'  // Add FLAC content type
   };
   return contentTypes[ext] || 'application/octet-stream';
 }

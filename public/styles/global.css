@@ -30,8 +30,8 @@
 /* Font faces */
 @font-face {
   font-family: 'Detroit 05 Base';
-  src: url('https://static.kdzu.org/fonts/Detroit05Base.woff2') format('woff2'),
-    url('https://static.kdzu.org/fonts/Detroit05Base.woff') format('woff');
+  src: url('/fonts/Detroit05Base.woff2') format('woff2'),
+    url('/fonts/Detroit05Base.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: block;
