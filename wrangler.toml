@@ -1,5 +1,5 @@
 name = "kdzu-org-worker"
-main = "dist/_worker.js/index.js"
+main = "static-proxy-worker.js"
 compatibility_flags = ["nodejs_compat"]
 account_id = "38b2250cde779e4a92c63d139be80a9c"
 compatibility_date = "2024-09-23"
@@ -10,7 +10,12 @@ workers_dev = true
 
 [env.production]
 workers_dev = false
-routes = ["kdzu.org/*", "www.kdzu.org/*"]
+routes = [
+  "static.kdzu.org/*"
+]
+r2_buckets = [
+  { binding = "KDZU_STATIC", bucket_name = "kdzu-static" }
+]
 
 [observability.logs]
 enabled = true

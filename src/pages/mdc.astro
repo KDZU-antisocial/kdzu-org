@@ -37,6 +37,20 @@ const sortedPosts = posts
           <em>missions</em> that happened in Southern California. That is, until Avid shared bits of an actual mission 
           in the Los Angeles area. Yes, <em>in Los Angeles</em>, where we have a station!
         </p>
+        
+        <figure class="mdc-image-with-caption">
+          <img 
+          src="https://static.kdzu.org/images/mdc/memphis-pyramid-1990s.jpg" 
+          alt="A black and white photo of the Memphis Pyramid in the 1990s."
+          width="800"
+          height="600"
+          />
+          <figcaption>
+            OMSA [Our Methods Seem Abstract] squatted the Memphis Pyramid and conducted their RAD 
+            (Research, Artmaking, and Development) work in late 1980s and early 1990s. Members scattered across the 
+            country after the Great Raid.
+          </figcaption>
+        </figure>
 
         <p>
           Here is a summary of what Avid described as the mission. Avid is incarcerated, so our phone call was 
@@ -263,6 +277,40 @@ const sortedPosts = posts
 
     .mdc-description {
       font-size: 0.9rem;
+    }
+  }
+
+  .mdc-image-with-caption {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .mdc-image-with-caption img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .mdc-image-with-caption figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-light-text);
+    font-style: italic;
+    line-height: 1.4;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .mdc-image-with-caption {
+      margin: 1.5rem 0;
+    }
+
+    .mdc-image-with-caption figcaption {
+      font-size: 0.85rem;
+      padding: 0 1rem;
     }
   }
 </style> 
