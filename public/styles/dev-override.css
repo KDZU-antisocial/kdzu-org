@@ -1,0 +1,9 @@
+/* Development override for font URLs */
+@font-face {
+  font-family: 'Detroit 05 Base';
+  src: url('/fonts/Detroit05Base.woff2') format('woff2'),
+    url('/fonts/Detroit05Base.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
