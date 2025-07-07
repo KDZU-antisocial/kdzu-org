@@ -6,6 +6,12 @@ This document covers the AudioPlayer component implementation and usage for the 
 
 The KDZU site uses a custom AudioPlayer component (`AudioPlayer.astro`) that provides a flexible, responsive, and customizable way to embed audio files across all content types (pages, MDC posts, blog posts, events, etc.). Audio files are hosted in your R2 bucket and served via Cloudflare CDN.
 
+**Recent Updates (January 2025):**
+- ✅ Fixed browser autoplay muting issues for multiple audio players
+- ✅ Improved dark mode styling and native controls visibility
+- ✅ Added CORS headers configuration for static assets
+- ✅ Enhanced debugging and error handling
+
 ## 📁 Files
 
 ### Core Component
@@ -149,6 +155,7 @@ import AudioPlayer from '../components/AudioPlayer.astro';
 - Full-featured player with metadata display
 - Cover art support
 - Complete control interface
+- Optimized for light and dark modes
 
 ### Minimal Theme
 - Clean, simple interface
@@ -159,6 +166,7 @@ import AudioPlayer from '../components/AudioPlayer.astro';
 - Dark background and controls
 - Light text and icons
 - Perfect for dark mode sites
+- Enhanced native controls visibility
 
 ### Custom Theme
 - Use your own CSS classes
@@ -280,10 +288,11 @@ The component works with all Astro content collections:
 ### Common Issues
 
 #### Audio Not Playing
-- Check file URL is correct
-- Verify file exists in R2 bucket
-- Check browser console for errors
-- Ensure file format is supported
+- **Browser Autoplay Policy**: Modern browsers mute audio elements by default. The component automatically unmutes audio elements to resolve this.
+- **Multiple Players**: If you have multiple audio players on a page, ensure they're not conflicting. Each player is automatically unmuted.
+- **File URL**: Check file URL is correct and accessible
+- **File Format**: Verify file format is supported by the browser
+- **CORS Issues**: Ensure your R2 bucket has proper CORS headers configured
 
 #### Upload Issues
 - Check watch-and-upload script is running
@@ -292,25 +301,67 @@ The component works with all Astro content collections:
 - Monitor upload logs for errors
 
 #### Styling Issues
-- Check CSS specificity
-- Verify className and style props
-- Inspect element for conflicts
-- Test on different screen sizes
+- **Dark Mode**: The component automatically adapts to dark mode themes
+- **Native Controls**: Enhanced visibility with blue border and dark background
+- **CSS Conflicts**: Check CSS specificity and className usage
+- **Responsive Design**: Test on different screen sizes
 
 #### Performance Issues
-- Compress audio files
+- Compress audio files before uploading
 - Use appropriate preload settings
 - Consider lazy loading for multiple players
-- Monitor file sizes
+- Monitor file sizes and loading times
+
+### CORS Configuration
+
+#### For Static Assets (Fonts, Favicons, etc.)
+If you encounter CORS errors with static assets from `static.kdzu.org`, you can configure CORS headers in your Cloudflare R2 bucket:
+
+1. **Via Cloudflare Dashboard**:
+   - Go to R2 Object Storage
+   - Select your bucket
+   - Go to Settings > CORS
+   - Add CORS policy for your domain
+
+2. **Via Cloudflare Worker** (Recommended):
+   - Create a Worker route for `static.kdzu.org`
+   - Add CORS headers to responses
+   - Proxy requests to R2 bucket
+
+Example Worker CORS configuration:
+```javascript
+// Add to your Cloudflare Worker
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  const response = await fetch(request)
+  const newResponse = new Response(response.body, response)
+  
+  // Add CORS headers
+  newResponse.headers.set('Access-Control-Allow-Origin', '*')
+  newResponse.headers.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS')
+  newResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type')
+  
+  return newResponse
+}
+```
 
 ### Debug Mode
-Add console logging to debug issues:
+The component includes built-in debugging for common issues:
 ```astro
 <AudioPlayer 
   src="https://static.kdzu.org/audio/track.mp3"
   className="debug-audio"
 />
 ```
+
+Check browser console for detailed debugging information about:
+- Audio loading status
+- Autoplay policy compliance
+- Muting/unmuting operations
+- Player initialization
 
 ## 📚 Resources
 
@@ -335,6 +386,12 @@ Add console logging to debug issues:
 
 ## 🔄 Updates & Maintenance
 
+### Recent Fixes (January 2025)
+- **Autoplay Muting**: Fixed browser autoplay policy issues that muted audio elements
+- **Dark Mode Styling**: Improved visibility of native controls in dark themes
+- **CORS Headers**: Added configuration guidance for static asset CORS issues
+- **Debug Logging**: Enhanced debugging capabilities for troubleshooting
+
 ### Component Updates
 - Monitor browser audio API changes
 - Update component for new features
@@ -356,6 +413,7 @@ Add console logging to debug issues:
 ---
 
 **Last Updated**: January 2025  
-**Component Version**: 1.0  
+**Component Version**: 1.1  
 **Astro Version**: 5.9.0  
-**Supported Formats**: MP3, WAV, OGG, M4A, FLAC 
+**Supported Formats**: MP3, WAV, OGG, M4A, FLAC  
+**Recent Fixes**: Autoplay muting, dark mode styling, CORS configuration 
