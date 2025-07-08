@@ -29,10 +29,13 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
         <h1>Tracks We Love</h1>
         <div class="tracks-grid">
           {sortedTracks.map((track) => (
-            <TrackCard track={{
-              data: track.data,
-              body: track.body || ''
-            }}>
+            <TrackCard
+              track={{
+                data: track.data,
+                body: track.body || ''
+              }}
+              href={`/tracks-we-love/${track.id}`}
+            >
               {track.body}
             </TrackCard>
           ))}

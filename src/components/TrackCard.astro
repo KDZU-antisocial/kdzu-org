@@ -14,97 +14,108 @@ interface Props {
     };
     body: string;
   };
+  href?: string;
 }
 
-const { track } = Astro.props;
+const { track, href } = Astro.props;
 const hasContent = track.body && track.body.trim().length > 0;
 ---
 
-<article class="track-card">
-  <div class="track-image">
-    <img
-      src={track.data.heroImage}
-      alt={`${track.data.artist} - ${track.data.title}`}
-      width="320"
-      height="320"
-    />
-  </div>
-  <div class="track-info">
-    <h3>{track.data.title}</h3>
-    <p class="artist">
-      {track.data.artistLink ? (
-        <a href={track.data.artistLink} target="_blank" rel="noopener noreferrer">
-          {track.data.artist}
+<>
+  <article class="track-card">
+    <div class="track-image">
+      {href ? (
+        <a href={href} style="display: block;">
+          <img
+            src={track.data.heroImage}
+            alt={`${track.data.artist} - ${track.data.title}`}
+            width="320"
+            height="320"
+          />
         </a>
       ) : (
-        track.data.artist
+        <img
+          src={track.data.heroImage}
+          alt={`${track.data.artist} - ${track.data.title}`}
+          width="320"
+          height="320"
+        />
       )}
-    </p>
-    <p class="label">
-      {track.data.labelLink ? (
-        <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
-          {track.data.label}
-        </a>
+    </div>
+    <div class="track-info">
+      {href ? (
+        <h3><a href={href} style="color: inherit; text-decoration: underline;">{track.data.title}</a></h3>
       ) : (
-        track.data.label
+        <h3>{track.data.title}</h3>
       )}
-    </p>
-    <div class="markdown">
-      {hasContent && (
-        <div class="review-header">
-          <svg class="review-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            {/* Original headphones icon
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-            */}
-            {/* Clipboard base */}
-            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-            {/* Clipboard top */}
-            <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-            {/* Clipboard lines */}
-            <line x1="8" y1="10" x2="16" y2="10" />
-            <line x1="8" y1="14" x2="16" y2="14" />
-            <line x1="8" y1="18" x2="12" y2="18" />
-          </svg>
-          <span class="review-source">KDZU</span>
+      <p class="artist">
+        {track.data.artistLink ? (
+          <a href={track.data.artistLink} target="_blank" rel="noopener noreferrer">
+            {track.data.artist}
+          </a>
+        ) : (
+          track.data.artist
+        )}
+      </p>
+      <p class="label">
+        {track.data.labelLink ? (
+          <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
+            {track.data.label}
+          </a>
+        ) : (
+          track.data.label
+        )}
+      </p>
+      <div class="markdown">
+        {hasContent && (
+          <div class="review-header">
+            <svg class="review-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+              <line x1="8" y1="10" x2="16" y2="10" />
+              <line x1="8" y1="14" x2="16" y2="14" />
+              <line x1="8" y1="18" x2="12" y2="18" />
+            </svg>
+            <span class="review-source">KDZU</span>
+          </div>
+        )}
+        <slot />
+      </div>
+    </div>
+    <div class="track-links">
+      {track.data.youtube && (
+        <div class="link-wrapper">
+          <a href={track.data.youtube} target="_blank" rel="noopener noreferrer" class="youtube">
+            <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
         </div>
       )}
-      <slot />
+      {track.data.bandcamp && (
+        <div class="link-wrapper">
+          <a href={track.data.bandcamp} target="_blank" rel="noopener noreferrer" class="bandcamp">
+            <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M0 18.75l7.437-13.5H24l-7.437 13.5H0z"/>
+            </svg>
+            Bandcamp
+          </a>
+        </div>
+      )}
+      {track.data.spotify && (
+        <div class="link-wrapper">
+          <a href={track.data.spotify} target="_blank" rel="noopener noreferrer" class="spotify">
+            <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+              <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
+            Spotify
+          </a>
+        </div>
+      )}
     </div>
-  </div>
-  <div class="track-links">
-    {track.data.youtube && (
-      <div class="link-wrapper">
-        <a href={track.data.youtube} target="_blank" rel="noopener noreferrer" class="youtube">
-          <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
-            <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
-          YouTube
-        </a>
-      </div>
-    )}
-    {track.data.bandcamp && (
-      <div class="link-wrapper">
-        <a href={track.data.bandcamp} target="_blank" rel="noopener noreferrer" class="bandcamp">
-          <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
-            <path fill="currentColor" d="M0 18.75l7.437-13.5H24l-7.437 13.5H0z"/>
-          </svg>
-          Bandcamp
-        </a>
-      </div>
-    )}
-    {track.data.spotify && (
-      <div class="link-wrapper">
-        <a href={track.data.spotify} target="_blank" rel="noopener noreferrer" class="spotify">
-          <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
-            <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-          </svg>
-          Spotify
-        </a>
-      </div>
-    )}
-  </div>
-</article>
+  </article>
+</>
 
 <style>
   .review-header {

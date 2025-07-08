@@ -192,17 +192,30 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
 }
 
 .tracks-grid .track-card:hover {
   transform: translateY(-4px);
 }
 
-.track-card a {
+.track-card {
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-sizing: border-box;
+  background: var(--color-card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
   text-decoration: none;
+  color: inherit;
+}
+
+.track-card:visited {
+  color: inherit;
 }
 
 .track-card .track-image {
