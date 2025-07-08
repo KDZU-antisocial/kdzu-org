@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import TrackCard from '../components/TrackCard.astro';
 import EventCard from '../components/EventCard.astro';
+import SocialMeta from '../components/SocialMeta.astro';
 import { getCollection } from 'astro:content';
 
 const isDev = import.meta.env.DEV;
@@ -52,6 +53,7 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
     <link rel="apple-touch-icon" href="https://static.kdzu.org/favicon/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="https://static.kdzu.org/favicon/site.webmanifest" />
     <meta name="theme-color" content="#191919" />
+    <SocialMeta />
   </head>
   <body>
     <Header />
