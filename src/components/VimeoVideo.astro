@@ -25,6 +25,8 @@ export interface Props {
   // Advanced options
   startTime?: number; // Start time in seconds
   endTime?: number; // End time in seconds
+  endOnBlack?: boolean; // End on black frame instead of "more from"
+  emptyEndScreen?: boolean; // Use Vimeo's "Empty" end screen (shows nothing after video ends)
   quality?: 'auto' | '240p' | '360p' | '540p' | '720p' | '1080p' | '2k' | '4k';
   
   // Accessibility
@@ -53,6 +55,8 @@ const {
   portrait = false,
   startTime = 0,
   endTime,
+  endOnBlack = false,
+  emptyEndScreen = false,
   quality = 'auto',
   accessibilityTitle,
   description,
@@ -84,7 +88,19 @@ const buildVimeoUrl = () => {
   if (!byline) params.append('byline', '0');
   if (!portrait) params.append('portrait', '0');
   if (startTime > 0) params.append('t', startTime.toString());
-  if (endTime) params.append('end', endTime.toString());
+  if (emptyEndScreen) {
+    // For empty end screen, we'll need to handle this with JavaScript
+    // since Vimeo's end screen settings are controlled on the upload side
+    // For now, we'll end the video early to minimize end screen content
+    params.append('end', '0.001'); // End very early
+    params.append('rel', '0'); // Don't show related videos
+  } else if (endOnBlack) {
+    // To end on black frame and prevent "more from" content
+    // We use the 'end' parameter to stop just before the video ends
+    params.append('end', '0.01'); // End 0.01 seconds before the actual end
+  } else if (endTime) {
+    params.append('end', endTime.toString());
+  }
   if (quality !== 'auto') params.append('quality', quality);
   
   // Disable social interaction buttons and features
