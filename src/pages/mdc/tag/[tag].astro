@@ -30,7 +30,7 @@ const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.da
       <div class="main-content">
         <h1>MDC</h1>
         <p class="subtitle">Posts tagged with <span class="tag-highlight">{tag}</span></p>
-        <a href="/mdc" class="back-link">← Back to MDC</a>
+        <a href="/mdc/" class="back-link">← Back to MDC</a>
         <div class="mdc-grid">
           {sortedPosts.length > 0 ? (
             sortedPosts.map((post) => (

@@ -6,7 +6,11 @@ import Header from '../../components/Header.astro';
 
 const { slug } = Astro.params;
 const posts = await getCollection('staticsignal');
-const post = posts.find(p => p.id === slug);
+const post = posts.find(p => p.slug === slug);
+let rendered = null;
+if (post) {
+  rendered = await post.render();
+}
 ---
 
 {post && post.data ? (
@@ -49,11 +53,10 @@ const post = posts.find(p => p.id === slug);
         )}
         <div class="static-post-description">{post.data.description}</div>
         <div class="static-post-content">
-          {post.rendered && <post.rendered.Content />}
           {rendered && <rendered.Content />}
         </div>
         <footer class="static-post-footer">
-          <a href="/static" class="back-link">← Back to Static</a>
+          <a href="/static/" class="back-link">← Back to Static</a>
         </footer>
       </article>
     </main>
@@ -68,7 +71,7 @@ const post = posts.find(p => p.id === slug);
         <p>The requested post could not be found.</p>
         <p>Debug info: post = {JSON.stringify(post)}</p>
         <p>Slug = {slug}</p>
-        <a href="/static" class="back-link">← Back to Static</a>
+        <a href="/static/" class="back-link">← Back to Static</a>
       </div>
     </main>
     <Footer />
