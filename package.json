@@ -10,6 +10,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.4",
     "@astrojs/mdx": "^4.3.0",
+    "@astrojs/sitemap": "^3.4.1",
     "astro": "^5.9.0",
     "aws-sdk": "^2.1692.0",
     "chokidar": "^4.0.3",
