@@ -3,18 +3,19 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro'; // Import the Footer component
 
-const posts = await getCollection('blog');
+const posts = await getCollection('staticsignal');
 const sortedPosts = posts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <body class="blog">
   <Layout>
-    <h1>Breaking the Fourth Wall</h1>
+    <h1>Static is the Signal</h1>
+    <p class="subtitle">KDZU's Field Guide to Narrative Sabotage</p>
     <div class="blog-grid">
       {sortedPosts.map((post) => (
         <article class="blog-card">
-          <a href={`/blog/${post.slug}`}>
+          <a href={`/static/${post.slug}`}>
             <div class="blog-image">
               <img
                 src={post.data.heroImage}
@@ -31,4 +32,4 @@ const sortedPosts = posts
     </div>
   </Layout>
   <Footer />
-</body>
+</body> 

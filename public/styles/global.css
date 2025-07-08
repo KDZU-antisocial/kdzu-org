@@ -804,7 +804,9 @@ footer {
 }
 
 .footer-grid ul li {
-  margin: 0.15rem 0;
+  margin: 0.4rem 0;
+  line-height: 1.2;
+  /* Tighter line height for wrapped text within list items */
 }
 
 .footer-grid p {
