@@ -192,17 +192,30 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
 }
 
 .tracks-grid .track-card:hover {
   transform: translateY(-4px);
 }
 
-.track-card a {
+.track-card {
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-sizing: border-box;
+  background: var(--color-card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
   text-decoration: none;
+  color: inherit;
+}
+
+.track-card:visited {
+  color: inherit;
 }
 
 .track-card .track-image {
@@ -266,8 +279,8 @@ main {
 .track-links {
   display: flex;
   flex-direction: row;
-  gap: 1.4rem;
-  padding: 0 1rem 1rem 1rem;
+  /* gap: 1.4rem; */
+  padding: 0 .5rem 1rem .5rem;
   width: 100%;
   box-sizing: border-box;
   justify-content: center;
@@ -279,14 +292,14 @@ main {
   flex: 1;
   display: flex;
   justify-content: center;
-  max-width: 64px;
+  /* Remove max-width restriction */
 }
 
 .track-links a {
   color: var(--color-bright-white);
   text-decoration: none;
   font-size: 0.64rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   transition: all 0.2s ease-in-out;
   display: flex;
   align-items: center;
@@ -295,6 +308,7 @@ main {
   box-sizing: border-box;
   border-radius: 4px;
   width: 100%;
+  min-width: 54px;
   justify-content: center;
 }
 
@@ -804,7 +818,9 @@ footer {
 }
 
 .footer-grid ul li {
-  margin: 0.15rem 0;
+  margin: 0.4rem 0;
+  line-height: 1.2;
+  /* Tighter line height for wrapped text within list items */
 }
 
 .footer-grid p {
@@ -1074,11 +1090,124 @@ footer p {
 
 .blog-grid {
   grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.blog-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-dark-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-card h3 {
+  margin: 0;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  font-size: 1.5rem;
+  color: var(--color-bright-white);
+}
+
+.blog-card p {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  color: var(--color-light-text);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
-  .tracks-grid {
+  .blog-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Staticsignal styles (duplicate of blog styles) */
+.staticsignal-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.staticsignal-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-dark-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.staticsignal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.staticsignal-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.staticsignal-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.staticsignal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.staticsignal-card h3 {
+  margin: 0;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  font-size: 1.5rem;
+  color: var(--color-bright-white);
+}
+
+.staticsignal-card p {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  color: var(--color-light-text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .staticsignal-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
@@ -1262,5 +1391,16 @@ body.privacy-policy .main-content {
   .subtitle {
     font-size: 1rem;
     margin-top: 0.125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tracks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
