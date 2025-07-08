@@ -2,34 +2,38 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro'; // Import the Footer component
+import Header from '../../components/Header.astro'; // Import the Header component
 
 const posts = await getCollection('staticsignal');
 const sortedPosts = posts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<body class="blog">
+<body class="staticsignal">
   <Layout>
-    <h1>Static is the Signal</h1>
-    <p class="subtitle">KDZU's Field Guide to Narrative Sabotage</p>
-    <div class="blog-grid">
-      {sortedPosts.map((post) => (
-        <article class="blog-card">
-          <a href={`/static/${post.slug}`}>
-            <div class="blog-image">
-              <img
-                src={post.data.heroImage}
-                alt={post.data.title}
-                width="960"
-                height="540"
-              />
-            </div>
-            <h3>{post.data.title}</h3>
-            <p>{post.data.description}</p>
-          </a>
-        </article>
-      ))}
-    </div>
+    <Header />
+    <main>
+      <h1>Static is the Signal</h1>
+      <p class="subtitle">KDZU's Field Guide to Tactical Fiction and Narrative Sabotage</p>
+      <div class="staticsignal-grid">
+        {sortedPosts.map((post) => (
+          <article class="staticsignal-card">
+            <a href={`/static/${post.id}`}>
+              <div class="staticsignal-image">
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  width="960"
+                  height="540"
+                />
+              </div>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </a>
+          </article>
+        ))}
+      </div>
+    </main>
   </Layout>
   <Footer />
 </body> 

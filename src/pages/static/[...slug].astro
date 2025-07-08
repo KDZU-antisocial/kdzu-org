@@ -6,12 +6,7 @@ import Header from '../../components/Header.astro';
 
 const { slug } = Astro.params;
 const posts = await getCollection('staticsignal');
-const post = posts.find(p => p.slug === slug);
-
-let rendered = null;
-if (post) {
-  rendered = await post.render();
-}
+const post = posts.find(p => p.id === slug);
 ---
 
 {post && post.data ? (
@@ -36,7 +31,7 @@ if (post) {
           </time>
           {post.data.tags.length > 0 && (
             <div class="static-post-tags">
-              {post.data.tags.map((tag) => (
+              {post.data.tags.map((tag: string) => (
                 <span class="tag">{tag}</span>
               ))}
             </div>
@@ -54,6 +49,7 @@ if (post) {
         )}
         <div class="static-post-description">{post.data.description}</div>
         <div class="static-post-content">
+          {post.rendered && <post.rendered.Content />}
           {rendered && <rendered.Content />}
         </div>
         <footer class="static-post-footer">
