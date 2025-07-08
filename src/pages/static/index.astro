@@ -18,7 +18,7 @@ const sortedPosts = posts
       <div class="staticsignal-grid">
         {sortedPosts.map((post) => (
           <article class="staticsignal-card">
-            <a href={`/static/${post.id}`}>
+            <a href={`/static/${post.slug}/`}>
               <div class="staticsignal-image">
                 <img
                   src={post.data.heroImage}

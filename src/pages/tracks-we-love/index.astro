@@ -34,7 +34,7 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
                 data: track.data,
                 body: track.body || ''
               }}
-              href={`/tracks-we-love/${track.id}`}
+              href={`/tracks-we-love/${track.slug}/`}
             >
               {track.body}
             </TrackCard>

@@ -7,7 +7,7 @@ import TrackCard from '../../components/TrackCard.astro';
 
 const { id } = Astro.params;
 const tracks = await getCollection('tracks');
-const track = tracks.find((t) => t.id === id);
+const track = tracks.find((t) => t.slug === id);
 ---
 
 <body class="tracks-we-love">
@@ -24,7 +24,7 @@ const track = tracks.find((t) => t.id === id);
               {track.body}
             </TrackCard>
             <div style="margin-top: 2em; text-align: left;">
-              <a href="/tracks-we-love" style="color: var(--color-bright-blue); text-decoration: none; font-size: 1.1em; display: inline-flex; align-items: center; gap: 0.5em;">
+              <a href="/tracks-we-love/" style="color: var(--color-bright-blue); text-decoration: none; font-size: 1.1em; display: inline-flex; align-items: center; gap: 0.5em;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
                 Back to Tracks We Love
               </a>
@@ -34,7 +34,7 @@ const track = tracks.find((t) => t.id === id);
           <div style="padding: 2rem; text-align: center;">
             <h1>Track Not Found</h1>
             <p>The requested track does not exist.</p>
-            <a href="/tracks-we-love">← Back to Tracks</a>
+            <a href="/tracks-we-love/">← Back to Tracks</a>
           </div>
         )}
       </div>
