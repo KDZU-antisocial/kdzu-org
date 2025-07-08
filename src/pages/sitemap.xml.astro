@@ -11,16 +11,16 @@ interface SitemapUrl {
 // Get all pages
 const pages: SitemapUrl[] = [
   { url: '/', priority: 1.0, changefreq: 'daily' },
-  { url: '/about', priority: 0.8, changefreq: 'monthly' },
-  { url: '/events', priority: 0.9, changefreq: 'weekly' },
-  { url: '/tracks-we-love', priority: 0.9, changefreq: 'weekly' },
-  { url: '/privacy-policy', priority: 0.5, changefreq: 'yearly' }
+  { url: '/about/', priority: 0.8, changefreq: 'monthly' },
+  { url: '/events/', priority: 0.9, changefreq: 'weekly' },
+  { url: '/tracks-we-love/', priority: 0.9, changefreq: 'weekly' },
+  { url: '/privacy-policy/', priority: 0.5, changefreq: 'yearly' }
 ];
 
 // Get all tracks
 const tracks = await getCollection('tracks');
 const trackUrls: SitemapUrl[] = tracks.map(track => ({
-  url: `/tracks-we-love/${track.slug}`,
+  url: `/tracks-we-love/${track.slug}/`,
   lastmod: track.data.pubDate,
   priority: 0.7,
   changefreq: 'monthly'
@@ -29,14 +29,32 @@ const trackUrls: SitemapUrl[] = tracks.map(track => ({
 // Get all events
 const events = await getCollection('events');
 const eventUrls: SitemapUrl[] = events.map(event => ({
-  url: `/events/${event.slug}`,
+  url: `/events/${event.slug}/`,
   lastmod: event.data.pubDate,
   priority: 0.7,
   changefreq: 'weekly'
 }));
 
+// Get all MDC posts
+const mdcPosts = await getCollection('mdc');
+const mdcUrls: SitemapUrl[] = mdcPosts.map(post => ({
+  url: `/mdc/${post.slug}/`,
+  lastmod: post.data.pubDate,
+  priority: 0.7,
+  changefreq: 'monthly'
+}));
+
+// Get all staticsignal posts
+const staticsignalPosts = await getCollection('staticsignal');
+const staticsignalUrls: SitemapUrl[] = staticsignalPosts.map(post => ({
+  url: `/static/${post.slug}/`,
+  lastmod: post.data.pubDate,
+  priority: 0.7,
+  changefreq: 'monthly'
+}));
+
 // Combine all URLs
-const allUrls = [...pages, ...trackUrls, ...eventUrls];
+const allUrls = [...pages, ...trackUrls, ...eventUrls, ...mdcUrls, ...staticsignalUrls];
 
 // Format date to YYYY-MM-DD
 function formatDate(date: Date): string {
