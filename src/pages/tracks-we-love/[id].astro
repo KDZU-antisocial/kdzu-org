@@ -14,14 +14,22 @@ const track = tracks.find((t) => t.id === id);
   <Layout>
     <Header />
     <main style="max-width: 100vw; width: 100%; padding: 0;">
-      <div class="main-content" style="max-width: 100vw; width: 100%;">
+      <div class="main-content" style="max-width: 960px; width: 100%; margin: 0 auto;">
         {track ? (
-          <TrackCard track={{
-            data: track.data,
-            body: track.body || ''
-          }}>
-            {track.body}
-          </TrackCard>
+          <div style="max-width: 720px; width: 100%; margin: 3em auto;">
+            <TrackCard track={{
+              data: track.data,
+              body: track.body || ''
+            }}>
+              {track.body}
+            </TrackCard>
+            <div style="margin-top: 2em; text-align: left;">
+              <a href="/tracks-we-love" style="color: var(--color-bright-blue); text-decoration: none; font-size: 1.1em; display: inline-flex; align-items: center; gap: 0.5em;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                Back to Tracks We Love
+              </a>
+            </div>
+          </div>
         ) : (
           <div style="padding: 2rem; text-align: center;">
             <h1>Track Not Found</h1>

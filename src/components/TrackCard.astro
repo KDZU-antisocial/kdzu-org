@@ -44,14 +44,15 @@ const hasContent = track.body && track.body.trim().length > 0;
     </div>
     <div class="track-info">
       {href ? (
-        <h3><a href={href} style="color: inherit; text-decoration: underline;">{track.data.title}</a></h3>
+        <h3><a href={href} style="color: var(--color-bright-blue); text-decoration: none;">{track.data.title}</a></h3>
       ) : (
         <h3>{track.data.title}</h3>
       )}
       <p class="artist">
         {track.data.artistLink ? (
-          <a href={track.data.artistLink} target="_blank" rel="noopener noreferrer">
+          <a href={track.data.artistLink} target="_blank" rel="noopener noreferrer" style="color: var(--color-bright-blue); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25em;">
             {track.data.artist}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
         ) : (
           track.data.artist
@@ -59,8 +60,9 @@ const hasContent = track.body && track.body.trim().length > 0;
       </p>
       <p class="label">
         {track.data.labelLink ? (
-          <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer">
+          <a href={track.data.labelLink} target="_blank" rel="noopener noreferrer" style="color: var(--color-bright-blue); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25em;">
             {track.data.label}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
         ) : (
           track.data.label
