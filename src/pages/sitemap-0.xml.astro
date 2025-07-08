@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+
+interface SitemapUrl {
+  url: string;
+  lastmod?: Date;
+  priority: number;
+  changefreq: string;
+}
+
+// Get all content collections
+const tracks = await getCollection('tracks');
+const events = await getCollection('events');
+const mdcPosts = await getCollection('mdc');
+const staticsignalPosts = await getCollection('staticsignal');
+
+// Static pages
+const staticPages: SitemapUrl[] = [
+  { url: 'https://kdzu.org/', priority: 1.0, changefreq: 'daily' },
+  { url: 'https://kdzu.org/about/', priority: 0.8, changefreq: 'monthly' },
+  { url: 'https://kdzu.org/events/', priority: 0.9, changefreq: 'weekly' },
+  { url: 'https://kdzu.org/tracks-we-love/', priority: 0.9, changefreq: 'weekly' },
+  { url: 'https://kdzu.org/mdc/', priority: 0.9, changefreq: 'weekly' },
+  { url: 'https://kdzu.org/static/', priority: 0.9, changefreq: 'weekly' },
+  { url: 'https://kdzu.org/privacy-policy/', priority: 0.5, changefreq: 'yearly' }
+];
+
+// Tracks URLs
+const trackUrls: SitemapUrl[] = tracks.map(track => ({
+  url: `https://kdzu.org/tracks-we-love/${track.slug}/`,
+  lastmod: track.data.pubDate,
+  priority: 0.7,
+  changefreq: 'monthly'
+}));
+
+// Events URLs
+const eventUrls: SitemapUrl[] = events.map(event => ({
+  url: `https://kdzu.org/events/${event.slug}/`,
+  lastmod: event.data.pubDate,
+  priority: 0.7,
+  changefreq: 'weekly'
+}));
+
+// MDC posts URLs
+const mdcUrls: SitemapUrl[] = mdcPosts.map(post => ({
+  url: `https://kdzu.org/mdc/${post.slug}/`,
+  lastmod: post.data.pubDate,
+  priority: 0.7,
+  changefreq: 'monthly'
+}));
+
+// Staticsignal posts URLs
+const staticsignalUrls: SitemapUrl[] = staticsignalPosts.map(post => ({
+  url: `https://kdzu.org/static/${post.slug}/`,
+  lastmod: post.data.pubDate,
+  priority: 0.7,
+  changefreq: 'monthly'
+}));
+
+// Combine all URLs
+const allUrls = [...staticPages, ...trackUrls, ...eventUrls, ...mdcUrls, ...staticsignalUrls];
+
+// Format date to YYYY-MM-DD
+function formatDate(date: Date): string {
+  return date.toISOString().split('T')[0];
+}
+
+// Get current date for pages without lastmod
+const today = formatDate(new Date());
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {allUrls.map(({ url, lastmod, priority, changefreq }) => (
+    <url>
+      <loc>{url}</loc>
+      <lastmod>{lastmod ? formatDate(lastmod) : today}</lastmod>
+      <changefreq>{changefreq}</changefreq>
+      <priority>{priority}</priority>
+    </url>
+  ))}
+</urlset> 
