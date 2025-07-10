@@ -3,17 +3,28 @@ import { getCollection } from 'astro:content';
 import EventCard from './EventCard.astro';
 
 const events = await getCollection('events');
-const today = new Date();
-today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+// Create a timezone-agnostic "today" date for comparison
+const now = new Date();
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
 const upcomingEvents = events.filter(event => {
-  const eventDate = new Date(event.data.date);
-  eventDate.setHours(0, 0, 0, 0);
+  // Parse the date string and create a timezone-agnostic date
+  const [year, month, day] = event.data.date.split('.').map(Number);
+  const eventDate = new Date(year, month - 1, day); // month is 0-indexed
+  
   return eventDate >= today;
 });
 
 const sortedEvents = upcomingEvents.sort((a, b) => {
-  return new Date(a.data.date).valueOf() - new Date(b.data.date).valueOf();
+  // Parse dates consistently for sorting
+  const [yearA, monthA, dayA] = a.data.date.split('.').map(Number);
+  const [yearB, monthB, dayB] = b.data.date.split('.').map(Number);
+  
+  const dateA = new Date(yearA, monthA - 1, dayA);
+  const dateB = new Date(yearB, monthB - 1, dayB);
+  
+  return dateA.valueOf() - dateB.valueOf();
 });
 ---
 

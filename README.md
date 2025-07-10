@@ -20,6 +20,30 @@ Check the scripts section of `package.json` to learn more about how this works
 
 This repo is deployed to Cloudflare when `dev` is merged into the `main` branch. The default branch is set to `dev`.
 
+### Manual Deployment
+
+For manual deployments, use the provided deployment script:
+
+```bash
+./deploy-site.sh
+```
+
+This script deploys both workers in the correct order:
+1. Deploys the Astro worker (`kdzu-org-astro-site-production`)
+2. Deploys the main site worker (`kdzu-org-site-production`) with service binding
+
+### Trailing Slash Redirect Solution
+
+The site uses a two-worker architecture to handle trailing slash redirects:
+
+- **Problem**: Google indexed URLs without trailing slashes (e.g., `kdzu.org/events`) but Astro expects trailing slashes (`kdzu.org/events/`)
+- **Solution**: Main worker redirects non-trailing slash URLs with 301 status codes
+- **Benefits**: 
+  - Fixes Cloudflare Error 1101 for old indexed URLs
+  - Helps Google update its index
+  - Maintains SEO with proper redirects
+  - No breaking changes to existing functionality
+
 ### Running Astro 5 as an SSR  + Cloudflare Adapter Structure
 
 See `astro.config.mjs` for my config. When you build an Astro project with:
@@ -64,6 +88,14 @@ find dist/_astro -type f | while read file; do
 done
 ```
 
+## 📁 Worker Configuration Files
+
+- **`wrangler-site.toml`**: Main site worker configuration (handles routes and redirects)
+- **`wrangler-astro.toml`**: Astro worker configuration (handles site logic)
+- **`wrangler.toml`**: Static assets worker configuration (serves R2 files)
+- **`site-worker.js`**: Main site worker code (trailing slash redirects)
+- **`static-proxy-worker.js`**: Static assets worker code (R2 proxy)
+
 ## 🧞 Useful npm Commands
 
 All commands are run from the root of the project, from a terminal:
@@ -94,17 +126,35 @@ Note: I don't have local sudo access so I have to use npx to run these. See inst
 - Redirect from WWW to Root
 
 ### Cloudflare Workers
-- kdzu-org-worker-production
-  - route `kdzu.org/*`, `www.kdzu.org/*`
-  - DNS A record created manually for `192.0.2.1` Proxied
-  - DNS CNAME `www` record created manually pointing to `kdzu.org`
 
-- kdzu-static-worker-production
-  - route `static.kdzu.org/*`
-  - bindings R2 Bucket 
-   - name ASSETS 
-   - value kdzu-static
-  - DNS for this is setup through R2
+#### Main Site Workers
+- **kdzu-org-site-production**
+  - Routes: `kdzu.org/*`, `www.kdzu.org/*`
+  - Purpose: Handles trailing slash redirects and request routing
+  - Functions:
+    - Redirects non-trailing slash URLs (e.g., `kdzu.org/events` → `kdzu.org/events/`)
+    - Passes valid requests to the Astro worker
+    - Skips redirects for static assets
+  - Service binding: `ASTRO_SITE` → `kdzu-org-astro-site-production`
+
+- **kdzu-org-astro-site-production**
+  - Routes: None (only called by main site worker)
+  - Purpose: Handles actual site logic and content rendering
+  - Functions:
+    - Renders Astro pages (homepage, events, tracks, etc.)
+    - Processes MDX, markdown, and dynamic content
+    - Provides all website functionality
+
+#### Static Assets Worker
+- **kdzu-org-worker-production**
+  - Routes: `static.kdzu.org/*`
+  - Purpose: Serves static assets from R2 bucket
+  - Bindings: R2 Bucket `KDZU_STATIC` → `kdzu-static`
+  - DNS: Setup through R2
+
+#### DNS Configuration
+- DNS A record created manually for `192.0.2.1` Proxied
+- DNS CNAME `www` record created manually pointing to `kdzu.org`
 
 
 ## 🎬 Installing Astro, and Cloudflare Wrangler
