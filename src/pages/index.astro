@@ -26,12 +26,15 @@ today.setHours(0, 0, 0, 0); // Reset time to start of day
 
 const upcomingEvents = events.filter(event => {
   const eventDate = new Date(event.data.date);
-  eventDate.setHours(0, 0, 0, 0);
-  return eventDate >= today;
+  // Normalize event date to start of day for comparison
+  const normalizedEventDate = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+  return normalizedEventDate >= today;
 });
 
 const sortedEvents = upcomingEvents.sort((a, b) => {
-  return new Date(a.data.date).valueOf() - new Date(b.data.date).valueOf();
+  const dateA = new Date(a.data.date);
+  const dateB = new Date(b.data.date);
+  return dateA.valueOf() - dateB.valueOf();
 });
 ---
 
