@@ -5,7 +5,8 @@ import Footer from '../../components/Footer.astro'; // Import the Footer compone
 import Header from '../../components/Header.astro'; // Import the Header component
 
 const posts = await getCollection('staticsignal');
-const sortedPosts = posts
+const publicPosts = posts.filter(post => !post.slug.startsWith('_'));
+const sortedPosts = publicPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
