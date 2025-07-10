@@ -33,13 +33,8 @@ const trackUrls: SitemapUrl[] = tracks.map(track => ({
   changefreq: 'monthly'
 }));
 
-// Events URLs
-const eventUrls: SitemapUrl[] = events.map(event => ({
-  url: `https://kdzu.org/events/${event.slug}/`,
-  lastmod: event.data.pubDate,
-  priority: 0.7,
-  changefreq: 'weekly'
-}));
+// Events URLs - removed since individual event pages don't exist
+const eventUrls: SitemapUrl[] = [];
 
 // MDC posts URLs
 const mdcUrls: SitemapUrl[] = mdcPosts.map(post => ({

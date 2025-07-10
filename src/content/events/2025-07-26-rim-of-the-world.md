@@ -13,5 +13,5 @@ pubDate: 2025-06-07
 
 ---
 
-Join us for a day of experimental techno, dub techno, political manifestos and sound art at the Rim of the World. KDZU will be broadcasting live from the earthen wormhole at the Rim of the World, reaching drivers along California Highway 18. Come check out transmissions from our alternate futures! Dance your booty off! The root-net is live! Tune in. Enter the Signal Zone!
+Join us for a day of experimental techno, dub techno, political manifestos and sound art at the Rim of the World. KDZU will be broadcasting live from the earthen wormhole at the Rim of the World, reaching drivers along California Highway 18. Come check out transmissions from our alternate futures! Dance your booty off! The root-net is live!
 

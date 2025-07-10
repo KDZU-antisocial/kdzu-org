@@ -1,5 +1,5 @@
 ---
-date: "2023-12-29"
+date: "2023.12.29"
 dayOfWeek: "Fri"
 time: "9:00 PM"
 title: "The Energy Consumed in Flight"
