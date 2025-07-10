@@ -3,14 +3,13 @@ import { getCollection } from 'astro:content';
 import Footer from '../../../components/Footer.astro';
 import Header from '../../../components/Header.astro';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('mdc');
-  // Get all unique tags
-  const tags = Array.from(new Set(posts.flatMap(post => post.data.tags)));
-  return tags.map(tag => ({ params: { tag } }));
+const { tag } = Astro.params;
+
+// Handle case where tag parameter is missing
+if (!tag) {
+  return Astro.redirect('/mdc/');
 }
 
-const { tag } = Astro.params;
 const posts = await getCollection('mdc');
 const filteredPosts = posts.filter(post => post.data.tags.includes(tag));
 const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());

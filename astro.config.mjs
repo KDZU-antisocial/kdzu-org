@@ -12,6 +12,7 @@ export default defineConfig({
     }
   }),
   image: {
+    // Use compile service for Cloudflare Workers (Sharp not supported at runtime)
     service: {
       entrypoint: 'astro/assets/services/compile'
     }
