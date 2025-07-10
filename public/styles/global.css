@@ -408,6 +408,23 @@ main {
   text-decoration: underline;
 }
 
+.calendar .subtitle-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.calendar .external-icon {
+  color: var(--color-bright-blue);
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.calendar .subtitle-link:hover .external-icon {
+  opacity: 1;
+}
+
 .calendar .location {
   display: block;
   font-size: 1.25rem;
