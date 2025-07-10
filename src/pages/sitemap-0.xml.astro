@@ -10,9 +10,14 @@ interface SitemapUrl {
 
 // Get all content collections
 const tracks = await getCollection('tracks');
-const events = await getCollection('events');
-const mdcPosts = await getCollection('mdc');
-const staticsignalPosts = await getCollection('staticsignal');
+const allEvents = await getCollection('events');
+const allMdcPosts = await getCollection('mdc');
+const allStaticsignalPosts = await getCollection('staticsignal');
+
+// Filter out posts that start with underscore (private/draft posts)
+const events = allEvents.filter(event => !event.slug.startsWith('_'));
+const mdcPosts = allMdcPosts.filter(post => !post.slug.startsWith('_'));
+const staticsignalPosts = allStaticsignalPosts.filter(post => !post.slug.startsWith('_'));
 
 // Static pages
 const staticPages: SitemapUrl[] = [
