@@ -388,12 +388,14 @@ main {
   font-weight: 500;
   color: var(--color-bright-white);
   margin: 0;
+  margin-bottom: 0.75rem;
 }
 
 .calendar .subtitle {
   font-size: 1.25rem;
   font-weight: 400;
   color: var(--color-gray);
+  line-height: 1.2;
 }
 
 .calendar .subtitle a {
