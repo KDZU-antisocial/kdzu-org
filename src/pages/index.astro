@@ -21,19 +21,27 @@ const sortedTracks = tracks
   .slice(0, 6); // Get only the 6 most recent tracks
 
 const events = await getCollection('events');
-const today = new Date();
-today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+// Create a timezone-agnostic "today" date for comparison
+const now = new Date();
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
 const upcomingEvents = events.filter(event => {
-  const eventDate = new Date(event.data.date);
-  // Normalize event date to start of day for comparison
-  const normalizedEventDate = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
-  return normalizedEventDate >= today;
+  // Parse the date string and create a timezone-agnostic date
+  const [year, month, day] = event.data.date.split('.').map(Number);
+  const eventDate = new Date(year, month - 1, day); // month is 0-indexed
+  
+  return eventDate >= today;
 });
 
 const sortedEvents = upcomingEvents.sort((a, b) => {
-  const dateA = new Date(a.data.date);
-  const dateB = new Date(b.data.date);
+  // Parse dates consistently for sorting
+  const [yearA, monthA, dayA] = a.data.date.split('.').map(Number);
+  const [yearB, monthB, dayB] = b.data.date.split('.').map(Number);
+  
+  const dateA = new Date(yearA, monthA - 1, dayA);
+  const dateB = new Date(yearB, monthB - 1, dayB);
+  
   return dateA.valueOf() - dateB.valueOf();
 });
 ---
