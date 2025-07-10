@@ -1,0 +1,12 @@
+name = "kdzu-org-astro-site"
+main = "dist/_worker.js/index.js"
+compatibility_flags = ["nodejs_compat"]
+account_id = "38b2250cde779e4a92c63d139be80a9c"
+compatibility_date = "2024-09-23"
+
+[env.production]
+workers_dev = false
+# No routes - this worker is only called by the main site worker
+
+[observability.logs]
+enabled = true 
