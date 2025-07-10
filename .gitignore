@@ -5,6 +5,10 @@ dist/
 .astro/
 .wrangler/
 
+
+# Wrangler SQLite files (if .wrangler/ is not ignored)
+.wrangler/**/*.sqlite*
+
 # dependencies
 node_modules/
 

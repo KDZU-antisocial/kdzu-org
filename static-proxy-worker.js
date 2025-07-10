@@ -16,7 +16,7 @@ async function handleRequest(request, env) {
   // Only handle static assets - pass through everything else
   const staticExtensions = [
     '.woff2', '.woff', '.ttf', '.otf', '.eot', // fonts
-    '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', // images
+    '.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico', // images
     '.mp3', '.wav', '.ogg', '.m4a', '.flac', // audio
     '.mp4', '.webm', // video
     '.css', '.js', '.json', '.xml', '.txt', // other static files
@@ -49,6 +49,7 @@ async function handleRequest(request, env) {
     '.jpeg': 'image/jpeg',
     '.gif': 'image/gif',
     '.webp': 'image/webp',
+    '.ico': 'image/x-icon',
     '.mp3': 'audio/mpeg',
     '.wav': 'audio/wav',
     '.ogg': 'audio/ogg',
