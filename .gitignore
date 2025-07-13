@@ -34,3 +34,7 @@ public/images/
 
 # jetbrains setting folder
 .idea/
+
+# R2 bucket download folders
+r2-kdzu-org/
+r2-kdzu-static/
