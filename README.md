@@ -74,6 +74,67 @@ I have a `/scripts/fix-asset-urls.js` file that is called after astro.build in m
 
 Assets such as images are stored in a [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/) bucket. This means that assets need to be uploaded to this bucket.
 
+### R2 Bucket Local Copies
+
+The following directories contain local copies of R2 bucket contents and are gitignored:
+
+- **`r2-kdzu-org/`**: Local copy of the `kdzu-org` R2 bucket
+  - Contains 47 objects (~19.9 KB)
+  - Includes `.git` repository files and configuration
+  - Used for development and backup purposes
+
+- **`r2-kdzu-static/`**: Local copy of the `kdzu-static` R2 bucket  
+  - Contains 390 objects (~36.3 MB)
+  - Includes built Astro site files, images, fonts, and static assets
+  - Contains the complete production site build
+
+These directories can be recreated using the download script:
+```bash
+node scripts/download-r2-buckets.js
+```
+
+### Download Script Details
+
+The `scripts/download-r2-buckets.js` script:
+
+- **Connects to Cloudflare R2** using AWS SDK v3 with R2 compatibility
+- **Lists all objects** in both `kdzu-org` and `kdzu-static` buckets
+- **Downloads each file** while maintaining the original directory structure
+- **Shows progress** with file counts, sizes, and completion percentages
+- **Handles pagination** for buckets with many objects
+- **Creates directories** automatically as needed
+- **Provides detailed logging** with emojis and status indicators
+
+**Requirements**: You'll need R2 credentials in your `.env` file:
+```
+R2_ACCESS_KEY_ID=your_access_key_id
+R2_SECRET_ACCESS_KEY=your_secret_access_key
+```
+
+**Example output**:
+```
+🔐 Checking credentials...
+✅ Credentials found in .env file
+🌐 Connecting to Cloudflare R2...
+
+🚀 Starting download of bucket: kdzu-org
+📁 Output directory: /path/to/r2-kdzu-org
+📋 Listing objects in kdzu-org...
+  📄 Fetching page 1...
+  ✅ Page 1: Found 47 objects
+📊 Total objects found in kdzu-org: 47
+
+📥 Downloading 47 objects from kdzu-org...
+⏱️  This may take a while depending on file sizes...
+
+  ✅ [1/47] Downloaded: .git/logs/refs/heads/main (1.9 KB)
+  ✅ [2/47] Downloaded: .git/logs/refs/remotes/origin/HEAD (0.5 KB)
+  ...
+📈 Progress: 10/47 (21.3%)
+  ...
+🎉 Completed download of kdzu-org!
+```
+
 ### Upload all static assets to kdzu-static R2 bucket recursively
 
 1. Test your wrangler login
