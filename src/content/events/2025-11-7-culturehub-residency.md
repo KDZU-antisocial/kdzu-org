@@ -13,4 +13,4 @@ pubDate: 2025-08-30
 
 ---
 
-KDZU is in residency at <a href="https://www.culturehub.org/los-angeles">CultureHub LA</a>! We'll share more info as things develop!
+KDZU is in residency at <a href="https://www.culturehub.org/los-angeles">CultureHub LA</a> from Friday November 7th to Saturday, November 15th! We'll share more info as things develop!
