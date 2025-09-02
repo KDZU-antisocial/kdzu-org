@@ -20,7 +20,7 @@ export default defineConfig({
   integrations: [
     mdx({
       components: {
-        VimeoVideo: './src/components/VimeoVideo.astro',
+        VimeoVideo: './src/components/VideoPlayer.astro',
         AudioPlayer: './src/components/AudioPlayer.astro'
       }
     })
