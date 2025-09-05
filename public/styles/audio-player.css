@@ -1,0 +1,409 @@
+:root {
+  --color-light-text: #c6cdd8;
+  /* Light Gray */
+  --color-dark-bg: #191919;
+  /* Dark Black for the site background */
+  --color-darker-gray: #202020;
+  /* Darker than dark-bg, lighter than dark-gray */
+  --color-dark-gray: #1f2937;
+  /* Charcoal */
+  --color-gray: #b0b8c1;
+  /* Muted Gray */
+  --color-bright-white: #f9fafb;
+  /* Off-White */
+  --color-bright-blue: #3b82f6;
+  /* Bright Blue */
+  --color-medium-gray: #374151;
+  /* Slate Gray */
+  --color-footer-text: #f9fafb;
+  /* Muted Gray */
+  --color-card-bg: #222222;
+  /* Darker Gray */
+  --color-bright-red: #ef4444;
+  /* Bright Red */
+  --color-bold-red: #ff0000;
+  --color-tag-bg: #2d2d2d;
+}
+
+/* Custom Audio Player Styles */
+.audio-player-container {
+  margin: 20px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.audio-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.custom-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.play-pause-btn {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.play-pause-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.05);
+}
+
+.play-pause-btn:hover::before {
+  opacity: 1;
+}
+
+.play-pause-btn:active {
+  transform: scale(0.95);
+}
+
+.play-pause-btn .play-icon {
+  display: block;
+  margin-left: 3px;
+  /* Slight offset to center the triangle */
+}
+
+.play-pause-btn .pause-icon {
+  display: none;
+}
+
+.audio-player-container.playing .play-pause-btn .play-icon {
+  display: none;
+}
+
+.audio-player-container.playing .play-pause-btn .pause-icon {
+  display: block;
+}
+
+.progress-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  width: 0%;
+  transition: width 0.1s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 0 4px 4px 0;
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Hide the default audio element */
+.audio-player-container audio {
+  display: none;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .audio-title {
+    color: #e2e8f0;
+  }
+
+  .custom-controls {
+    background: var(--color-darker-gray);
+    border-color: var(--color-medium-gray);
+  }
+
+  .progress-bar {
+    background: #4a5568;
+  }
+
+  .time-display {
+    color: #a0aec0;
+  }
+}
+
+/* Control Buttons Container */
+.control-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+/* Mute Button Styles */
+.mute-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mute-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mute-btn:hover {
+  transform: scale(1.05);
+}
+
+.mute-btn:hover::before {
+  opacity: 1;
+}
+
+.mute-btn:active {
+  transform: scale(0.95);
+}
+
+.mute-btn .unmute-icon {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.mute-btn .mute-icon {
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+
+.mute-btn.muted .unmute-icon {
+  display: none;
+}
+
+.mute-btn.muted .mute-icon {
+  display: block;
+}
+
+/* Download Button Styles - Larger and Contemporary */
+.download-btn {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  /* background: linear-gradient(135deg, #888888 0%, #b6b6b6 100%); */
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: all 0.3s ease;
+  /* box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4); */
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.download-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.download-btn:hover {
+  transform: scale(1.05);
+  text-decoration: none;
+  color: white;
+}
+
+.download-btn:hover::before {
+  opacity: 1;
+}
+
+.download-btn:active {
+  transform: scale(0.95);
+}
+
+.download-icon {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode support for buttons */
+@media (prefers-color-scheme: dark) {
+  .mute-btn {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  }
+
+  .download-btn {
+    background: linear-gradient(135deg, #3a3a3a 0%, #6a6a6a 100%);
+  }
+}
+/* Mobile Responsive Styles */
+@media (max-width: 480px) {
+  .audio-player-container {
+    margin: 15px 0;
+  }
+  
+  .audio-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .custom-controls {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .play-pause-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    align-self: center;
+  }
+  
+  .progress-section {
+    width: 100%;
+    order: 2;
+  }
+  
+  .control-buttons {
+    order: 3;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .mute-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+  
+  .download-btn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .download-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .time-display {
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+}
+
+/* Tablet Responsive Styles */
+@media (max-width: 768px) and (min-width: 481px) {
+  .custom-controls {
+    gap: 15px;
+    padding: 18px;
+  }
+  
+  .play-pause-btn {
+    width: 65px;
+    height: 65px;
+    font-size: 26px;
+  }
+  
+  .control-buttons {
+    gap: 12px;
+  }
+  
+  .mute-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 17px;
+  }
+  
+  .download-btn {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .download-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
