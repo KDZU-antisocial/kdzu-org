@@ -1,40 +1,32 @@
 ---
 export interface Props {
-  // Required
-  src: string; // URL to the audio file (MP3 from R2 bucket)
-  
-  // Player appearance
+  src: string;
+  title?: string;
+  description?: string;
   width?: string;
   height?: string;
-  theme?: 'default' | 'minimal' | 'dark' | 'custom';
+  theme?: 'default' | 'minimal' | 'dark';
   showTitle?: boolean;
   showArtist?: boolean;
   showDuration?: boolean;
-  
-  // Player behavior
   autoplay?: boolean;
   preload?: 'none' | 'metadata' | 'auto';
   loop?: boolean;
   muted?: boolean;
   controls?: boolean;
-  
-  // Audio metadata
-  title?: string;
   artist?: string;
   album?: string;
   coverArt?: string;
-  
-  // Styling
   className?: string;
   style?: string;
-  
-  // Advanced options
-  volume?: number; // 0-1
-  playbackRate?: number; // 0.5-2
+  volume?: number;
+  playbackRate?: number;
 }
 
 const {
   src,
+  title,
+  description,
   width = '100%',
   height = 'auto',
   theme = 'default',
@@ -45,8 +37,7 @@ const {
   preload = 'metadata',
   loop = false,
   muted = false,
-  controls = true,
-  title,
+  controls = false,
   artist,
   album,
   coverArt,
@@ -64,23 +55,9 @@ const uniqueId = `audio-${Math.random().toString(36).substr(2, 9)}`;
   style={style}
   data-audio-src={src}
 >
-  {coverArt && (
-    <div class="audio-cover">
-      <img src={coverArt} alt={title || 'Album cover'} />
-    </div>
+  {showTitle && title && (
+    <div class="audio-title">{title}</div>
   )}
-  
-  <div class="audio-info">
-    {showTitle && title && (
-      <div class="audio-title">{title}</div>
-    )}
-    {showArtist && artist && (
-      <div class="audio-artist">{artist}</div>
-    )}
-    {album && (
-      <div class="audio-album">{album}</div>
-    )}
-  </div>
   
   <audio
     id={uniqueId}
@@ -88,322 +65,92 @@ const uniqueId = `audio-${Math.random().toString(36).substr(2, 9)}`;
     preload={preload}
     autoplay={autoplay}
     loop={loop}
-    muted={muted}
-    controls={controls}
+    muted={false}
+    controls={false}
     style={`width: ${width}; height: ${height};`}
   ></audio>
   
-  {!controls && (
-    <div class="custom-controls">
-      <button class="play-pause-btn" data-audio-id={uniqueId}>
-        <span class="play-icon">▶</span>
-        <span class="pause-icon">⏸</span>
-      </button>
-      <div class="progress-container">
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-        <div class="time-display">
-          <span class="current-time">0:00</span>
-          {showDuration && <span class="duration">0:00</span>}
-        </div>
+  <div class="custom-controls">
+    <button class="play-pause-btn" data-audio-id={uniqueId}>
+      <span class="play-icon">▶</span>
+      <span class="pause-icon">⏸</span>
+    </button>
+    
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
       </div>
-      <div class="volume-control">
-        <input type="range" class="volume-slider" min="0" max="1" step="0.1" value={volume} />
+      <div class="time-display">
+        <span class="current-time">0:00</span>
+        {showDuration && <span class="duration">0:00</span>}
       </div>
     </div>
-  )}
+    
+    <div class="control-buttons">
+      <button class="mute-btn" data-audio-id={uniqueId} title="Mute/Unmute">
+        <span class="unmute-icon">🔊</span>
+        <span class="mute-icon">🔇</span>
+      </button>
+      
+      <a href={src} download class="download-btn" title="Download audio">
+        <svg class="download-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 15.75L12 3.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.5 10.5L12 15L16.5 10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.75 15.75V18.75C3.75 19.1642 4.08579 19.5 4.5 19.5H19.5C19.9142 19.5 20.25 19.1642 20.25 18.75V15.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
 </div>
 
-<style>
-  .audio-player-container {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border-radius: 12px;
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-dark-gray);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  .audio-player-container audio {
-    width: 100%;
-    border-radius: 8px;
-    background: var(--color-card-bg);
-    border: 2px solid var(--color-bright-blue);
-    min-height: 44px;
-    box-sizing: border-box;
-  }
-  
-  /* Style native audio controls for dark mode */
-  .audio-player-container audio::-webkit-media-controls-panel {
-    background: var(--color-dark-gray);
-  }
-  
-  .audio-player-container audio::-webkit-media-controls-play-button {
-    background: var(--color-bright-blue);
-    border-radius: 50%;
-  }
-  
-  .audio-player-container audio::-webkit-media-controls-current-time-display,
-  .audio-player-container audio::-webkit-media-controls-time-remaining-display {
-    color: var(--color-bright-white);
-  }
-  
-  .audio-player-container audio::-webkit-media-controls-timeline {
-    background: var(--color-dark-gray);
-  }
-  
-  .audio-player-container audio::-webkit-media-controls-volume-slider {
-    background: var(--color-dark-gray);
-  }
-  
-  .audio-cover {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .audio-cover img {
-    width: 120px;
-    height: 120px;
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  }
-  
-  .audio-info {
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  .audio-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-bright-white);
-    margin-bottom: 0.25rem;
-  }
-  
-  .audio-artist {
-    font-size: 1rem;
-    color: var(--color-light-text);
-    margin-bottom: 0.25rem;
-  }
-  
-  .audio-album {
-    font-size: 0.875rem;
-    color: var(--color-gray);
-    font-style: italic;
-  }
-  
-  /* Custom Controls */
-  .custom-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .play-pause-btn {
-    background: var(--color-bright-blue);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.2s ease;
-  }
-  
-  .play-pause-btn:hover {
-    background: var(--color-bright-white);
-    color: var(--color-dark-bg);
-    transform: scale(1.05);
-  }
-  
-  .pause-icon {
-    display: none;
-  }
-  
-  .playing .play-icon {
-    display: none;
-  }
-  
-  .playing .pause-icon {
-    display: block;
-  }
-  
-  .progress-container {
-    flex: 1;
-  }
-  
-  .progress-bar {
-    width: 100%;
-    height: 6px;
-    background: var(--color-dark-gray);
-    border-radius: 3px;
-    cursor: pointer;
-    position: relative;
-    margin-bottom: 0.5rem;
-  }
-  
-  .progress-fill {
-    height: 100%;
-    background: var(--color-bright-blue);
-    border-radius: 3px;
-    width: 0%;
-    transition: width 0.1s ease;
-  }
-  
-  .time-display {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.875rem;
-    color: var(--color-light-text);
-  }
-  
-  .volume-control {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .volume-slider {
-    width: 80px;
-    height: 4px;
-    background: var(--color-dark-gray);
-    border-radius: 2px;
-    outline: none;
-    cursor: pointer;
-  }
-  
-  .volume-slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: var(--color-bright-blue);
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  /* Theme Variations */
-  .minimal {
-    padding: 1rem;
-    border: none;
-    box-shadow: none;
-  }
-  
-  .minimal .audio-info {
-    display: none;
-  }
-  
-  .dark {
-    background: #1a1a1a;
-    border-color: #333;
-    color: white;
-  }
-  
-  .dark .audio-title {
-    color: white;
-  }
-  
-  .dark .audio-artist,
-  .dark .audio-album {
-    color: #ccc;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .audio-player-container {
-      padding: 1rem;
-    }
-    
-    .custom-controls {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    
-    .volume-control {
-      width: 100%;
-      justify-content: center;
-    }
-    
-    .volume-slider {
-      width: 120px;
-    }
-  }
-</style>
-
 <script>
-  console.log('AudioPlayer script starting...');
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('AudioPlayer script loaded');
-    
     const audioPlayers = document.querySelectorAll('.audio-player-container');
-    console.log('Found audio players:', audioPlayers.length);
     
     audioPlayers.forEach((container, index) => {
-      console.log(`Initializing audio player ${index + 1}`);
-      
       const audio = container.querySelector('audio');
       const playPauseBtn = container.querySelector('.play-pause-btn');
+      const muteBtn = container.querySelector('.mute-btn');
       const progressBar = container.querySelector('.progress-bar');
       const progressFill = container.querySelector('.progress-fill');
       const currentTimeSpan = container.querySelector('.current-time');
       const durationSpan = container.querySelector('.duration');
-      const volumeSlider = container.querySelector('.volume-slider');
       
       if (!audio) {
         console.error('No audio element found in player', index + 1);
         return;
       }
       
-      console.log(`Audio player ${index + 1} src:`, audio.src);
-      console.log('Audio element:', audio);
-      console.log('Audio volume:', audio.volume);
-      console.log('Audio muted:', audio.muted);
-      console.log('Audio readyState:', audio.readyState);
-      console.log('Audio controls:', audio.controls);
-      console.log('Audio autoplay:', audio.autoplay);
-      console.log('Audio loop:', audio.loop);
-      console.log('Audio preload:', audio.preload);
-      
-      // Force unmute all players except the first one (which is intentionally muted)
-      if (index > 0) {
-        audio.muted = false;
-        console.log(`Audio player ${index + 1} forced unmuted`);
-        // Verify unmuting worked
-        setTimeout(() => {
-          console.log(`Audio player ${index + 1} muted state after unmuting:`, audio.muted);
-        }, 100);
-      }
-      
-      // Initialize volume
-      if (volumeSlider) {
-        audio.volume = parseFloat(volumeSlider.value);
-        console.log(`Audio player ${index + 1} volume set to:`, audio.volume);
+      // Ensure audio is not muted by default
+      audio.muted = false;
+      if (muteBtn) {
+        muteBtn.classList.remove('muted');
       }
       
       // Play/Pause functionality
       if (playPauseBtn) {
         playPauseBtn.addEventListener('click', () => {
-          console.log(`Play button clicked for player ${index + 1}`);
-          console.log('Audio paused state:', audio.paused);
-          console.log('Audio ready state:', audio.readyState);
-          
           if (audio.paused) {
             audio.play().then(() => {
-              console.log(`Audio player ${index + 1} started playing`);
               container.classList.add('playing');
             }).catch(error => {
               console.error(`Audio play failed for player ${index + 1}:`, error);
             });
           } else {
             audio.pause();
-            console.log(`Audio player ${index + 1} paused`);
             container.classList.remove('playing');
+          }
+        });
+      }
+      
+      // Mute/Unmute functionality
+      if (muteBtn) {
+        muteBtn.addEventListener('click', () => {
+          audio.muted = !audio.muted;
+          if (audio.muted) {
+            muteBtn.classList.add('muted');
+          } else {
+            muteBtn.classList.remove('muted');
           }
         });
       }
@@ -431,33 +178,19 @@ const uniqueId = `audio-${Math.random().toString(36).substr(2, 9)}`;
       
       // Update duration when metadata loads
       audio.addEventListener('loadedmetadata', () => {
-        console.log(`Audio player ${index + 1} metadata loaded, duration:`, audio.duration);
         if (durationSpan) {
           durationSpan.textContent = formatTime(audio.duration);
         }
       });
       
-      // Volume control
-      if (volumeSlider) {
-        volumeSlider.addEventListener('input', (e) => {
-          const target = e.target;
-          if (target) {
-            audio.volume = parseFloat(target.value);
-            console.log(`Audio player ${index + 1} volume changed to:`, audio.volume);
-          }
-        });
-      }
-      
       // Handle play/pause state changes
       audio.addEventListener('play', () => {
-        console.log(`Audio player ${index + 1} play event fired`);
         if (playPauseBtn) {
           container.classList.add('playing');
         }
       });
       
       audio.addEventListener('pause', () => {
-        console.log(`Audio player ${index + 1} pause event fired`);
         if (playPauseBtn) {
           container.classList.remove('playing');
         }
@@ -477,4 +210,4 @@ const uniqueId = `audio-${Math.random().toString(36).substr(2, 9)}`;
     const remainingSeconds = Math.floor(seconds % 60);
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   }
-</script> 
+</script>

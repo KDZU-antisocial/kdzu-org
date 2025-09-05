@@ -21,6 +21,7 @@ const {
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+const audioCssUrl = isDev ? '/styles/audio-player.css' : 'https://static.kdzu.org/styles/audio-player.css';
 ---
 
 <!DOCTYPE html>
@@ -30,6 +31,7 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | KDZU!</title>
     <link rel="stylesheet" href={cssUrl} />
+    <link rel="stylesheet" href={audioCssUrl} />
     <SocialMeta 
       title={title}
       description={description}
@@ -47,4 +49,4 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
       <p>&copy; 2025 KDZU</p>
     </footer>
   </body>
-</html> 
+</html>
