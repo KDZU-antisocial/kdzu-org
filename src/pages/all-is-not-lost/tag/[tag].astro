@@ -1,0 +1,219 @@
+---
+import { getCollection } from 'astro:content';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+
+const { tag } = Astro.params;
+
+// Handle case where tag parameter is missing
+if (!tag) {
+  return Astro.redirect('/all-is-not-lost/');
+}
+
+const posts = await getCollection('allIsNotLost', ({ id }) => {
+  return !id.startsWith('_');
+});
+const filteredPosts = posts.filter(post => post.data.tags.includes(tag));
+const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Is Not Lost - Tag: {tag}</title>
+    <link rel="stylesheet" href={cssUrl} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://static.kdzu.org/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="https://static.kdzu.org/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="https://static.kdzu.org/favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="https://static.kdzu.org/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#191919" />
+  </head>
+  <body class="ainl-page">
+    <Header />
+    <main>
+      <div class="main-content">
+        <h1>All Is Not Lost</h1>
+        <p class="subtitle">Objects tagged with <span class="tag-highlight">{tag}</span></p>
+        <a href="/all-is-not-lost/" class="back-link">← Back to All Is Not Lost</a>
+        <div class="ainl-grid">
+          {sortedPosts.length > 0 ? (
+            sortedPosts.map((post) => (
+              <article class="ainl-card">
+                <a href={`/all-is-not-lost/${post.slug}/`}>
+                  {post.data.heroImage && (
+                    <div class="ainl-image">
+                      <img
+                        src={post.data.heroImage}
+                        alt={post.data.title}
+                        width="960"
+                        height="540"
+                      />
+                    </div>
+                  )}
+                  <div class="ainl-content">
+                    <h3>{post.data.title}</h3>
+                    <p class="ainl-description">{post.data.description}</p>
+                    <div class="ainl-meta">
+                      <time datetime={post.data.pubDate.toISOString()}>
+                        {post.data.pubDate.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </time>
+                      {post.data.tags.length > 0 && (
+                        <div class="ainl-tags">
+                          {post.data.tags.map((tag) => (
+                            <a class="tag" href={`/all-is-not-lost/tag/${encodeURIComponent(tag)}/`}>{tag}</a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))
+          ) : (
+            <section>
+              <h2>No Objects Found</h2>
+              <p>No objects found with the tag "{tag}".</p>
+            </section>
+          )}
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .ainl-page main {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+  .ainl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .ainl-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .ainl-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  .ainl-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .ainl-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  .ainl-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ainl-content {
+    padding: 1.5rem;
+  }
+  .ainl-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+  .ainl-description {
+    color: var(--color-light-text);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .ainl-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  .ainl-meta time {
+    color: var(--color-light-text);
+    font-size: 0.9rem;
+  }
+  .ainl-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+  }
+  .tag {
+    background: var(--color-tag-bg);
+    color: var(--color-accent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .tag:hover {
+    background: var(--color-text);
+    color: var(--color-background);
+  }
+  .tag-highlight {
+    background: var(--color-accent);
+    color: var(--color-background);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .back-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  .back-link:hover {
+    color: var(--color-text);
+  }
+  @media (max-width: 768px) {
+    .ainl-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .ainl-content {
+      padding: 1rem;
+    }
+    .ainl-content h3 {
+      font-size: 1.25rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .ainl-content h3 {
+      font-size: 1.125rem;
+    }
+    .ainl-description {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+

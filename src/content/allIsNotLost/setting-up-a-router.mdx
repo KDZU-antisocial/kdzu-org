@@ -1,0 +1,141 @@
+---
+title: 'Setting Up a Lone Wolf WiFi Router'
+description: "We broadcast from the edges of trails, rooftops, stairwells, and other transitional spaces. We utilize tools that can be repurposed, reimagined, or sometimes left for others to adapt. One such tool is WiFi routers running OpenWrt."
+pubDate: 2025-10-10
+tags: ['field note', 'network', 'tactical artifact']
+heroImage: 'https://static.kdzu.org/images/all-is-not-lost/router-red@2x.jpg'
+---
+
+import PhotoWithCaption from '../../components/PhotoWithCaption.astro';
+
+# How KDZU Builds "Lone Wolf" WiFi Networks Using OpenWrt  
+
+We broadcast from the edges of trails, rooftops, stairwells, and other transitional spaces. We utilize tools that can be repurposed, reimagined, or sometimes left for others to adapt. One such tool is WiFi routers running **OpenWrt**, an open-source OS that turns standard routers into independent transmitters, creating isolated networks.
+
+A **lone wolf WiFi network** is a small, self-contained wireless setup used to connect people to the internet or serve as a local network without internet access. It does not uplink or check in. There is no ad tech. There is no cloud. It quietly shares local files or prompts, accessible only to those within range.
+
+With one of these small routers, we can share files, serve HTML pages, loop audio, send messages, or create archives. We place them in overlooked public spaces. They run on batteries or in those strange places with outlets. They often disappear.
+
+We see our Lone Wolf networks as similar to zines, using Wi-Fi routers as photocopiers to reproduce and distribute human-made content at a human scale.
+
+---
+
+## Hardware: The KDZU Router
+
+We use the **GL.iNet GL-MT6000 Flint 2**, a portable WiFi 6 router that comes pre-installed with a version of OpenWrt.
+
+### Step 1: Install OpenWrt on your router
+
+1. Download the **sysupgrade image** from the OpenWrt Firmware Selector:  
+   [https://firmware-selector.openwrt.org/?target=mediatek%2Ffilogic&id=glinet_gl-mt6000](https://firmware-selector.openwrt.org/?target=mediatek%2Ffilogic&id=glinet_gl-mt6000)
+
+2. Log in to the router’s interface and flash the image via **Settings > Firmware Upgrade**.
+
+3. For more information, consult the OpenWrt hardware page:  
+   [https://openwrt.org/toh/gl.inet/gl-mt6000](https://openwrt.org/toh/gl.inet/gl-mt6000)
+
+---
+
+## Step 2: Configure OpenWrt and Enable WiFi
+
+### Access the OpenWrt admin tools
+
+1. **Connect via Ethernet** to one of the LAN ports.  
+   ⚠️ You cannot connect to a freshly flashed OpenWrt router via WiFi.
+
+2. Open your browser and go to:  
+   `http://192.168.1.1` or `http://openwrt.lan`
+
+3. Login credentials:  
+   - **Username:** `root`  
+   - **Password:** *(leave blank at first login)*
+
+### Enable the WiFi interfaces
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/enable@2x.jpg" 
+  alt="Screenshot of Network screen from Openwrt." 
+  caption="Enable the two disabled networks."
+/>
+
+
+1. Go to Network > Wireless.
+
+2. Edit both `radio0` and `radio1`:
+   - Under **General Setup**, choose Mode and name your **ESSID**.
+   - Under **Wireless Security**, choose your encryption settings:
+     - Use **No Encryption** for open access.
+     - Or set a password for restricted access.
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/wireless-security@2x.jpg" 
+  alt="Screenshot of General Settings tab from Openwrt." 
+  caption="The General Settings tab will let you set your ESSID network name for the WiFi network. We choose the network name of All Is Not Lost. Pick a name you think is interesting."
+/>
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/wireless-security@2x.jpg" 
+  alt="Screenshot of wireless security tab from Openwrt." 
+  caption="The Wireless Security tab at the bottom will let you set your password for the WiFi network. We choose to create an open network anyone can connect to without a password. It's up to you."
+/>
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/radio1-radio2@2x.jpg" 
+  alt="Screenshot of Network setup from Openwrt package installer." 
+  caption="Use the Edit button to set Radio0 and Radio1 to the same WiFI network name, In our case our network name is All Is Not Lost. Openwrt will chose either 5Ghz or 2.4Ghz to present to the person. This is nice as they don't need to guess."
+/>
+
+---
+
+## Step 3: Install openNDS (Optional Captive Portal)
+
+To serve a landing page or redirect all traffic, install **openNDS**.
+
+### A brief note about captive portals and how we use them for good instead of evil.
+A **captive portal** is a network access control mechanism that forces a web browser to load a specific page before allowing normal internet use. You've probably seen this when connecting to airport WiFi, hotel networks, or university guest access points. Instead of taking you to your homepage or search query, your browser is intercepted and redirected to a login or terms-of-service page. This interruption is created by the captive portal software. Captive portals are often pretty annoying. Especially the ones that force you to watch ads before using airport wifi.
+
+KDZU uses captive portals differently.
+
+Our captive portals do not serve ads or grant access to the internet. They are **self-contained delivery systems** for hyperlocal content. When someone connects to a KDZU lone wolf network, openNDS automatically redirects their web browser to a **local HTML page** stored on the router itself. This page can display content such as:
+
+- A message or communique  
+- A looping audio stream  
+- A task, code, or request  
+- Links to explore other parts of the local file system  
+- Clues that lead to physical locations or other hidden networks
+
+You do not need an internet connection. Everything is served from the router’s internal storage or an attached USB drive.
+
+This approach makes the experience feel like stumbling into a hidden signal. You connect to an unfamiliar WiFi network and are met with something unexpected—a page that seems out of place, personal, or deliberate. It can feel like receiving a transmission meant just for you.
+
+OK. back to the installation notes.
+
+1. Connect the router to an existing WiFi network or wired internet so you can download packages.  
+   Use this guide to configure client WiFi:  
+   [https://openwrt.org/docs/guide-user/network/wifi/connect_client_wifi](https://openwrt.org/docs/guide-user/network/wifi/connect_client_wifi)
+
+2. Follow the install instructions here:  
+   [https://opennds.readthedocs.io/en/stable/install.html](https://opennds.readthedocs.io/en/stable/install.html)
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/search-opennds@2x.jpg" 
+  alt="Screenshot of openNDS installation installation from Openwrt package installer." 
+  caption="Search for the openNDS package."
+/>
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/opendns-package@2x.jpg" 
+  alt="Screenshot of Openwrt package installer." 
+  caption="Select the openNDS package and click Install."
+/>
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/installing-opendns@2x.jpg" 
+  alt="Screenshot of openNDS installation from Openwrt package installer." 
+  caption="openNDS will download from the internet and install."
+/>
+
+⚠️ Once openNDS is running, it will intercept all HTTP requests—including access to the OpenWrt admin interface. Ouch. This blocks the admin web pages. So after this point, it is easiest to connect via SSH instead of using a web browser:
+
+```bash
+ssh root@192.168.1.1

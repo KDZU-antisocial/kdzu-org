@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Copyright from '../components/Copyright.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -6,6 +7,12 @@ import SocialMeta from '../components/SocialMeta.astro';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+
+const posts = await getCollection('allIsNotLost', ({ id }) => {
+  return !id.startsWith('_');
+});
+const sortedPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!DOCTYPE html>
@@ -37,11 +44,199 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
         <h1>All Is Not Lost</h1>
         
         <section>
-          <p>A wallet on the ground. A single turned-inside-out mitten tucked into a chain-link fence. A paperback left on a bench. These things often go unnoticed—or if noticed, are quickly explained away. Someone must have dropped it, forgotten it, moved on. But sometimes, these objects are transmitting a signal.</p>
-          <p>“All Is Not Lost” is a series of KDZU’s lost objects placed in everyday spaces. Each object contains a communique, a transmission, a request. It might be a to-do list. It might be the login credentials for a wifi network. It might be a map with a key card. These objects will look familiar, harmless, and boring. They pass under the radar of the uncurious. They sit quietly inside daily life, waiting—until someone, perhaps you, stops, examines, opens, shakes, and realizes they’ve picked up our signal.</p>
+          <ul>
+            <li>A wallet on the ground.</li>
+            <li>A single turned-inside-out mitten tucked into a chain-link fence.</li>
+            <li>A paperback left on a bench.</li>
+            <li>A stickered-up water bottle.</li>
+          </ul>
+          <p>These objects often go unnoticed. Or if noticed, are quickly explained away. Someone must have dropped it, forgotten it, moved on. But sometimes, these objects are transmitting a signal.</p>
+
+          <p><strong>All Is Not Lost</strong> is a series of KDZU’s "lost objects" placed in everyday spaces. Each object contains a communique, a transmission, a request. It might be a to-do list. It might be the login credentials for a wifi network. It might be a map with a key card. These objects look familiar, harmless, and boring. They pass under the radar of the uncurious. They sit quietly inside daily life, waiting for someone like you to stop, examine, open, shake, peer inside, and realize they have picked up our signal.</p>
+
+          <p>Every location where our focus wanders is a silent frequency awaiting transmission. A stairwell. A trailhead. A bench outside a gallery. The objects do not announce themselves. They do not demand anything. They wait for someone to take notice. If you find one, your curiosity has already activated something. The contents may lead you to another location, connect you to a hidden frequency, or hand you a task. Each object is a provocation, designed to reward your heightened attention and invite your action.</p>
+          
+
+          <p><strong>Our signal reached you.</strong> And now, something has begun.</p>
+
+            
         </section>
+
+        <div class="ainl-grid">
+          {sortedPosts.map((post) => (
+            <article class="ainl-card">
+              <a href={`/all-is-not-lost/${post.slug}/`}>
+                {post.data.heroImage && (
+                  <div class="ainl-image">
+                    <img
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      width="960"
+                      height="540"
+                    />
+                  </div>
+                )}
+                <div class="ainl-content">
+                  <h3>{post.data.title}</h3>
+                  <p class="ainl-description">{post.data.description}</p>
+                  <div class="ainl-meta">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                    {post.data.tags.length > 0 && (
+                      <div class="ainl-tags">
+                        {post.data.tags.map((tag) => (
+                          <a class="tag" href={`/all-is-not-lost/tag/${encodeURIComponent(tag)}/`}>{tag}</a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+        
+        {sortedPosts.length === 0 && (
+          <section>
+            <h2>No Objects Found Yet</h2>
+            <p>No lost objects have been documented yet. Check back soon!</p>
+          </section>
+        )}
       </div>
     </main>
     <Footer />
   </body>
-</html> 
+</html>
+
+<style>
+  ul, ol {
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  li {
+    list-style: none;
+    font-size: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .ainl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .ainl-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .ainl-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .ainl-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .ainl-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .ainl-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ainl-content {
+    padding: 1.5rem;
+  }
+
+  .ainl-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .ainl-description {
+    color: var(--color-light-text);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .ainl-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ainl-meta time {
+    color: var(--color-light-text);
+    font-size: 0.9rem;
+  }
+
+  .ainl-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .tag {
+    background: var(--color-tag-bg);
+    color: var(--color-accent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    .ainl-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .ainl-content {
+      padding: 1rem;
+    }
+
+    .ainl-content h3 {
+      font-size: 1.25rem;
+    }
+
+    .ainl-meta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ainl-content h3 {
+      font-size: 1.125rem;
+    }
+
+    .ainl-description {
+      font-size: 0.9rem;
+    }
+  }
+</style>
