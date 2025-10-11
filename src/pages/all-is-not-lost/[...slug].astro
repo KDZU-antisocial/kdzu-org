@@ -1,0 +1,151 @@
+---
+import { getCollection } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const { slug } = Astro.params;
+const posts = await getCollection('allIsNotLost', ({ id }) => {
+  return !id.startsWith('_');
+});
+const post = posts.find(p => p.slug === slug);
+
+let rendered = null;
+if (post) {
+  rendered = await post.render();
+}
+---
+
+{post && post.data ? (
+  <PostLayout 
+    title={post.data.title}
+    description={post.data.description}
+    image={post.data.heroImage || 'https://static.kdzu.org/images/kdzu-header-1440@2x.jpg'}
+    pubDate={post.data.pubDate}
+    tags={post.data.tags}
+  >
+    <Header />
+    <main class="main-content ainl-post-page">
+      <article class="ainl-post">
+        <h1>{post.data.title}</h1>
+        <div class="ainl-post-meta">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          {post.data.tags.length > 0 && (
+            <div class="ainl-post-tags">
+              {post.data.tags.map((tag) => (
+                <a class="tag" href={`/all-is-not-lost/tag/${encodeURIComponent(tag)}/`}>{tag}</a>
+              ))}
+            </div>
+          )}
+        </div>
+        {post.data.heroImage && (
+          <div class="ainl-post-hero">
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              width="960"
+              height="540"
+            />
+          </div>
+        )}
+        <div class="ainl-post-description">{post.data.description}</div>
+        <div class="ainl-post-content">
+          {rendered && <rendered.Content />}
+        </div>
+        <footer class="ainl-post-footer">
+          <a href="/all-is-not-lost/" class="back-link">← Back to All Is Not Lost</a>
+        </footer>
+      </article>
+    </main>
+    <Footer />
+  </PostLayout>
+) : (
+  <PostLayout title="Post Not Found">
+    <Header />
+    <main class="main-content ainl-post-page">
+      <div class="error-message">
+        <h1>Post Not Found</h1>
+        <p>The requested post could not be found.</p>
+        <a href="/all-is-not-lost/" class="back-link">← Back to All Is Not Lost</a>
+      </div>
+    </main>
+    <Footer />
+  </PostLayout>
+)}
+
+<style>
+  .ainl-post-page main {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+  .ainl-post {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .ainl-post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .ainl-post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: var(--color-accent);
+    color: var(--color-background);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .ainl-post-hero {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .ainl-post-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .ainl-post-description {
+    color: var(--color-light-text);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+  }
+  .ainl-post-content {
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+  .ainl-post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .back-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover {
+    color: var(--color-text);
+  }
+  .error-message {
+    text-align: center;
+    padding: 2rem;
+  }
+</style>
+
