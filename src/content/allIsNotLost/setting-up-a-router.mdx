@@ -18,37 +18,33 @@ With one of these small routers, we can share files, serve HTML pages, loop audi
 
 We see our Lone Wolf networks as similar to zines, using Wi-Fi routers as "photocopiers" to reproduce and distribute human-made content at human scale.
 
----
-
-## Hardware: The KDZU Router
 
 We use the **GL.iNet GL-MT6000 Flint 2**, a portable WiFi 6 router that comes pre-installed with a version of OpenWrt.
 
-### Step 1: Install OpenWrt on your router
+## Step 1: Install OpenWrt on your router
 
-1. Download the **sysupgrade image** from the OpenWrt Firmware Selector:  
-   [https://firmware-selector.openwrt.org/?target=mediatek%2Ffilogic&id=glinet_gl-mt6000](https://firmware-selector.openwrt.org/?target=mediatek%2Ffilogic&id=glinet_gl-mt6000)
+1. Download the **sysupgrade image** from the [OpenWrt Firmware Selector for the GL.iNet GL-MT6000](https://firmware-selector.openwrt.org/?target=mediatek%2Ffilogic&id=glinet_gl-mt6000)
 
-2. Log in to the router’s interface and flash the image via **Settings > Firmware Upgrade**.
+2. Log in to the router’s interface and flash the image via 
 
-3. For more information, consult the OpenWrt hardware page:  
-   [https://openwrt.org/toh/gl.inet/gl-mt6000](https://openwrt.org/toh/gl.inet/gl-mt6000)
+    **Settings > Firmware Upgrade**.
 
----
+3. For more information, consult the [OpenWrt hardware page](https://openwrt.org/toh/gl.inet/gl-mt6000)
+
 
 ## Step 2: Configure OpenWrt and Enable WiFi
 
 ### Access the OpenWrt admin tools
 
-1. **Connect via Ethernet** to one of the LAN ports.  
-   ⚠️ You cannot connect to a freshly flashed OpenWrt router via WiFi.
+**Connect via Ethernet** to one of the LAN ports.  
+  ⚠️ You cannot connect to a freshly flashed OpenWrt router via WiFi.
 
-2. Open your browser and go to:  
-   `http://192.168.1.1` or `http://openwrt.lan`
+Open your browser and go to:  
+  `http://192.168.1.1` or `http://openwrt.lan`
 
-3. Login credentials:  
-   - **Username:** `root`  
-   - **Password:** *(leave blank at first login)*
+Login credentials:  
+  - **Username:** `root`  
+  - **Password:** *(leave blank at first login)*
 
 ### Enable the WiFi interfaces
 
@@ -58,14 +54,13 @@ We use the **GL.iNet GL-MT6000 Flint 2**, a portable WiFi 6 router that comes pr
   caption="Enable the two disabled networks."
 />
 
+Go to Network > Wireless.
 
-1. Go to Network > Wireless.
-
-2. Edit both `radio0` and `radio1`:
-   - Under **General Setup**, choose Mode and name your **ESSID**.
-   - Under **Wireless Security**, choose your encryption settings:
-     - Use **No Encryption** for open access.
-     - Or set a password for restricted access.
+Edit both `radio0` and `radio1`:
+  - Under **General Setup**, choose Mode and name your **ESSID**.
+  - Under **Wireless Security**, choose your encryption settings:
+    - Use **No Encryption** for open access.
+    - Or set a password for restricted access.
 
 <PhotoWithCaption 
   src="https://static.kdzu.org/images/all-is-not-lost/wireless-security@2x.jpg" 
@@ -85,7 +80,6 @@ We use the **GL.iNet GL-MT6000 Flint 2**, a portable WiFi 6 router that comes pr
   caption="Use the Edit button to set Radio0 and Radio1 to the same WiFI network name, In our case our network name is All Is Not Lost. Openwrt will chose either 5Ghz or 2.4Ghz to present to the person. This is nice as they don't need to guess."
 />
 
----
 
 ## Step 3: Install openNDS (Optional Captive Portal)
 
@@ -110,12 +104,11 @@ This approach makes the experience feel like stumbling into a hidden signal. You
 
 OK. back to the installation notes.
 
-1. Connect the router to an existing WiFi network or wired internet so you can download packages.  
-   Use this guide to configure client WiFi:  
-   [https://openwrt.org/docs/guide-user/network/wifi/connect_client_wifi](https://openwrt.org/docs/guide-user/network/wifi/connect_client_wifi)
+Connect the router to an existing WiFi network or wired internet so you can download packages.  
+  Use this guide to configure client WiFi:  
+  [https://openwrt.org/docs/guide-user/network/wifi/connect_client_wifi](https://openwrt.org/docs/guide-user/network/wifi/connect_client_wifi)
 
-2. Follow the install instructions here:  
-   [https://opennds.readthedocs.io/en/stable/install.html](https://opennds.readthedocs.io/en/stable/install.html)
+Follow the install instructions at [https://opennds.readthedocs.io/](https://opennds.readthedocs.io/en/stable/install.html)
 
 <PhotoWithCaption 
   src="https://static.kdzu.org/images/all-is-not-lost/search-opennds@2x.jpg" 
