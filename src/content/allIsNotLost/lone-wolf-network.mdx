@@ -1,0 +1,123 @@
+---
+title: 'An "All Is Not Lost" Lone Wolf Network'
+description: "When you connect to our WiFi network, you're automatically redirected to a custom splash page—a zine-like manifesto with dark cyberpunk aesthetics. No login. No tracking. Just a transmission."
+pubDate: 2025-10-15
+tags: ['network', 'captive portal', 'tactical artifact']
+heroImage: 'https://static.kdzu.org/images/all-is-not-lost/captive-portal-demo@2x.jpg'
+---
+
+import PhotoWithCaption from '../../components/PhotoWithCaption.astro';
+import VimeoVideo from '../../components/VimeoVideo.astro';
+
+When someone connects to our WiFi network, they are automatically redirected to a custom splash page that presents the KDZU manifesto. There's no login form. No password. No data collection. Just a page—dark, deliberate, and designed to feel like you've intercepted a signal.
+
+## Watch the Experience
+
+This is what appears when you connect to an "All Is Not Lost" network:
+
+<VimeoVideo 
+  videoId="1129088485"
+  responsive={true}
+  aspectRatio="16:9"
+  title={true}
+  byline={false}
+  portrait={false}
+  color="#ff0000"
+  accessibilityTitle="All Is Not Lost Captive Portal Demo"
+  description="A demonstration of the KDZU captive portal splash page that appears when connecting to an All Is Not Lost lone wolf WiFi network"
+/>
+
+The page uses glitch effects, retro terminal styling, and a dark aesthetic. It's fully responsive—working on phones, tablets, and laptops. After reading, visitors click a single button to access the network.
+
+## What Is a Lone Wolf WiFi Network?
+
+A **lone wolf WiFi network** is a small, self-contained wireless setup used to create a local network without internet access. This network does not uplink to social media. There is no ad tech. There is no cloud. It quietly shares local files or prompts, accessible only to those within WiFi range.
+
+### No Internet Required
+
+These networks can run completely offline. The captive portal page is served directly from the router's internal storage or an attached USB drive. You don't need internet connectivity to transmit content—just power and physical proximity.
+
+### Human-Scale Distribution
+
+We see these networks as similar to zines. A zine is photocopied and distributed by hand. A lone wolf network broadcasts at human scale, accessible only to those within physical proximity. The WiFi router becomes a "photocopier" for digital content—reproducing and distributing human-made content at human scale.
+
+## How We Use Them
+
+We place these routers in overlooked public spaces:
+
+- **Trailheads** - Hidden near benches or information kiosks
+- **Stairwells** - Tucked behind vending machines or fire extinguisher boxes
+- **Rooftops** - Broadcasting from elevated positions
+- **Gallery spaces** - Positioned as part of installations
+- **Transit areas** - Anywhere people pause and pull out their phones
+
+They run on batteries or tap into those strange, rare places with accessible power outlets. These routers often disappear over time—which is part of their nature.
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/router-in-field@2x.jpg" 
+  alt="A small WiFi router placed on a wooden bench at a trailhead." 
+  caption="A lone wolf router placed at a trailhead. It broadcasts for 6-8 hours on battery power."
+/>
+
+## What We Transmit
+
+When someone connects, the captive portal can serve:
+
+- **Messages or communiques** - Text-based transmissions
+- **Audio streams** - Looping sound files or radio-style broadcasts
+- **Tasks or requests** - Instructions for physical actions
+- **Local file archives** - Documents, images, or PDFs stored on the router
+- **Clues or coordinates** - Information leading to other locations or networks
+
+The content is site-specific, temporary, and designed to reward curiosity.
+
+## The Experience
+
+You're walking. You see an unfamiliar WiFi network. Maybe the name catches your attention. Maybe you're bored and checking for open networks.
+
+You connect.
+
+Your browser is immediately redirected. Not to a typical login page asking for credentials or forcing you to watch ads. Instead, you land on a page that feels deliberate, strange, designed. There's text. Maybe audio playing. Instructions. A request. A transmission.
+
+You realize someone placed this here intentionally. Someone wanted you to find it. The signal reached you.
+
+## Technical Implementation
+
+Our implementation uses:
+
+- **OpenWrt** - Open-source router firmware
+- **openNDS** - Captive portal software
+- **Custom ThemeSpec script** - Shell script generating the HTML page
+- **Embedded assets** - All CSS, JavaScript, and content stored in the script
+
+The complete technical setup and source code is available in our GitHub repository:  
+[https://github.com/KDZU-antisocial/all-is-not-lost](https://github.com/KDZU-antisocial/all-is-not-lost)
+
+## Philosophy: Routers as Transmitters
+
+This is not a server in a data center. This is not cloud infrastructure. This is a router in a backpack, a transmitter on a rooftop, a signal in the stairwell—human-made content at human scale.
+
+The ephemeral nature of these networks mirrors our project's themes of memory, silence, and artifacts. They appear. They broadcast. They disappear. What remains is the memory of the encounter—the moment you connected and realized something was being transmitted just for those who took notice.
+
+<PhotoWithCaption 
+  src="https://static.kdzu.org/images/all-is-not-lost/captive-portal-phone@2x.jpg" 
+  alt="A phone displaying the All Is Not Lost captive portal page." 
+  caption="The captive portal as it appears on a mobile device. Dark aesthetic, glitch effects, retro terminal styling."
+/>
+
+## Building Your Own
+
+Want to create your own lone wolf network? Our [router setup guide](/all-is-not-lost/setting-up-a-router/) walks through the complete process:
+
+1. Installing OpenWrt on a portable router
+2. Configuring WiFi settings
+3. Installing openNDS captive portal software
+4. Deploying our custom theme
+5. Customizing content for your project
+
+The guide includes screenshots, troubleshooting tips, and technical details for adapting the system to your needs.
+
+---
+
+**Every location where our focus wanders is a silent frequency awaiting transmission.**
+
