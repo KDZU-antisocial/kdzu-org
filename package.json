@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && node scripts/fix-asset-urls.js && nohup node scripts/watch-and-upload.js > watch-and-upload.log 2>&1 &",
+    "build:deploy": "astro build && node scripts/fix-asset-urls.js && nohup node scripts/watch-and-upload.js > watch-and-upload.log 2>&1 & && ./deploy-site.sh",
     "preview": "astro preview"
   },
   "dependencies": {
