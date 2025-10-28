@@ -8,11 +8,13 @@ export const GET: APIRoute = async () => {
     const allEvents = await getCollection('events');
     const allMdcPosts = await getCollection('mdc');
     const allStaticsignalPosts = await getCollection('staticsignal');
+    const allAllIsNotLostPosts = await getCollection('allIsNotLost');
 
     // Filter out posts that start with underscore (private/draft posts)
     const events = allEvents.filter(event => !event.slug.startsWith('_'));
     const mdcPosts = allMdcPosts.filter(post => !post.slug.startsWith('_'));
     const staticsignalPosts = allStaticsignalPosts.filter(post => !post.slug.startsWith('_'));
+    const allIsNotLostPosts = allAllIsNotLostPosts.filter(post => !post.slug.startsWith('_'));
 
     // Static pages with custom priorities and frequencies
     const staticPages = [
@@ -22,6 +24,9 @@ export const GET: APIRoute = async () => {
       { url: 'https://kdzu.org/tracks-we-love/', priority: 0.9, changefreq: 'weekly' },
       { url: 'https://kdzu.org/mdc/', priority: 0.9, changefreq: 'weekly' },
       { url: 'https://kdzu.org/static/', priority: 0.9, changefreq: 'weekly' },
+      { url: 'https://kdzu.org/all-is-not-lost/', priority: 0.9, changefreq: 'weekly' },
+      { url: 'https://kdzu.org/basslines/', priority: 0.9, changefreq: 'weekly' },
+      { url: 'https://kdzu.org/links/', priority: 0.8, changefreq: 'monthly' },
       { url: 'https://kdzu.org/privacy-policy/', priority: 0.5, changefreq: 'yearly' }
     ];
 
@@ -33,8 +38,13 @@ export const GET: APIRoute = async () => {
       changefreq: 'monthly'
     }));
 
-    // Events URLs - removed since individual event pages don't exist
-    const eventUrls: any[] = [];
+    // Events URLs - individual event pages
+    const eventUrls = events.map(event => ({
+      url: `https://kdzu.org/events/${event.slug}/`,
+      lastmod: event.data.pubDate,
+      priority: 0.7,
+      changefreq: 'monthly'
+    }));
 
     // MDC posts URLs
     const mdcUrls = mdcPosts.map(post => ({
@@ -52,8 +62,16 @@ export const GET: APIRoute = async () => {
       changefreq: 'monthly'
     }));
 
+    // All Is Not Lost posts URLs
+    const allIsNotLostUrls = allIsNotLostPosts.map(post => ({
+      url: `https://kdzu.org/all-is-not-lost/${post.slug}/`,
+      lastmod: post.data.pubDate,
+      priority: 0.7,
+      changefreq: 'monthly'
+    }));
+
     // Combine all URLs
-    const allUrls = [...staticPages, ...trackUrls, ...eventUrls, ...mdcUrls, ...staticsignalUrls];
+    const allUrls = [...staticPages, ...trackUrls, ...eventUrls, ...mdcUrls, ...staticsignalUrls, ...allIsNotLostUrls];
 
     // Format date to YYYY-MM-DD
     function formatDate(date: Date): string {

@@ -129,6 +129,14 @@ The sitemap is automatically available after deployment:
 - **Robots.txt**: `https://kdzu.org/robots.txt`
 
 ### Manual Deployment
+
+#### Option 1: Build + Deploy (Recommended)
+```bash
+# Build and deploy in one command
+npm run build:deploy
+```
+
+#### Option 2: Build + Deploy Separately
 ```bash
 # Build locally
 npm run build
