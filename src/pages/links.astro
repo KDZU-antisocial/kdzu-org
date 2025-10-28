@@ -1,5 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get upcoming events
+const events = await getCollection('events', ({ id }) => {
+  return !id.startsWith('_');
+});
+
+// Create a timezone-agnostic "today" date for comparison
+const now = new Date();
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+const upcomingEvents = events.filter(event => {
+  // Parse the date string and create a timezone-agnostic date
+  const [year, month, day] = event.data.date.split('.').map(Number);
+  const eventDate = new Date(year, month - 1, day); // month is 0-indexed
+  
+  return eventDate >= today;
+});
+
+const sortedEvents = upcomingEvents.sort((a, b) => {
+  // Parse dates consistently for sorting
+  const [yearA, monthA, dayA] = a.data.date.split('.').map(Number);
+  const [yearB, monthB, dayB] = b.data.date.split('.').map(Number);
+  
+  const dateA = new Date(yearA, monthA - 1, dayA);
+  const dateB = new Date(yearB, monthB - 1, dayB);
+  
+  return dateA.valueOf() - dateB.valueOf();
+});
 ---
 
 <Layout title="KDZU Links">
@@ -8,23 +37,49 @@ import Layout from '../layouts/Layout.astro';
       <h1>KDZU Links</h1>
       <p>All the ways to connect with KDZU</p>
       <p>☎️ Call 24/7: (775) 566-KDZU</p>
-
     </div>
     
     <div class="links-grid">
-      <!-- Main Navigation -->
-      <section class="link-section">
-        <h2>Main Navigation</h2>
-        <div class="link-buttons">
-          <a href="/" class="link-button">KDZU.org Home</a>
-          <a href="/events" class="link-button">Events</a>
-          <a href="/mdc" class="link-button">Activating the MDC mission</a>
-          <a href="/tracks-we-love" class="link-button">Tracks We Love</a>
-          <a href="/about" class="link-button">About KDZU</a>
-        </div>
-      </section>
-      
-      <!-- Newsletter -->
+      <!-- Upcoming Events -->
+      {sortedEvents.length > 0 && (
+        <section class="link-section">
+          <h2>Upcoming Events</h2>
+          <div class="link-buttons">
+            {sortedEvents.map((event) => (
+              <a href={`/events/${event.slug}/`} class="link-button event-link">
+                <div class="event-info">
+                  <span class="event-date">{event.data.date}</span>
+                  <span class="event-title">{event.data.title}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+       <!-- Main Navigation -->
+       <section class="link-section">
+         <h2>Main Navigation</h2>
+         <div class="link-buttons">
+           <a href="/" class="link-button">KDZU.org Home</a>
+           <a href="/events" class="link-button">Events</a>
+           <a href="/mdc" class="link-button">Activating the MDC mission</a>
+           <a href="/tracks-we-love" class="link-button">Tracks We Love</a>
+           <a href="/about" class="link-button">About KDZU</a>
+         </div>
+       </section>
+       
+       <!-- Projects -->
+       <section class="link-section">
+         <h2>Projects</h2>
+         <div class="link-buttons">
+           <a href="/mdc/" class="link-button">Activating the MDC Mission</a>
+           <a href="/basslines/" class="link-button">Basslines from the Broken Earth</a>
+           <a href="/all-is-not-lost/" class="link-button">All Is Not Lost</a>
+         </div>
+       </section>
+       
+        
+       <!-- Newsletter -->
       <section class="link-section">
         <h2>Newsletter</h2>
         <div class="link-buttons">
@@ -195,6 +250,28 @@ import Layout from '../layouts/Layout.astro';
 
   .playlist-link {
     align-items: flex-start;
+  }
+
+  .event-link {
+    align-items: flex-start;
+  }
+
+  .event-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .event-date {
+    font-size: 0.9rem;
+    color: var(--theme-text-light);
+    font-weight: 500;
+  }
+
+  .event-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
   }
 
   @media (max-width: 480px) {
