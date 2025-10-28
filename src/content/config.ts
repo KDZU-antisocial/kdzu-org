@@ -30,6 +30,8 @@ const events = defineCollection({
     addressLink: z.string().optional(),
     link: z.string().optional(),
     dayOfWeek: z.string().optional(),
+    heroImage: z.string().optional(),
+    eventContent: z.string().optional(),
     pubDate: z.coerce.date(),
   })
 });
