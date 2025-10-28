@@ -54,9 +54,9 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
             ) : subtitle}
           </div>
         )}
-        {eventContent && (
+        {event.body && (
           <div class="markdown">
-            <Fragment set:html={eventContent} />
+            <Fragment set:html={event.body} />
           </div>
         )}
       </div>
@@ -89,6 +89,7 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
             )}
           </div>
         )}
+
       </div>
     </a>
   )}
@@ -121,9 +122,9 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
             ) : subtitle}
           </div>
         )}
-        {eventContent && (
+        {event.body && (
           <div class="markdown">
-            <Fragment set:html={eventContent} />
+            <Fragment set:html={event.body} />
           </div>
         )}
       </div>
