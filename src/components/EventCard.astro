@@ -14,6 +14,7 @@ interface Props {
       link?: string;
       dayOfWeek?: string;
       heroImage?: string;
+      eventContent?: string;
     };
     body: string;
     slug: string;
@@ -22,7 +23,7 @@ interface Props {
 }
 
 const { event, href } = Astro.props;
-const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link, dayOfWeek, heroImage } = event.data;
+const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link, dayOfWeek, heroImage, eventContent } = event.data;
 ---
 
 <li>
@@ -53,9 +54,9 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
             ) : subtitle}
           </div>
         )}
-        {event.body && (
+        {eventContent && (
           <div class="markdown">
-            <Fragment set:html={event.body} />
+            <Fragment set:html={eventContent} />
           </div>
         )}
       </div>
@@ -120,9 +121,9 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
             ) : subtitle}
           </div>
         )}
-        {event.body && (
+        {eventContent && (
           <div class="markdown">
-            <Fragment set:html={event.body} />
+            <Fragment set:html={eventContent} />
           </div>
         )}
       </div>
@@ -174,7 +175,7 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
   
   .event-hero {
     width: 100%;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 1rem;

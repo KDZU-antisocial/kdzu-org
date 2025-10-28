@@ -12,6 +12,7 @@ address1: "Highway 18"
 address2: "Rim of the World"
 addressLink: "https://maps.google.com/?q=Highway+18+Rim+of+the+World"
 heroImage: "https://static.kdzu.org/images/events/event-image@2x.jpg"
+eventContent: "Event description goes here. You can use HTML formatting."
 
 ---
 

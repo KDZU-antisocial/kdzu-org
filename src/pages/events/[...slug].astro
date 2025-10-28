@@ -6,15 +6,35 @@ import Header from '../../components/Header.astro';
 import EventCard from '../../components/EventCard.astro';
 
 export async function getStaticPaths() {
-  const events = await getCollection('events');
+  const events = await getCollection('events', ({ id }) => {
+    return !id.startsWith('_');
+  });
+  console.log('Available events:', events.map(e => e.slug));
   return events.map((event) => ({
     params: { slug: event.slug },
     props: { event },
   }));
 }
 
-const { event } = Astro.props;
-const { Content } = await event.render();
+// Get the event from props or find it by slug
+const { event: propEvent } = Astro.props;
+const slug = Astro.params.slug;
+
+let event;
+if (propEvent) {
+  event = propEvent;
+} else {
+  // Find the event by slug
+  const events = await getCollection('events', ({ id }) => {
+    return !id.startsWith('_');
+  });
+  event = events.find(e => e.slug === slug);
+  
+  if (!event) {
+    throw new Error(`Event not found for slug: ${slug}`);
+  }
+}
+
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
@@ -42,12 +62,16 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
     <main>
       <div class="main-content">
         <div class="event-detail">
-          <EventCard event={event} />
+          <div style="max-width: 720px; width: 100%; margin: 0 auto;">
+            <ul class="calendar single-event">
+              <EventCard event={event} />
+            </ul>
+          </div>
         </div>
         
-        {event.body && (
+        {event.data.eventContent && (
           <div class="event-content">
-            <Content />
+            <Fragment set:html={event.data.eventContent} />
           </div>
         )}
       </div>
@@ -106,5 +130,10 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
   
   .event-content :global(a:hover) {
     text-decoration: underline;
+  }
+  
+  /* Override calendar grid for single events */
+  .calendar.single-event {
+    grid-template-columns: 1fr !important;
   }
 </style>
