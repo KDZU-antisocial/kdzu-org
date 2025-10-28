@@ -22,13 +22,24 @@ This repo is deployed to Cloudflare when `dev` is merged into the `main` branch.
 
 ### Manual Deployment
 
-For manual deployments, use the provided deployment script:
+For manual deployments, you have two options:
 
+#### Option 1: Build + Deploy (Recommended)
+```bash
+npm run build:deploy
+```
+This command will:
+1. Build the Astro site
+2. Fix asset URLs
+3. Start the upload watcher
+4. Automatically deploy both workers
+
+#### Option 2: Deploy Only
 ```bash
 ./deploy-site.sh
 ```
 
-This script deploys both workers in the correct order:
+Both methods deploy both workers in the correct order:
 1. Deploys the Astro worker (`kdzu-org-astro-site-production`)
 2. Deploys the main site worker (`kdzu-org-site-production`) with service binding
 
@@ -166,6 +177,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm install`                           | Installs dependencies                                      |
 | `npm run dev`                           | Starts local Astro at `:4321` and local assets at `:4000`  |
 | `npm run build`                         | Build your production site to `./dist/`                    |
+| `npm run build:deploy`                  | Build and deploy to Cloudflare (recommended)              |
 | `npm run preview`                       | Preview your build locally, before deploying               |
 | `npm run astro ...`                     | Run CLI commands like `astro add`, `astro check`           |
 | `npm run astro -- --help`               | Get help using the Astro CLI                               |
