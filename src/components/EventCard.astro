@@ -13,72 +13,176 @@ interface Props {
       addressLink?: string;
       link?: string;
       dayOfWeek?: string;
+      heroImage?: string;
     };
     body: string;
+    slug: string;
   };
+  href?: string;
 }
 
-const { event } = Astro.props;
-const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link, dayOfWeek } = event.data;
+const { event, href } = Astro.props;
+const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link, dayOfWeek, heroImage } = event.data;
 ---
 
 <li>
-  <div class="event-content">
-    <div class="date-time">
-      <span>{dayOfWeek && `${dayOfWeek} `}{date}</span>
-      <span>{time}</span>
-    </div>
-    <h3 class="event-title">
-      {link ? <a href={link}>{title}</a> : title}
-    </h3>
-    {subtitle && (
-      <div class="subtitle">
-        {subtitleLink ? (
-          <a href={subtitleLink} class="subtitle-link">
-            {subtitle}
-            <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; vertical-align: middle; margin-left: 0.25rem;">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15,3 21,3 21,9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-          </a>
-        ) : subtitle}
-      </div>
-    )}
-    {event.body && (
-      <div class="markdown">
-        <Fragment set:html={event.body} />
-      </div>
-    )}
-  </div>
-  <div class="event-footer">
-    <div class="location">{location}</div>
-    {(address1 || address2) && (
-      <div class="address">
-        {addressLink ? (
-          <a href={addressLink} class="address-link">
-            <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            <div class="address-lines">
-              {address1 && <div class="address-line">{address1}</div>}
-              {address2 && <div class="address-line">{address2}</div>}
-            </div>
-          </a>
-        ) : (
-          <>
-            <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            <div class="address-lines">
-              {address1 && <div class="address-line">{address1}</div>}
-              {address2 && <div class="address-line">{address2}</div>}
-            </div>
-          </>
+  {href && (
+    <a href={href} class="event-link">
+      {heroImage && (
+        <div class="event-hero">
+          <img src={heroImage} alt={title} />
+        </div>
+      )}
+      <div class="event-content">
+        <div class="date-time">
+          <span>{dayOfWeek && `${dayOfWeek} `}{date}</span>
+          <span>{time}</span>
+        </div>
+        <h3 class="event-title">{title}</h3>
+        {subtitle && (
+          <div class="subtitle">
+            {subtitleLink ? (
+              <a href={subtitleLink} class="subtitle-link">
+                {subtitle}
+                <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; vertical-align: middle; margin-left: 0.25rem;">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            ) : subtitle}
+          </div>
+        )}
+        {event.body && (
+          <div class="markdown">
+            <Fragment set:html={event.body} />
+          </div>
         )}
       </div>
-    )}
-  </div>
-</li> 
+      <div class="event-footer">
+        <div class="location">{location}</div>
+        {(address1 || address2) && (
+          <div class="address">
+            {addressLink ? (
+              <a href={addressLink} class="address-link">
+                <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div class="address-lines">
+                  {address1 && <div class="address-line">{address1}</div>}
+                  {address2 && <div class="address-line">{address2}</div>}
+                </div>
+              </a>
+            ) : (
+              <>
+                <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div class="address-lines">
+                  {address1 && <div class="address-line">{address1}</div>}
+                  {address2 && <div class="address-line">{address2}</div>}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </a>
+  )}
+  {!href && (
+    <>
+      {heroImage && (
+        <div class="event-hero">
+          <img src={heroImage} alt={title} />
+        </div>
+      )}
+      <div class="event-content">
+        <div class="date-time">
+          <span>{dayOfWeek && `${dayOfWeek} `}{date}</span>
+          <span>{time}</span>
+        </div>
+        <h3 class="event-title">
+          {link ? <a href={link}>{title}</a> : title}
+        </h3>
+        {subtitle && (
+          <div class="subtitle">
+            {subtitleLink ? (
+              <a href={subtitleLink} class="subtitle-link">
+                {subtitle}
+                <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; vertical-align: middle; margin-left: 0.25rem;">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15,3 21,3 21,9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            ) : subtitle}
+          </div>
+        )}
+        {event.body && (
+          <div class="markdown">
+            <Fragment set:html={event.body} />
+          </div>
+        )}
+      </div>
+      <div class="event-footer">
+        <div class="location">{location}</div>
+        {(address1 || address2) && (
+          <div class="address">
+            {addressLink ? (
+              <a href={addressLink} class="address-link">
+                <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div class="address-lines">
+                  {address1 && <div class="address-line">{address1}</div>}
+                  {address2 && <div class="address-line">{address2}</div>}
+                </div>
+              </a>
+            ) : (
+              <>
+                <svg class="map-pin" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div class="address-lines">
+                  {address1 && <div class="address-line">{address1}</div>}
+                  {address2 && <div class="address-line">{address2}</div>}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </>
+  )}
+</li>
+
+<style>
+  .event-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+  }
+  
+  .event-link:hover {
+    transform: translateY(-2px);
+  }
+  
+  .event-hero {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .event-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style> 

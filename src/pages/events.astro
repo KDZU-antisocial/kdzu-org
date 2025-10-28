@@ -78,7 +78,7 @@ const sortedPastEvents = pastEvents.sort((a, b) => {
         <section>
           <ul class="calendar">
             {sortedUpcomingEvents.map((event) => (
-              <EventCard event={event} />
+              <EventCard event={event} href={`/events/${event.slug}/`} />
             ))}
           </ul>
         </section>
@@ -88,7 +88,7 @@ const sortedPastEvents = pastEvents.sort((a, b) => {
             <h2>Past Events</h2>
             <ul class="calendar">
               {sortedPastEvents.map((event) => (
-                <EventCard event={event} />
+                <EventCard event={event} href={`/events/${event.slug}/`} />
               ))}
             </ul>
           </section>
