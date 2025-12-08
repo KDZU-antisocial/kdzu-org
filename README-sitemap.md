@@ -4,7 +4,7 @@ This document explains how the sitemap system works for the KDZU.org website, in
 
 ## 📋 Overview
 
-The sitemap system automatically generates XML sitemaps for search engines to discover and index all website content. It's designed to work with both local development and production deployment to Cloudflare R2 via GitHub Actions.
+The sitemap system automatically generates XML sitemaps for search engines to discover and index all website content. It's designed to work with both local development and production deployment to Cloudflare Workers (SSR) via GitHub Actions.
 
 ## ��️ Architecture
 
@@ -46,7 +46,7 @@ Sitemap: {baseUrl}/sitemap.xml
 ### 1. Content Discovery
 The custom sitemap endpoint automatically discovers:
 - **Static Pages**: All `.astro` files in `src/pages/`
-- **Content Collections**: Tracks, MDC posts, events, staticsignal posts
+- **Content Collections**: Tracks, MDC posts, events, staticsignal posts, allIsNotLost posts
 - **Dynamic Routes**: Generated from content collection schemas
 
 ### 2. URL Generation
@@ -154,13 +154,17 @@ npm run build
 - Tracks (`/tracks-we-love/`) - Priority: 0.9, Frequency: weekly
 - MDC (`/mdc/`) - Priority: 0.9, Frequency: weekly
 - Static (`/static/`) - Priority: 0.9, Frequency: weekly
+- All Is Not Lost (`/all-is-not-lost/`) - Priority: 0.9, Frequency: weekly
+- Basslines (`/basslines/`) - Priority: 0.9, Frequency: weekly
+- Links (`/links/`) - Priority: 0.8, Frequency: monthly
 - Privacy Policy (`/privacy-policy/`) - Priority: 0.5, Frequency: yearly
 
 ### Dynamic Content
 - **Tracks**: All published tracks from `src/content/tracks/`
 - **MDC Posts**: All published posts from `src/content/mdc/`
-- **Events**: Event listings (individual event pages not included)
-- **Staticsignal Posts**: Currently all are drafts (excluded)
+- **Events**: All published events from `src/content/events/` (includes individual event pages)
+- **Staticsignal Posts**: All published posts from `src/content/staticsignal/` (draft posts excluded)
+- **All Is Not Lost Posts**: All published posts from `src/content/allIsNotLost/` (draft posts excluded)
 
 ### Example Sitemap Entry
 ```xml
@@ -190,6 +194,9 @@ npm run astro check
 # Check content collections
 ls -la src/content/tracks/
 ls -la src/content/mdc/
+ls -la src/content/events/
+ls -la src/content/staticsignal/
+ls -la src/content/allIsNotLost/
 
 # Verify collection schemas
 cat src/content/config.ts

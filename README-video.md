@@ -4,7 +4,7 @@ This document covers the Vimeo video component implementation and usage for the 
 
 ## 🎥 Overview
 
-The KDZU site uses a custom Vimeo video component (`VimeoVideo.astro`) that provides a flexible, responsive, and customizable way to embed videos across all content types (pages, MDC posts, blog posts, events, etc.).
+The KDZU site uses a custom Vimeo video component (`VimeoVideo.astro`) that provides a flexible, responsive, and customizable way to embed videos across all content types (pages, MDC posts, events, etc.).
 
 ## 📁 Files
 
@@ -16,7 +16,6 @@ The KDZU site uses a custom Vimeo video component (`VimeoVideo.astro`) that prov
 
 ### Examples & Documentation
 - `src/pages/video-examples.astro` - Live demo page showing all component features
-- `src/content/mdc/video-example.mdx` - Example MDX post demonstrating video usage
 - `README-video.md` - This documentation file
 
 ## 🚀 Quick Start
@@ -233,7 +232,6 @@ Modern browsers require videos to be muted for autoplay:
 
 ### Where to Use
 - **MDC Posts**: Direct component usage in MDX
-- **Blog Posts**: Direct component usage in MDX
 - **Regular Pages**: Import and use component
 - **Events Pages**: Embed videos in event descriptions
 - **Any Content**: Available site-wide
@@ -241,7 +239,10 @@ Modern browsers require videos to be muted for autoplay:
 ### Content Collections
 The component works with all Astro content collections:
 - `src/content/mdc/` - MDC posts
-- `src/content/blog/` - Blog posts
+- `src/content/tracks/` - Track listings
+- `src/content/events/` - Event listings
+- `src/content/staticsignal/` - Static Signal posts
+- `src/content/allIsNotLost/` - All Is Not Lost posts
 - Any other content collections
 
 ## 🛠️ Troubleshooting
@@ -289,7 +290,6 @@ Add console logging to debug issues:
 
 ### Demo Pages
 - `/video-examples` - Live examples of all features
-- `/mdc/video-example` - Example MDX post with videos
 
 ## 🔄 Updates & Maintenance
 

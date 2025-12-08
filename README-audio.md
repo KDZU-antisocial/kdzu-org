@@ -4,7 +4,7 @@ This document covers the AudioPlayer component implementation and usage for the 
 
 ## 🎵 Overview
 
-The KDZU site uses a custom AudioPlayer component (`AudioPlayer.astro`) that provides a flexible, responsive, and customizable way to embed audio files across all content types (pages, MDC posts, blog posts, events, etc.). Audio files are hosted in your R2 bucket and served via Cloudflare CDN.
+The KDZU site uses a custom AudioPlayer component (`AudioPlayer.astro`) that provides a flexible, responsive, and customizable way to embed audio files across all content types (pages, MDC posts, events, etc.). Audio files are hosted in your R2 bucket and served via Cloudflare CDN.
 
 **Recent Updates (January 2025):**
 - ✅ Fixed browser autoplay muting issues for multiple audio players
@@ -22,8 +22,6 @@ The KDZU site uses a custom AudioPlayer component (`AudioPlayer.astro`) that pro
 - `scripts/watch-and-upload.js` - Updated to handle audio file uploads to R2
 
 ### Examples & Documentation
-- `src/pages/audio-examples.astro` - Live demo page showing all component features
-- `src/content/mdc/audio-example.mdx` - Example MDX post demonstrating audio usage
 - `README-audio.md` - This documentation file
 
 ## 🚀 Quick Start
@@ -272,7 +270,6 @@ public/
 
 ### Where to Use
 - **MDC Posts**: Direct component usage in MDX
-- **Blog Posts**: Direct component usage in MDX
 - **Regular Pages**: Import and use component
 - **Events Pages**: Embed audio in event descriptions
 - **Any Content**: Available site-wide
@@ -280,7 +277,10 @@ public/
 ### Content Collections
 The component works with all Astro content collections:
 - `src/content/mdc/` - MDC posts
-- `src/content/blog/` - Blog posts
+- `src/content/tracks/` - Track listings
+- `src/content/events/` - Event listings
+- `src/content/staticsignal/` - Static Signal posts
+- `src/content/allIsNotLost/` - All Is Not Lost posts
 - Any other content collections
 
 ## 🛠️ Troubleshooting
@@ -381,8 +381,7 @@ Check browser console for detailed debugging information about:
 - [MDX Integration](https://docs.astro.build/en/guides/mdx/)
 
 ### Demo Pages
-- `/audio-examples` - Live examples of all features
-- `/mdc/audio-example` - Example MDX post with audio
+You can use the AudioPlayer component in any MDX post or page by importing it and using the examples provided in this documentation.
 
 ## 🔄 Updates & Maintenance
 
