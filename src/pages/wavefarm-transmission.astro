@@ -1,0 +1,37 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wave Farm Transmission - KDZU</title>
+    <link rel="stylesheet" href={cssUrl} />
+  </head>
+  <body class="wavefarm-transmission-page">
+    <Header />
+    <main>
+      <div class="main-content">
+        <h1>Wave Farm Transmission</h1>
+        <p class="subtitle">Add a short introduction for this page.</p>
+        <section>
+          <p>Replace this with your content.</p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .wavefarm-transmission-page main {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+</style>
