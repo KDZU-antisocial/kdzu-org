@@ -29,9 +29,16 @@ const digSiteSrc = isDev
 
         <section class="transmission-body">
           <p>
-            KDZU’s Goldfield, Nevada, station location recently received an unsigned letter* in the mail, postmarked
-            but otherwise unadorned, containing a hand-drawn map, technical sketches, and a claim that the Memphis,
-            Tennessee-based OMSA** (Orange Mound Space Agency) robotics and radio transmission
+            KDZU’s Goldfield, Nevada, station location recently received an unsigned letter<a
+              href="#transmission-fn-1"
+              id="transmission-ref-1"
+              class="transmission-footnote-ref"
+              aria-describedby="transmission-fn-1">*</a> in the mail, postmarked but otherwise unadorned, containing a
+            hand-drawn map, technical sketches, and a claim that the Memphis, Tennessee-based OMSA<a
+              href="#transmission-fn-2"
+              id="transmission-ref-2"
+              class="transmission-footnote-ref"
+              aria-describedby="transmission-fn-2">**</a> (Orange Mound Space Agency) robotics and radio transmission
             collective may have persisted beyond the 1994 “Great Raid” of the Memphis Pyramid.
           </p>
 
@@ -59,8 +66,154 @@ const digSiteSrc = isDev
               alt="Black-and-white technical sketch of a rectangular excavation pit in open terrain, with a small box-like node and antenna at the bottom, a survey rod along the wall, and a mound of excavated soil nearby."
               loading="lazy"
             />
-            <figcaption>Technical sketch from the recovered materials: excavation and node at the dig site.</figcaption>
+            <figcaption>Sketch of what a "dig site" and node might look like.</figcaption>
           </figure>
+
+          <h2 class="transmission-h2">Each of these four nodes consists of five components</h2>
+          <ul class="transmission-component-list">
+            <li>
+              <strong>Meshtastic radio:</strong> Handles LoRa mesh communication between nodes.
+            </li>
+            <li>
+              <strong>Interpreter brain:</strong> A Raspberry Pi Zero 2 W, connected to the Meshtastic node over
+              USB/serial, running KDZU-authored code that interprets FRMPayload (Frame Payload) data into MIDI.
+            </li>
+            <li>
+              <strong>Sound Interpolator:</strong> An Akai MPC Sample workstation connected via USB MIDI that translates
+              the signals into sound.
+            </li>
+            <li>
+              <strong>Sound Amplifier:</strong> A small self-powered speaker
+            </li>
+            <li>
+              <strong>Power System:</strong> A small solar panel and charging system for the electronics.
+            </li>
+          </ul>
+
+          <p>
+            This system treats transmission as a durational, intergenerational process. Signals that move slowly,
+            degrade, repeat, and require multiple human encounters to be fully perceived. Using LoRa mesh devices
+            distributed throughout the landscape, the project will “revive” a once-maintained but now-failed
+            very-slow-transmission network in which messages propagate across terrain, time, and participation, forming
+            an evolving archive of interrupted transmissions, delays, and relays. Participants will also encounter
+            fragments of OMSA’s (One Many Sometimes Always) surreptitious caregiving of the system: caregiver maintenance
+            logs, instructions for future care, and transmission logbooks, translated into sound and text, to create a
+            spatial experience. The network is an installed radio-enabled sonic instrument performing its artifacts. It is
+            a contemporary anarchist instantiation of what J.C.R. Licklider once imagined as an “Intergalactic Computer
+            Network,” reinterpreted at Wave Farm as a recently unearthed low-power, collectively maintained system
+            contingent on human presence, proximity to others, and human+transmitter+receiver collaboration.
+          </p>
+
+          <p>
+            At Wave Farm, the New Afterlife Array operates as both a field test of a long-dormant system and a proving
+            ground for transmission infrastructures that resist centralization—privileging slowness over speed, and
+            communication as an ongoing, collectivity-dependent negotiation.
+          </p>
+
+          <p>
+            This work draws from the legacy of upstate New York’s many historical intentional community experiments I
+            encountered while living in Troy, New York: utopias that collapsed, dispersed, or dissolved, yet left behind
+            important traces, structures, and ideologies that continue to resonate in ways that can be more potent than
+            the utopianists' original intentions and methods. The New Afterlife Array treats failures as symbolically
+            generative transmissions that persist beyond their original intentions.
+          </p>
+
+          <h2 class="transmission-h2">FRMPayload (Frame Payload) Communications Messaging Signals</h2>
+          <div class="transmission-table-wrap">
+            <table class="transmission-table">
+              <thead>
+                <tr>
+                  <th scope="col">Signal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>PLAY BELL</td></tr>
+                <tr><td>SCENE GRAVE</td></tr>
+                <tr><td>NODE 4 WAKE</td></tr>
+                <tr><td>ALL HUSH</td></tr>
+                <tr><td>ECHO 3</td></tr>
+                <tr><td>TEMPO 62</td></tr>
+                <tr><td>MUTE NORTH</td></tr>
+                <tr><td>PANIC</td></tr>
+                <tr><td>RELAY DUST</td></tr>
+                <tr><td>CRYPT OPEN</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Then each node has its own local mapping table, for example:</p>
+
+          <h3 class="transmission-h3">NODE “G”</h3>
+          <div class="transmission-table-wrap">
+            <table class="transmission-table transmission-table--mapping">
+              <thead>
+                <tr>
+                  <th scope="col">Signal</th>
+                  <th scope="col">Mapping</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PLAY BELL</td>
+                  <td>MIDI Note 36</td>
+                </tr>
+                <tr>
+                  <td>SCENE GRAVE</td>
+                  <td>Program Change 12</td>
+                </tr>
+                <tr>
+                  <td>ALL HUSH</td>
+                  <td>CC 7 to volume 20</td>
+                </tr>
+                <tr>
+                  <td>TEMPO 62</td>
+                  <td>internal sequencer rate change</td>
+                </tr>
+                <tr>
+                  <td>ECHO 3</td>
+                  <td>trigger sample 3 with long decay</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="transmission-h3">Additional distributed instrument components</h3>
+          <ul class="transmission-meta-list">
+            <li>
+              <strong>sender-based behaviors:</strong> Node “G” responds to node “F” differently than node “N” or “H”
+            </li>
+            <li><strong>signal-strength mappings:</strong></li>
+            <li><strong>packet delay memory:</strong></li>
+            <li><strong>node-specific identities:</strong></li>
+          </ul>
+        </section>
+
+        <section class="transmission-footnotes" aria-labelledby="transmission-notes-heading">
+          <h2 id="transmission-notes-heading" class="transmission-footnotes-title">Notes</h2>
+
+          <div id="transmission-fn-1" class="transmission-footnote-item" tabindex="-1">
+            <p>
+              <a href="#transmission-ref-1" class="transmission-footnote-back" aria-label="Back to reference">*</a>
+              The unsigned letter referenced in this proposal draws inspiration from Letters to the Mount Wilson
+              Observatory (1915–1935), a collection of 33 letters sent by members of the public to astronomers in
+              California, often expressing highly idiosyncratic understandings of the universe. The letters were later
+              compiled into the book <em>No One May Ever Have the Same Knowledge Again</em> and are exhibited at the
+              Museum of Jurassic Technology in Los Angeles.
+            </p>
+          </div>
+
+          <div id="transmission-fn-2" class="transmission-footnote-item" tabindex="-1">
+            <p>
+              <a href="#transmission-ref-2" class="transmission-footnote-back" aria-label="Back to reference">**</a>
+              Members of OMSA (Ornery, Methodical, Sassy, and Angsty) developed their name as a deliberately unstable
+              acronym, re-proclaimed with new words on each instantiation as a form of tactical opacity. This continual
+              mutation of meaning functioned as a defensive gesture, preventing the group’s intentions, structure, or
+              ideology from being fixed or fully knowable. This preserved the group’s capacity to operate as a
+              distributed, evasive entity, untethered from specific affiliations, art genres, or creative frameworks.
+              KDZU respectfully maintains this naming system, even though it seems the group has been inactive since
+              1994.
+            </p>
+          </div>
         </section>
       </div>
     </main>
@@ -102,6 +255,87 @@ const digSiteSrc = isDev
     margin-bottom: 1.25rem;
   }
 
+  .wavefarm-transmission-page .transmission-h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-bright-white);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.2;
+    max-width: 48rem;
+  }
+
+  .wavefarm-transmission-page .transmission-h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-bright-white);
+    margin: 2rem 0 0.75rem;
+    line-height: 1.25;
+    max-width: 48rem;
+  }
+
+  .wavefarm-transmission-page .transmission-component-list,
+  .wavefarm-transmission-page .transmission-meta-list {
+    list-style: disc;
+    padding-left: 2rem;
+    margin: 0 0 1.5rem;
+    max-width: 48rem;
+  }
+
+  .wavefarm-transmission-page .transmission-component-list li,
+  .wavefarm-transmission-page .transmission-meta-list li {
+    color: var(--color-light-text);
+    margin-bottom: 0.65rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .wavefarm-transmission-page .transmission-component-list strong,
+  .wavefarm-transmission-page .transmission-meta-list strong {
+    color: var(--color-bright-white);
+    font-weight: 600;
+  }
+
+  .wavefarm-transmission-page .transmission-table-wrap {
+    overflow-x: auto;
+    margin: 0 0 1.5rem;
+    max-width: 48rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-medium-gray);
+  }
+
+  .wavefarm-transmission-page .transmission-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+
+  .wavefarm-transmission-page .transmission-table th,
+  .wavefarm-transmission-page .transmission-table td {
+    padding: 0.65rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-medium-gray);
+  }
+
+  .wavefarm-transmission-page .transmission-table th {
+    background: var(--color-darker-gray);
+    color: var(--color-bright-white);
+    font-weight: 600;
+  }
+
+  .wavefarm-transmission-page .transmission-table td {
+    color: var(--color-light-text);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9375rem;
+  }
+
+  .wavefarm-transmission-page .transmission-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .wavefarm-transmission-page .transmission-table--mapping td:first-child {
+    white-space: nowrap;
+  }
+
   .wavefarm-transmission-page .transmission-figure {
     margin: 2rem 0;
     text-align: center;
@@ -123,6 +357,65 @@ const digSiteSrc = isDev
     max-width: 660px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-ref {
+    color: #ff1493;
+    font-weight: 700;
+    text-decoration: none;
+    vertical-align: super;
+    font-size: 0.75em;
+    margin-left: 0.05em;
+    white-space: nowrap;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-ref:hover,
+  .wavefarm-transmission-page .transmission-footnote-ref:focus-visible {
+    text-decoration: underline;
+  }
+
+  .wavefarm-transmission-page .transmission-footnotes {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-medium-gray);
+    max-width: 48rem;
+  }
+
+  .wavefarm-transmission-page .transmission-footnotes-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-bright-white);
+    margin: 0 0 1.25rem;
+    line-height: 1.2;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-item {
+    scroll-margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-item p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-light-text);
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-back {
+    color: #ff1493;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 0.35em;
+    white-space: nowrap;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-back:hover,
+  .wavefarm-transmission-page .transmission-footnote-back:focus-visible {
+    text-decoration: underline;
   }
 
   @media (max-width: 1440px) {
@@ -148,6 +441,19 @@ const digSiteSrc = isDev
       letter-spacing: 0.1em;
     }
 
+    .wavefarm-transmission-page .transmission-h2 {
+      font-size: 1.65rem;
+    }
+
+    .wavefarm-transmission-page .transmission-h3 {
+      font-size: 1.25rem;
+    }
+
+    .wavefarm-transmission-page .transmission-component-list li,
+    .wavefarm-transmission-page .transmission-meta-list li {
+      font-size: 1rem;
+    }
+
     .wavefarm-transmission-page .transmission-figure {
       margin: 1.5rem 0;
     }
@@ -165,6 +471,20 @@ const digSiteSrc = isDev
 
     .wavefarm-transmission-page .subtitle-secondary {
       font-size: 0.9375rem;
+    }
+
+    .wavefarm-transmission-page .transmission-h2 {
+      font-size: 1.35rem;
+    }
+
+    .wavefarm-transmission-page .transmission-table th,
+    .wavefarm-transmission-page .transmission-table td {
+      padding: 0.5rem 0.65rem;
+      font-size: 0.8125rem;
+    }
+
+    .wavefarm-transmission-page .transmission-table--mapping td:first-child {
+      white-space: normal;
     }
   }
 </style>
