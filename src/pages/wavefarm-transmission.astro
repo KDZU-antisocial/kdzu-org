@@ -4,6 +4,9 @@ import Header from '../components/Header.astro';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+const digSiteSrc = isDev
+  ? '/images/wavefarm/dig-site.jpg'
+  : 'https://static.kdzu.org/images/wavefarm/dig-site.jpg';
 ---
 
 <!DOCTYPE html>
@@ -11,17 +14,53 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wave Farm Transmission - KDZU</title>
+    <title>Unearthing the New Afterlife Array - KDZU</title>
     <link rel="stylesheet" href={cssUrl} />
   </head>
   <body class="wavefarm-transmission-page">
     <Header />
     <main>
       <div class="main-content">
-        <h1>Wave Farm Transmission</h1>
-        <p class="subtitle">Add a short introduction for this page.</p>
-        <section>
-          <p>Replace this with your content.</p>
+        <h1>Unearthing the New Afterlife Array</h1>
+        <p class="subtitle">
+          KDZU Recovers a Subterranean RF Network and the Caretakers Who Keep It Alive.
+        </p>
+        <p class="subtitle-secondary">KDZU’s Wave Farm 2026 Transmission Residency Submission</p>
+
+        <section class="transmission-body">
+          <p>
+            KDZU’s Goldfield, Nevada, station location recently received an unsigned letter* in the mail, postmarked
+            but otherwise unadorned, containing a hand-drawn map, technical sketches, and a claim that the Memphis,
+            Tennessee-based OMSA** (Orange Mound Space Agency) robotics and radio transmission
+            collective may have persisted beyond the 1994 “Great Raid” of the Memphis Pyramid.
+          </p>
+
+          <p>
+            According to this letter, while many OMSA members scattered westward, the OMSA (Our Methods Seem Abstract)
+            RF research group traveled northeast, establishing a provisional site in the northern Catskills near
+            present-day Acra, New York. The letter describes this region as strategically chosen for its seclusion, low
+            population density, and hilly terrain. These are conditions the residents of Wave Farm already understand to
+            be favorable for experimental long-range transmission, signal occlusion, and off-grid communications.
+          </p>
+
+          <p>
+            KDZU approaches the claims in this letter as an activation point for its tactical mythmaking activities: a
+            prompt to investigate, reconstruct, and extend a speculative lineage of OMSA’s (One More Sexy Anarchist)
+            anarchist transmission practices at the Wave Farm site. In response, KDZU proposes developing the New
+            Afterlife Array, a Meshtastic-based (LoRa and LoRaWAN), long-range, off-grid communication network
+            deployed across the Wave Farm site. KDZU will discover four nodes of the network, G, F, N, H, each a letter
+            in the word GOLDFINCH, a common bird found in the Acra, NY area known for its “waveform”-style flight
+            pattern. This will imply that 5 other nodes have yet to be unearthed.
+          </p>
+
+          <figure class="transmission-figure">
+            <img
+              src={digSiteSrc}
+              alt="Black-and-white technical sketch of a rectangular excavation pit in open terrain, with a small box-like node and antenna at the bottom, a survey rod along the wall, and a mound of excavated soil nearby."
+              loading="lazy"
+            />
+            <figcaption>Technical sketch from the recovered materials: excavation and node at the dig site.</figcaption>
+          </figure>
         </section>
       </div>
     </main>
@@ -33,5 +72,99 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
   .wavefarm-transmission-page main {
     display: block !important;
     grid-template-columns: 1fr !important;
+  }
+
+  /* Stronger than global .subtitle: brighter, heavier, tuned for long dek */
+  .wavefarm-transmission-page .subtitle {
+    color: var(--color-bright-white);
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 1.25;
+    max-width: 42rem;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .wavefarm-transmission-page .subtitle-secondary {
+    display: inline-block;
+    margin: 0 0 2rem;
+    padding: 0;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ff1493;
+    line-height: 1.5;
+    max-width: 42rem;
+  }
+
+  .wavefarm-transmission-page .transmission-body p {
+    margin-bottom: 1.25rem;
+  }
+
+  .wavefarm-transmission-page .transmission-figure {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .wavefarm-transmission-page .transmission-figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .wavefarm-transmission-page .transmission-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-light-text);
+    font-style: italic;
+    line-height: 1.4;
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 1440px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 1.45rem;
+      letter-spacing: 0;
+    }
+
+    .wavefarm-transmission-page .subtitle-secondary {
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .wavefarm-transmission-page .transmission-figure {
+      margin: 1.5rem 0;
+    }
+
+    .wavefarm-transmission-page .transmission-figure figcaption {
+      font-size: 0.85rem;
+      padding: 0 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 1.2rem;
+    }
+
+    .wavefarm-transmission-page .subtitle-secondary {
+      font-size: 0.9375rem;
+    }
   }
 </style>
