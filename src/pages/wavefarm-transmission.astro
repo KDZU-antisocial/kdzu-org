@@ -14,14 +14,14 @@ const digSiteSrc = isDev
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unearthing the New Afterlife Array - KDZU</title>
+    <title>Unearthing the New AfterLife Array - KDZU</title>
     <link rel="stylesheet" href={cssUrl} />
   </head>
   <body class="wavefarm-transmission-page">
     <Header />
     <main>
       <div class="main-content">
-        <h1>Unearthing the New Afterlife Array</h1>
+        <h1>Unearthing the New AfterLife Array</h1>
         <p class="subtitle">
           KDZU Recovers a Subterranean RF Network and the Caretakers Who Keep It Alive.
         </p>
@@ -29,7 +29,15 @@ const digSiteSrc = isDev
 
         <section class="transmission-body">
           <p>
-            KDZU’s Goldfield, Nevada, station location recently received an unsigned letter<a
+            KDZU is an autofictional interventionist transmission platform that operates at the intersection of
+            speculative media, networked infrastructures, and tactical mythmaking. It produces site-responsive works that
+            use radio, networking technologies, and narrative fabrication to create participatory environments where
+            fiction and infrastructure blur. Through installations, performances, and embedded artifacts, KDZU explores
+            decentralized communication, collective authorship, and the politics of signal, memory, and presence.
+          </p>
+
+          <p>
+            KDZU’s Goldfield, Nevada, outpost recently received an unsigned letter<a
               href="#transmission-fn-1"
               id="transmission-ref-1"
               class="transmission-footnote-ref"
@@ -38,26 +46,36 @@ const digSiteSrc = isDev
               href="#transmission-fn-2"
               id="transmission-ref-2"
               class="transmission-footnote-ref"
-              aria-describedby="transmission-fn-2">**</a> (Orange Mound Space Agency) robotics and radio transmission
-            collective may have persisted beyond the 1994 “Great Raid” of the Memphis Pyramid.
+              aria-describedby="transmission-fn-2">**</a> (Orange Mound Space Agency) robotics and interventionist
+            transmission collective may have persisted beyond the 1994 “Great Raid” on their Memphis Pyramid squat.
           </p>
 
           <p>
             According to this letter, while many OMSA members scattered westward, the OMSA (Our Methods Seem Abstract)
-            RF research group traveled northeast, establishing a provisional site in the northern Catskills near
+            RF research group traveled north and east, establishing a provisional site in the northern Catskills near
             present-day Acra, New York. The letter describes this region as strategically chosen for its seclusion, low
-            population density, and hilly terrain. These are conditions the residents of Wave Farm already understand to
-            be favorable for experimental long-range transmission, signal occlusion, and off-grid communications.
+            population density, and hilly terrain. These conditions, the residents of Wave Farm already understand, are
+            favorable for experimental long-range transmissions, signal occlusion, and off-grid communications.
           </p>
 
           <p>
             KDZU approaches the claims in this letter as an activation point for its tactical mythmaking activities: a
             prompt to investigate, reconstruct, and extend a speculative lineage of OMSA’s (One More Sexy Anarchist)
-            anarchist transmission practices at the Wave Farm site. In response, KDZU proposes developing the New
-            Afterlife Array, a Meshtastic-based (LoRa and LoRaWAN), long-range, off-grid communication network
-            deployed across the Wave Farm site. KDZU will discover four nodes of the network, G, F, N, H, each a letter
-            in the word GOLDFINCH, a common bird found in the Acra, NY area known for its “waveform”-style flight
-            pattern. This will imply that 5 other nodes have yet to be unearthed.
+            transmission experiments, which took place over thirty years ago at the Wave Farm site.
+          </p>
+
+          <p>
+            <strong>What Will KDZU Discover?</strong> KDZU proposes developing the New AfterLife Array, a
+            Meshtastic-based (LoRa and LoRaWAN), long-range, off-grid communication network that was fictitiously
+            developed and buried by OMSA (Origin Myth Site Acra). This mesh-enabled multi-node instrument will be
+            fictitiously unearthed, activated, and presented across the Wave Farm site.
+          </p>
+
+          <p>
+            The installation will present four nodes from OMSA’s (Our Memphian Signaling Architecture) network, G, F, N,
+            and H, each corresponding to a letter in the word GOLDFINCH, a bird native to the Acra, NY region known for
+            its waveform-like flight pattern. This partial recovery suggests that five additional nodes may exist
+            elsewhere in Upstate New York, possibly awaiting discovery or may be permanently lost.
           </p>
 
           <figure class="transmission-figure">
@@ -66,56 +84,76 @@ const digSiteSrc = isDev
               alt="Black-and-white technical sketch of a rectangular excavation pit in open terrain, with a small box-like node and antenna at the bottom, a survey rod along the wall, and a mound of excavated soil nearby."
               loading="lazy"
             />
-            <figcaption>Sketch of what a "dig site" and node might look like.</figcaption>
+            <figcaption>Sketch of what a "dig site" and unearthed GOLDFINCH node might look like.</figcaption>
           </figure>
 
           <h2 class="transmission-h2">Each of these four nodes consists of five components</h2>
-          <ul class="transmission-component-list">
-            <li>
-              <strong>Meshtastic radio:</strong> Handles LoRa mesh communication between nodes.
-            </li>
-            <li>
-              <strong>Interpreter brain:</strong> A Raspberry Pi Zero 2 W, connected to the Meshtastic node over
-              USB/serial, running KDZU-authored code that interprets FRMPayload (Frame Payload) data into MIDI.
-            </li>
-            <li>
-              <strong>Sound Interpolator:</strong> An Akai MPC Sample workstation connected via USB MIDI that translates
-              the signals into sound.
-            </li>
-            <li>
-              <strong>Sound Amplifier:</strong> A small self-powered speaker
-            </li>
-            <li>
-              <strong>Power System:</strong> A small solar panel and charging system for the electronics.
-            </li>
-          </ul>
+          <div class="transmission-table-wrap">
+            <table class="transmission-table transmission-table--components">
+              <thead>
+                <tr>
+                  <th scope="col">Component</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Meshtastic radio</td>
+                  <td>Handles LoRa mesh communication between nodes.</td>
+                </tr>
+                <tr>
+                  <td>Interpreting Unit</td>
+                  <td>
+                    A Raspberry Pi Zero 2 W, connected to the Meshtastic node over USB/serial, running KDZU-authored
+                    code that interprets FRMPayload (Frame Payload) data into MIDI.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sound Interpolator</td>
+                  <td>An Akai MPC Sample workstation connected via USB MIDI that translates the signals into sound.</td>
+                </tr>
+                <tr>
+                  <td>Sound Amplifier</td>
+                  <td>A small self-powered speaker</td>
+                </tr>
+                <tr>
+                  <td>Power System</td>
+                  <td>A small solar panel and charging system for the electronics.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <p>
-            This system treats transmission as a durational, intergenerational process. Signals that move slowly,
-            degrade, repeat, and require multiple human encounters to be fully perceived. Using LoRa mesh devices
-            distributed throughout the landscape, the project will “revive” a once-maintained but now-failed
-            very-slow-transmission network in which messages propagate across terrain, time, and participation, forming
-            an evolving archive of interrupted transmissions, delays, and relays. Participants will also encounter
-            fragments of OMSA’s (One Many Sometimes Always) surreptitious caregiving of the system: caregiver maintenance
-            logs, instructions for future care, and transmission logbooks, translated into sound and text, to create a
-            spatial experience. The network is an installed radio-enabled sonic instrument performing its artifacts. It is
-            a contemporary anarchist instantiation of what J.C.R. Licklider once imagined as an “Intergalactic Computer
-            Network,” reinterpreted at Wave Farm as a recently unearthed low-power, collectively maintained system
-            contingent on human presence, proximity to others, and human+transmitter+receiver collaboration.
+            At Wave Farm, the New AfterLife Array functions as both a fictional field test of a long-dormant system and
+            a contemporary experiment in decentralized transmission. It privileges slowness, intentionality, and
+            communication as an ongoing, collectively activated process.
           </p>
 
           <p>
-            At Wave Farm, the New Afterlife Array operates as both a field test of a long-dormant system and a proving
-            ground for transmission infrastructures that resist centralization—privileging slowness over speed, and
-            communication as an ongoing, collectivity-dependent negotiation.
+            Using LoRa mesh devices distributed across the landscape, the project treats transmission as durational and
+            accumulative: signals move slowly, degrade, repeat, and require multiple encounters to be perceived. As
+            messages propagate through the network, they form an evolving archive of interruptions, delays, and relays.
+            Visitors will also encounter fragments of OMSA’s (Ongoing Mutual Signal Attunements) surreptitious
+            caregiving of the system, such as maintenance logs, instructions for future care, and transmission records.
+            Some bits will be translated into sound and spoken text to be activated by the Array. The four nodes operate
+            as a distributed, mesh-enabled sonic instrument that performs both its signals and its artifacts.
           </p>
 
           <p>
-            This work draws from the legacy of upstate New York’s many historical intentional community experiments I
-            encountered while living in Troy, New York: utopias that collapsed, dispersed, or dissolved, yet left behind
-            important traces, structures, and ideologies that continue to resonate in ways that can be more potent than
-            the utopianists' original intentions and methods. The New Afterlife Array treats failures as symbolically
-            generative transmissions that persist beyond their original intentions.
+            It is OMSA’s (Our Mesh Subverts ARPANET) contemporary anarchist response to J.C.R. Licklider’s once imagined
+            “Intergalactic Computer Network,” a 1960’s vision of globally interconnected computers enabling shared access
+            to information, an early articulation of the internet as an “electronic commons.” Reinterpreted at Wave
+            Farm, this project takes up that vision through a recently unearthed low-power, collectively maintained
+            system contingent on human presence, proximity to others, and human+transmitter+receiver collaboration.
+          </p>
+
+          <p>
+            This work also draws from the legacy of upstate New York’s many historical intentional community experiments
+            I encountered while living in Troy, New York: utopias that collapsed, dispersed, or dissolved, yet left
+            behind important traces, structures, and ideologies that continue to resonate in ways that can be more potent
+            than the utopianists' original intentions and methods. The New AfterLife Array treats failures as symbolically
+            generative transmissions that sometimes persist and develop potency beyond their original intentions.
           </p>
 
           <h2 class="transmission-h2">FRMPayload (Frame Payload) Communications Messaging Signals</h2>
@@ -273,7 +311,6 @@ const digSiteSrc = isDev
     max-width: 48rem;
   }
 
-  .wavefarm-transmission-page .transmission-component-list,
   .wavefarm-transmission-page .transmission-meta-list {
     list-style: disc;
     padding-left: 2rem;
@@ -281,7 +318,6 @@ const digSiteSrc = isDev
     max-width: 48rem;
   }
 
-  .wavefarm-transmission-page .transmission-component-list li,
   .wavefarm-transmission-page .transmission-meta-list li {
     color: var(--color-light-text);
     margin-bottom: 0.65rem;
@@ -289,7 +325,6 @@ const digSiteSrc = isDev
     line-height: 1.5;
   }
 
-  .wavefarm-transmission-page .transmission-component-list strong,
   .wavefarm-transmission-page .transmission-meta-list strong {
     color: var(--color-bright-white);
     font-weight: 600;
@@ -334,6 +369,24 @@ const digSiteSrc = isDev
 
   .wavefarm-transmission-page .transmission-table--mapping td:first-child {
     white-space: nowrap;
+  }
+
+  .wavefarm-transmission-page .transmission-table--components td {
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  .wavefarm-transmission-page .transmission-table--components td:first-child {
+    color: var(--color-bright-white);
+    font-weight: 600;
+    white-space: nowrap;
+    width: 12rem;
+  }
+
+  .wavefarm-transmission-page .transmission-table--components td:last-child {
+    color: var(--color-light-text);
   }
 
   .wavefarm-transmission-page .transmission-figure {
@@ -449,9 +502,12 @@ const digSiteSrc = isDev
       font-size: 1.25rem;
     }
 
-    .wavefarm-transmission-page .transmission-component-list li,
     .wavefarm-transmission-page .transmission-meta-list li {
       font-size: 1rem;
+    }
+
+    .wavefarm-transmission-page .transmission-table--components td:first-child {
+      white-space: normal;
     }
 
     .wavefarm-transmission-page .transmission-figure {
@@ -485,6 +541,10 @@ const digSiteSrc = isDev
 
     .wavefarm-transmission-page .transmission-table--mapping td:first-child {
       white-space: normal;
+    }
+
+    .wavefarm-transmission-page .transmission-table--components td {
+      font-size: 0.875rem;
     }
   }
 </style>
