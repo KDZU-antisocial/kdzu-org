@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Deploy script for KDZU.org with trailing slash redirects
 

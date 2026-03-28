@@ -4,6 +4,12 @@ compatibility_flags = ["nodejs_compat"]
 account_id = "38b2250cde779e4a92c63d139be80a9c"
 compatibility_date = "2024-09-23"
 
+# Required by @astrojs/cloudflare: server.js calls env.ASSETS.fetch() for /_astro/* CSS & JS.
+# dist/.assetsignore must list "_worker.js" so Wrangler does not publish the server bundle as static files.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
 [env.production]
 workers_dev = false
 # No routes - this worker is only called by the main site worker

@@ -27,6 +27,8 @@ export const GET: APIRoute = async () => {
       { url: 'https://kdzu.org/all-is-not-lost/', priority: 0.9, changefreq: 'weekly' },
       { url: 'https://kdzu.org/basslines/', priority: 0.9, changefreq: 'weekly' },
       { url: 'https://kdzu.org/links/', priority: 0.8, changefreq: 'monthly' },
+      { url: 'https://kdzu.org/wavefarm-transmission/', priority: 0.8, changefreq: 'monthly' },
+      { url: 'https://kdzu.org/wavefarm-research/', priority: 0.8, changefreq: 'monthly' },
       { url: 'https://kdzu.org/privacy-policy/', priority: 0.5, changefreq: 'yearly' }
     ];
 

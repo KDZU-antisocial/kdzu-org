@@ -1,0 +1,582 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+const digSiteSrc = isDev
+  ? '/images/wavefarm/dig-site.jpg'
+  : 'https://static.kdzu.org/images/wavefarm/dig-site.jpg';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unearthing the New AfterLife Array - KDZU</title>
+    <link rel="stylesheet" href={cssUrl} />
+  </head>
+  <body class="wavefarm-transmission-page">
+    <Header />
+    <main class="transmission-main">
+      <div class="main-content transmission-main__inner">
+        <h1>Unearthing the New AfterLife Array</h1>
+        <p class="subtitle">
+          KDZU Recovers a Subterranean RF Network and the Caretakers Who Keep It Alive.
+        </p>
+        <p class="subtitle-secondary">KDZU’s Wave Farm 2026 Transmission Residency Submission</p>
+
+        <section class="transmission-body">
+          <p>
+            KDZU is an autofictional interventionist transmission platform that operates at the intersection of
+            speculative media, networked infrastructures, and tactical mythmaking. It produces site-responsive works that
+            use radio, networking technologies, and narrative fabrication to create participatory environments where
+            fiction and infrastructure blur. Through installations, performances, and embedded artifacts, KDZU explores
+            decentralized communication, collective authorship, and the politics of signal, memory, and presence.
+          </p>
+
+          <p>
+            KDZU’s Goldfield, Nevada, outpost recently received an unsigned letter<a
+              href="#transmission-fn-1"
+              id="transmission-ref-1"
+              class="transmission-footnote-ref"
+              aria-describedby="transmission-fn-1">*</a> in the mail, postmarked but otherwise unadorned, containing a
+            hand-drawn map, technical sketches, and a claim that the Memphis, Tennessee-based OMSA<a
+              href="#transmission-fn-2"
+              id="transmission-ref-2"
+              class="transmission-footnote-ref"
+              aria-describedby="transmission-fn-2">**</a> (Orange Mound Space Agency) robotics and interventionist
+            transmission collective may have persisted beyond the 1994 “Great Raid” on their Memphis Pyramid squat.
+          </p>
+
+          <p>
+            According to this letter, while many OMSA members scattered westward, the OMSA (Our Methods Seem Abstract)
+            RF research group traveled north and east, establishing a provisional site in the northern Catskills near
+            present-day Acra, New York. The letter describes this region as strategically chosen for its seclusion, low
+            population density, and hilly terrain. These conditions, the residents of Wave Farm already understand, are
+            favorable for experimental long-range transmissions, signal occlusion, and off-grid communications.
+          </p>
+
+          <p>
+            KDZU approaches the claims in this letter as an activation point for its tactical mythmaking activities: a
+            prompt to investigate, reconstruct, and extend a speculative lineage of OMSA’s (One More Sexy Anarchist)
+            transmission experiments, which took place over thirty years ago at the Wave Farm site.
+          </p>
+
+          <p>
+            <strong>What Will KDZU Discover?</strong> KDZU proposes developing the New AfterLife Array, a
+            Meshtastic-based (LoRa and LoRaWAN), long-range, off-grid communication network that was fictitiously
+            developed and buried by OMSA (Origin Myth Site Acra). This mesh-enabled multi-node instrument will be
+            fictitiously unearthed, activated, and presented across the Wave Farm site.
+          </p>
+
+          <p>
+            The installation will present four nodes from OMSA’s (Our Memphian Signaling Architecture) network, G, F, N,
+            and H, each corresponding to a letter in the word GOLDFINCH, a bird native to the Acra, NY region known for
+            its waveform-like flight pattern. This partial recovery suggests that five additional nodes may exist
+            elsewhere in Upstate New York, possibly awaiting discovery or may be permanently lost.
+          </p>
+
+          <figure class="transmission-figure">
+            <img
+              src={digSiteSrc}
+              alt="Black-and-white technical sketch of a rectangular excavation pit in open terrain, with a small box-like node and antenna at the bottom, a survey rod along the wall, and a mound of excavated soil nearby."
+              loading="lazy"
+            />
+            <figcaption>Sketch of what a "dig site" and unearthed GOLDFINCH node might look like.</figcaption>
+          </figure>
+
+          <h2 class="transmission-h2">Each of these four nodes consists of five components</h2>
+          <div class="transmission-table-wrap">
+            <table class="transmission-table transmission-table--components">
+              <thead>
+                <tr>
+                  <th scope="col">Component</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Meshtastic radio</td>
+                  <td>Handles LoRa mesh communication between nodes.</td>
+                </tr>
+                <tr>
+                  <td>Interpreting Unit</td>
+                  <td>
+                    A Raspberry Pi Zero 2 W, connected to the Meshtastic node over USB/serial, running KDZU-authored
+                    code that interprets FRMPayload (Frame Payload) data into MIDI.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sound Interpolator</td>
+                  <td>An Akai MPC Sample workstation connected via USB MIDI that translates the signals into sound.</td>
+                </tr>
+                <tr>
+                  <td>Sound Amplifier</td>
+                  <td>A small self-powered speaker</td>
+                </tr>
+                <tr>
+                  <td>Power System</td>
+                  <td>A small solar panel and charging system for the electronics.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            At Wave Farm, the New AfterLife Array functions as both a fictional field test of a long-dormant system and
+            a contemporary experiment in decentralized transmission. It privileges slowness, intentionality, and
+            communication as an ongoing, collectively activated process.
+          </p>
+
+          <p>
+            Using LoRa mesh devices distributed across the landscape, the project treats transmission as durational and
+            accumulative: signals move slowly, degrade, repeat, and require multiple encounters to be perceived. As
+            messages propagate through the network, they form an evolving archive of interruptions, delays, and relays.
+            Visitors will also encounter fragments of OMSA’s (Ongoing Mutual Signal Attunements) surreptitious
+            caregiving of the system, such as maintenance logs, instructions for future care, and transmission records.
+            Some bits will be translated into sound and spoken text to be activated by the Array. The four nodes operate
+            as a distributed, mesh-enabled sonic instrument that performs both its signals and its artifacts.
+          </p>
+
+          <p>
+            It is OMSA’s (Our Mesh Subverts ARPANET) contemporary anarchist response to J.C.R. Licklider’s once imagined
+            “Intergalactic Computer Network,” a 1960’s vision of globally interconnected computers enabling shared access
+            to information, an early articulation of the internet as an “electronic commons.” Reinterpreted at Wave
+            Farm, this project takes up that vision through a recently unearthed low-power, collectively maintained
+            system contingent on human presence, proximity to others, and human+transmitter+receiver collaboration.
+          </p>
+
+          <p>
+            This work also draws from the legacy of upstate New York’s many historical intentional community experiments
+            I encountered while living in Troy, New York: utopias that collapsed, dispersed, or dissolved, yet left
+            behind important traces, structures, and ideologies that continue to resonate in ways that can be more potent
+            than the utopianists' original intentions and methods. The New AfterLife Array treats failures as symbolically
+            generative transmissions that sometimes persist and develop potency beyond their original intentions.
+          </p>
+
+          <h2 class="transmission-h2">FRMPayload (Frame Payload) Communications Messaging Signals</h2>
+          <div class="transmission-table-wrap">
+            <table class="transmission-table">
+              <thead>
+                <tr>
+                  <th scope="col">Signal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>PLAY BELL</td></tr>
+                <tr><td>SCENE GRAVE</td></tr>
+                <tr><td>NODE 4 WAKE</td></tr>
+                <tr><td>ALL HUSH</td></tr>
+                <tr><td>ECHO 3</td></tr>
+                <tr><td>TEMPO 62</td></tr>
+                <tr><td>MUTE NORTH</td></tr>
+                <tr><td>PANIC</td></tr>
+                <tr><td>RELAY DUST</td></tr>
+                <tr><td>CRYPT OPEN</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Then each node has its own local mapping table, for example:</p>
+
+          <h3 class="transmission-h3">NODE “G”</h3>
+          <div class="transmission-table-wrap">
+            <table class="transmission-table transmission-table--mapping">
+              <thead>
+                <tr>
+                  <th scope="col">Signal</th>
+                  <th scope="col">Mapping</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PLAY BELL</td>
+                  <td>MIDI Note 36</td>
+                </tr>
+                <tr>
+                  <td>SCENE GRAVE</td>
+                  <td>Program Change 12</td>
+                </tr>
+                <tr>
+                  <td>ALL HUSH</td>
+                  <td>CC 7 to volume 20</td>
+                </tr>
+                <tr>
+                  <td>TEMPO 62</td>
+                  <td>internal sequencer rate change</td>
+                </tr>
+                <tr>
+                  <td>ECHO 3</td>
+                  <td>trigger sample 3 with long decay</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="transmission-h3">Additional distributed instrument components</h3>
+          <ul class="transmission-meta-list">
+            <li>
+              <strong>sender-based behaviors:</strong> Node “G” responds to node “F” differently than node “N” or “H”
+            </li>
+            <li><strong>signal-strength mappings:</strong></li>
+            <li><strong>packet delay memory:</strong></li>
+            <li><strong>node-specific identities:</strong></li>
+          </ul>
+        </section>
+
+        <section class="transmission-footnotes" aria-labelledby="transmission-notes-heading">
+          <h2 id="transmission-notes-heading" class="transmission-footnotes-title">Notes</h2>
+
+          <div id="transmission-fn-1" class="transmission-footnote-item" tabindex="-1">
+            <p>
+              <a href="#transmission-ref-1" class="transmission-footnote-back" aria-label="Back to reference">*</a>
+              The unsigned letter referenced in this proposal draws inspiration from Letters to the Mount Wilson
+              Observatory (1915–1935), a collection of 33 letters sent by members of the public to astronomers in
+              California, often expressing highly idiosyncratic understandings of the universe. The letters were later
+              compiled into the book <em>No One May Ever Have the Same Knowledge Again</em> and are exhibited at the
+              Museum of Jurassic Technology in Los Angeles.
+            </p>
+          </div>
+
+          <div id="transmission-fn-2" class="transmission-footnote-item" tabindex="-1">
+            <p>
+              <a href="#transmission-ref-2" class="transmission-footnote-back" aria-label="Back to reference">**</a>
+              Members of OMSA (Ornery, Methodical, Sassy, and Angsty) developed their name as a deliberately unstable
+              acronym, re-proclaimed with new words on each instantiation as a form of tactical opacity. This continual
+              mutation of meaning functioned as a defensive gesture, preventing the group’s intentions, structure, or
+              ideology from being fixed or fully knowable. This preserved the group’s capacity to operate as a
+              distributed, evasive entity, untethered from specific affiliations, art genres, or creative frameworks.
+              KDZU respectfully maintains this naming system, even though it seems the group has been inactive since
+              1994.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  /* Global main becomes flex <480px; wide images + min-width:auto overflow the viewport without this chain */
+  .wavefarm-transmission-page main.transmission-main {
+    display: block !important;
+    flex-direction: unset !important;
+    gap: unset !important;
+    grid-template-columns: 1fr !important;
+    min-width: 0;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  .wavefarm-transmission-page .transmission-main__inner {
+    min-width: 0;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  .wavefarm-transmission-page .transmission-body {
+    min-width: 0;
+  }
+
+  /* Stronger than global .subtitle: brighter, heavier, tuned for long dek */
+  .wavefarm-transmission-page .subtitle {
+    color: var(--color-bright-white);
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 1.25;
+    max-width: min(42rem, 100%);
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .wavefarm-transmission-page .subtitle-secondary {
+    display: inline-block;
+    margin: 0 0 2rem;
+    padding: 0;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ff1493;
+    line-height: 1.5;
+    max-width: min(42rem, 100%);
+  }
+
+  .wavefarm-transmission-page .transmission-body p {
+    margin-bottom: 1.25rem;
+  }
+
+  .wavefarm-transmission-page .transmission-h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-bright-white);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.2;
+    max-width: min(48rem, 100%);
+  }
+
+  .wavefarm-transmission-page .transmission-h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-bright-white);
+    margin: 2rem 0 0.75rem;
+    line-height: 1.25;
+    max-width: min(48rem, 100%);
+  }
+
+  .wavefarm-transmission-page .transmission-meta-list {
+    list-style: disc;
+    padding-left: 2rem;
+    margin: 0 0 1.5rem;
+    max-width: min(48rem, 100%);
+  }
+
+  .wavefarm-transmission-page .transmission-meta-list li {
+    color: var(--color-light-text);
+    margin-bottom: 0.65rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .wavefarm-transmission-page .transmission-meta-list strong {
+    color: var(--color-bright-white);
+    font-weight: 600;
+  }
+
+  .wavefarm-transmission-page .transmission-table-wrap {
+    overflow-x: auto;
+    margin: 0 0 1.5rem;
+    max-width: min(48rem, 100%);
+    min-width: 0;
+    border-radius: 4px;
+    border: 1px solid var(--color-medium-gray);
+    box-sizing: border-box;
+  }
+
+  .wavefarm-transmission-page .transmission-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+
+  .wavefarm-transmission-page .transmission-table th,
+  .wavefarm-transmission-page .transmission-table td {
+    padding: 0.65rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-medium-gray);
+  }
+
+  .wavefarm-transmission-page .transmission-table th {
+    background: var(--color-darker-gray);
+    color: var(--color-bright-white);
+    font-weight: 600;
+  }
+
+  .wavefarm-transmission-page .transmission-table td {
+    color: var(--color-light-text);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9375rem;
+  }
+
+  .wavefarm-transmission-page .transmission-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .wavefarm-transmission-page .transmission-table--mapping td:first-child {
+    white-space: nowrap;
+  }
+
+  .wavefarm-transmission-page .transmission-table--components td {
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  .wavefarm-transmission-page .transmission-table--components td:first-child {
+    color: var(--color-bright-white);
+    font-weight: 600;
+    white-space: nowrap;
+    width: 12rem;
+  }
+
+  .wavefarm-transmission-page .transmission-table--components td:last-child {
+    color: var(--color-light-text);
+  }
+
+  .wavefarm-transmission-page .transmission-figure {
+    margin: 2rem auto;
+    max-width: min(48rem, 100%);
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .wavefarm-transmission-page .transmission-figure img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin-inline: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .wavefarm-transmission-page .transmission-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-light-text);
+    font-style: italic;
+    line-height: 1.4;
+    max-width: min(48rem, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-ref {
+    color: #ff1493;
+    font-weight: 700;
+    text-decoration: none;
+    vertical-align: super;
+    font-size: 0.75em;
+    margin-left: 0.05em;
+    white-space: nowrap;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-ref:hover,
+  .wavefarm-transmission-page .transmission-footnote-ref:focus-visible {
+    text-decoration: underline;
+  }
+
+  .wavefarm-transmission-page .transmission-footnotes {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-medium-gray);
+    max-width: min(48rem, 100%);
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .wavefarm-transmission-page .transmission-footnotes-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-bright-white);
+    margin: 0 0 1.25rem;
+    line-height: 1.2;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-item {
+    scroll-margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-item p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-light-text);
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-back {
+    color: #ff1493;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 0.35em;
+    white-space: nowrap;
+  }
+
+  .wavefarm-transmission-page .transmission-footnote-back:hover,
+  .wavefarm-transmission-page .transmission-footnote-back:focus-visible {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 1440px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 1.45rem;
+      letter-spacing: 0;
+    }
+
+    .wavefarm-transmission-page .subtitle-secondary {
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .wavefarm-transmission-page .transmission-h2 {
+      font-size: 1.65rem;
+    }
+
+    .wavefarm-transmission-page .transmission-h3 {
+      font-size: 1.25rem;
+    }
+
+    .wavefarm-transmission-page .transmission-meta-list li {
+      font-size: 1rem;
+    }
+
+    .wavefarm-transmission-page .transmission-table--components td:first-child {
+      white-space: normal;
+    }
+
+    .wavefarm-transmission-page .transmission-figure {
+      margin: 1.5rem 0;
+    }
+
+    .wavefarm-transmission-page .transmission-figure figcaption {
+      font-size: 0.85rem;
+      padding: 0 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wavefarm-transmission-page .subtitle {
+      font-size: 1.2rem;
+    }
+
+    .wavefarm-transmission-page .subtitle-secondary {
+      font-size: 0.9375rem;
+    }
+
+    .wavefarm-transmission-page .transmission-h2 {
+      font-size: 1.35rem;
+    }
+
+    .wavefarm-transmission-page .transmission-table th,
+    .wavefarm-transmission-page .transmission-table td {
+      padding: 0.5rem 0.65rem;
+      font-size: 0.8125rem;
+    }
+
+    .wavefarm-transmission-page .transmission-table--mapping td:first-child {
+      white-space: normal;
+    }
+
+    .wavefarm-transmission-page .transmission-table--components td {
+      font-size: 0.875rem;
+    }
+  }
+</style>
