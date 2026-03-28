@@ -19,8 +19,8 @@ const digSiteSrc = isDev
   </head>
   <body class="wavefarm-transmission-page">
     <Header />
-    <main>
-      <div class="main-content">
+    <main class="transmission-main">
+      <div class="main-content transmission-main__inner">
         <h1>Unearthing the New AfterLife Array</h1>
         <p class="subtitle">
           KDZU Recovers a Subterranean RF Network and the Caretakers Who Keep It Alive.
@@ -260,9 +260,29 @@ const digSiteSrc = isDev
 </html>
 
 <style>
-  .wavefarm-transmission-page main {
+  /* Global main becomes flex <480px; wide images + min-width:auto overflow the viewport without this chain */
+  .wavefarm-transmission-page main.transmission-main {
     display: block !important;
+    flex-direction: unset !important;
+    gap: unset !important;
     grid-template-columns: 1fr !important;
+    min-width: 0;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  .wavefarm-transmission-page .transmission-main__inner {
+    min-width: 0;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  .wavefarm-transmission-page .transmission-body {
+    min-width: 0;
   }
 
   /* Stronger than global .subtitle: brighter, heavier, tuned for long dek */
@@ -271,7 +291,7 @@ const digSiteSrc = isDev
     font-weight: 700;
     font-size: 2.25rem;
     line-height: 1.25;
-    max-width: 42rem;
+    max-width: min(42rem, 100%);
     margin: 0 0 1rem;
     letter-spacing: -0.02em;
   }
@@ -286,7 +306,7 @@ const digSiteSrc = isDev
     text-transform: uppercase;
     color: #ff1493;
     line-height: 1.5;
-    max-width: 42rem;
+    max-width: min(42rem, 100%);
   }
 
   .wavefarm-transmission-page .transmission-body p {
@@ -299,7 +319,7 @@ const digSiteSrc = isDev
     color: var(--color-bright-white);
     margin: 2.5rem 0 1rem;
     line-height: 1.2;
-    max-width: 48rem;
+    max-width: min(48rem, 100%);
   }
 
   .wavefarm-transmission-page .transmission-h3 {
@@ -308,14 +328,14 @@ const digSiteSrc = isDev
     color: var(--color-bright-white);
     margin: 2rem 0 0.75rem;
     line-height: 1.25;
-    max-width: 48rem;
+    max-width: min(48rem, 100%);
   }
 
   .wavefarm-transmission-page .transmission-meta-list {
     list-style: disc;
     padding-left: 2rem;
     margin: 0 0 1.5rem;
-    max-width: 48rem;
+    max-width: min(48rem, 100%);
   }
 
   .wavefarm-transmission-page .transmission-meta-list li {
@@ -333,9 +353,11 @@ const digSiteSrc = isDev
   .wavefarm-transmission-page .transmission-table-wrap {
     overflow-x: auto;
     margin: 0 0 1.5rem;
-    max-width: 48rem;
+    max-width: min(48rem, 100%);
+    min-width: 0;
     border-radius: 4px;
     border: 1px solid var(--color-medium-gray);
+    box-sizing: border-box;
   }
 
   .wavefarm-transmission-page .transmission-table {
@@ -390,13 +412,21 @@ const digSiteSrc = isDev
   }
 
   .wavefarm-transmission-page .transmission-figure {
-    margin: 2rem 0;
+    margin: 2rem auto;
+    max-width: min(48rem, 100%);
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     text-align: center;
+    overflow: hidden;
   }
 
   .wavefarm-transmission-page .transmission-figure img {
+    display: block;
     max-width: 100%;
+    width: auto;
     height: auto;
+    margin-inline: auto;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
@@ -407,7 +437,7 @@ const digSiteSrc = isDev
     color: var(--color-light-text);
     font-style: italic;
     line-height: 1.4;
-    max-width: 660px;
+    max-width: min(48rem, 100%);
     margin-left: auto;
     margin-right: auto;
   }
@@ -431,7 +461,9 @@ const digSiteSrc = isDev
     margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid var(--color-medium-gray);
-    max-width: 48rem;
+    max-width: min(48rem, 100%);
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .wavefarm-transmission-page .transmission-footnotes-title {
