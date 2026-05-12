@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Footer from '../../../components/Footer.astro';
 import Header from '../../../components/Header.astro';
+import { publishedContentFilter } from '../../../lib/contentDraft';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
@@ -13,9 +14,7 @@ if (!tag) {
   return Astro.redirect('/all-is-not-lost/');
 }
 
-const posts = await getCollection('allIsNotLost', ({ id }) => {
-  return !id.startsWith('_');
-});
+const posts = await getCollection('allIsNotLost', publishedContentFilter(isDev));
 const filteredPosts = posts.filter(post => post.data.tags.includes(tag));
 const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---

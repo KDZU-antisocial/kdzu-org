@@ -4,13 +4,12 @@ import Copyright from '../components/Copyright.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import SocialMeta from '../components/SocialMeta.astro';
+import { publishedContentFilter } from '../lib/contentDraft';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
 
-const posts = await getCollection('allIsNotLost', ({ id }) => {
-  return !id.startsWith('_');
-});
+const posts = await getCollection('allIsNotLost', publishedContentFilter(isDev));
 const sortedPosts = posts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---

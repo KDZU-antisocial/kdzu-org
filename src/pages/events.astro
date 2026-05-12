@@ -4,13 +4,12 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import EventCard from '../components/EventCard.astro';
 import { getCollection } from 'astro:content';
+import { publishedContentFilter } from '../lib/contentDraft';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
 
-const events = await getCollection('events', ({ id }) => {
-  return !id.startsWith('_');
-});
+const events = await getCollection('events', publishedContentFilter(isDev));
 
 // Create a timezone-agnostic "today" date for comparison
 const now = new Date();

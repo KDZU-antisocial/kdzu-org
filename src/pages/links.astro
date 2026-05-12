@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { publishedContentFilter } from '../lib/contentDraft';
 
 // Get upcoming events
-const events = await getCollection('events', ({ id }) => {
-  return !id.startsWith('_');
-});
+const events = await getCollection('events', publishedContentFilter(import.meta.env.DEV));
 
 // Create a timezone-agnostic "today" date for comparison
 const now = new Date();

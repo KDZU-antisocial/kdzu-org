@@ -33,6 +33,8 @@ const events = defineCollection({
     heroImage: z.string().optional(),
     eventContent: z.string().optional(),
     pubDate: z.coerce.date(),
+    /** Omit or set `false` to publish; `true` hides from prod (same as `_` filename prefix). */
+    draft: z.boolean().optional(),
   })
 });
 
@@ -45,6 +47,8 @@ const mdc = defineCollection({
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    /** Omit or set `false` to publish; `true` hides from prod (same as `_` filename prefix). */
+    draft: z.boolean().optional(),
   }),
 });
 
@@ -57,6 +61,8 @@ const staticsignal = defineCollection({
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    /** Omit or set `false` to publish; `true` hides from prod (same as `_` filename prefix). */
+    draft: z.boolean().optional(),
   }),
 });
 
@@ -69,6 +75,8 @@ const allIsNotLost = defineCollection({
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    /** Omit or set `false` to publish; `true` hides from prod (same as `_` filename prefix). */
+    draft: z.boolean().optional(),
   }),
 });
 

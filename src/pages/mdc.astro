@@ -3,11 +3,12 @@ import { getCollection } from 'astro:content';
 import Copyright from '../components/Copyright.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { publishedContentFilter } from '../lib/contentDraft';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
 
-const posts = await getCollection('mdc');
+const posts = await getCollection('mdc', publishedContentFilter(isDev));
 const sortedPosts = posts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
