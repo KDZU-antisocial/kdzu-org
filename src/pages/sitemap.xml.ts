@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { isContentDraft } from '../lib/contentDraft';
 
 export const GET: APIRoute = async () => {
   try {
@@ -10,11 +11,11 @@ export const GET: APIRoute = async () => {
     const allStaticsignalPosts = await getCollection('staticsignal');
     const allAllIsNotLostPosts = await getCollection('allIsNotLost');
 
-    // Filter out posts that start with underscore (private/draft posts)
-    const events = allEvents.filter(event => !event.slug.startsWith('_'));
-    const mdcPosts = allMdcPosts.filter(post => !post.slug.startsWith('_'));
-    const staticsignalPosts = allStaticsignalPosts.filter(post => !post.slug.startsWith('_'));
-    const allIsNotLostPosts = allAllIsNotLostPosts.filter(post => !post.slug.startsWith('_'));
+    // Exclude drafts (`draft: true` and/or `_` filename prefix)
+    const events = allEvents.filter((event) => !isContentDraft(event));
+    const mdcPosts = allMdcPosts.filter((post) => !isContentDraft(post));
+    const staticsignalPosts = allStaticsignalPosts.filter((post) => !isContentDraft(post));
+    const allIsNotLostPosts = allAllIsNotLostPosts.filter((post) => !isContentDraft(post));
 
     // Static pages with custom priorities and frequencies
     const staticPages = [
@@ -27,6 +28,8 @@ export const GET: APIRoute = async () => {
       { url: 'https://kdzu.org/all-is-not-lost/', priority: 0.9, changefreq: 'weekly' },
       { url: 'https://kdzu.org/basslines/', priority: 0.9, changefreq: 'weekly' },
       { url: 'https://kdzu.org/links/', priority: 0.8, changefreq: 'monthly' },
+      { url: 'https://kdzu.org/wavefarm-transmission/', priority: 0.8, changefreq: 'monthly' },
+      { url: 'https://kdzu.org/wavefarm-research/', priority: 0.8, changefreq: 'monthly' },
       { url: 'https://kdzu.org/privacy-policy/', priority: 0.5, changefreq: 'yearly' }
     ];
 

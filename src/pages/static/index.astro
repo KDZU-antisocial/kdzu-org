@@ -3,10 +3,10 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro'; // Import the Footer component
 import Header from '../../components/Header.astro'; // Import the Header component
+import { publishedContentFilter } from '../../lib/contentDraft';
 
-const posts = await getCollection('staticsignal');
-const publicPosts = posts.filter(post => !post.slug.startsWith('_'));
-const sortedPosts = publicPosts
+const posts = await getCollection('staticsignal', publishedContentFilter(import.meta.env.DEV));
+const sortedPosts = posts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 

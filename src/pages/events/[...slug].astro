@@ -4,11 +4,10 @@ import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import EventCard from '../../components/EventCard.astro';
+import { publishedContentFilter } from '../../lib/contentDraft';
 
 export async function getStaticPaths() {
-  const events = await getCollection('events', ({ id }) => {
-    return !id.startsWith('_');
-  });
+  const events = await getCollection('events', publishedContentFilter(import.meta.env.DEV));
   console.log('Available events:', events.map(e => e.slug));
   return events.map((event) => ({
     params: { slug: event.slug },
@@ -25,9 +24,7 @@ if (propEvent) {
   event = propEvent;
 } else {
   // Find the event by slug
-  const events = await getCollection('events', ({ id }) => {
-    return !id.startsWith('_');
-  });
+  const events = await getCollection('events', publishedContentFilter(import.meta.env.DEV));
   event = events.find(e => e.slug === slug);
   
   if (!event) {

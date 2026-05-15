@@ -58,6 +58,10 @@ const watcher = chokidar.watch(pathsToWatch, {
 
 // Function to handle file changes
 const handleFileChange = async (filepath) => {
+  const base = path.basename(filepath);
+  if (base === '.gitkeep' || base === '.DS_Store') {
+    return;
+  }
   console.log(`\nProcessing file: ${filepath}`);
   
   try {
@@ -121,6 +125,8 @@ function getContentType(filepath) {
     '.jpeg': 'image/jpeg',
     '.png': 'image/png',
     '.gif': 'image/gif',
+    '.webp': 'image/webp',
+    '.avif': 'image/avif',
     '.svg': 'image/svg+xml',
     '.css': 'text/css',
     '.js': 'application/javascript',

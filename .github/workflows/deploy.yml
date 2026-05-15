@@ -32,7 +32,7 @@ jobs:
           
       - name: Upload public files to R2
         run: |
-          find public -type f | while read file; do
+          find public -type f ! -name '.gitkeep' ! -name '.DS_Store' | while read file; do
             npx wrangler r2 object put kdzu-static/"${file#public/}" --file "$file"
           done
         env:

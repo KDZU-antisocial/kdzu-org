@@ -87,6 +87,18 @@ p {
   margin: 0 0 1.5rem;
 }
 
+/* Prose lists: match paragraph scale (p is 1.5rem above). Exclude e.g. events calendar grids. */
+main .main-content ul:not(.calendar),
+main .main-content ol {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+main .main-content ul:not(.calendar) li,
+main .main-content ol li {
+  font-size: inherit;
+}
+
 .text-red {
   color: var(--color-bright-red);
 }
