@@ -1,4 +1,5 @@
 name = "kdzu-org-astro-site"
+# Reference only — CI and deploy-site.sh deploy via dist/server/wrangler.json after `astro build`.
 main = "dist/server/entry.mjs"
 compatibility_flags = ["nodejs_compat"]
 account_id = "38b2250cde779e4a92c63d139be80a9c"

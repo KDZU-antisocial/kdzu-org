@@ -41,7 +41,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           
       - name: Deploy Astro worker
-        run: npx wrangler deploy --config wrangler-astro.toml --env production
+        run: npx wrangler deploy --config dist/server/wrangler.json --name kdzu-org-astro-site-production
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           
