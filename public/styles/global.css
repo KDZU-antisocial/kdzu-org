@@ -87,7 +87,7 @@ p {
   margin: 0 0 1.5rem;
 }
 
-/* Prose lists: match paragraph scale (p is 1.5rem above). Exclude e.g. events calendar grids. */
+/* Prose lists: match paragraph scale at every breakpoint. Exclude e.g. events calendar grids. */
 main .main-content ul:not(.calendar),
 main .main-content ol {
   font-size: 1.5rem;
@@ -790,6 +790,11 @@ header {
     font-size: 0.9rem;
   }
 
+  main .main-content ul:not(.calendar),
+  main .main-content ol {
+    font-size: 0.9rem;
+  }
+
   button {
     padding: 0.4rem 0.8rem;
   }
@@ -906,6 +911,11 @@ footer p {
     font-size: 1.375rem;
   }
 
+  main .main-content ul:not(.calendar),
+  main .main-content ol {
+    font-size: 1.375rem;
+  }
+
   .site-title {
     font-size: 16rem;
     margin-bottom: -3rem;
@@ -958,6 +968,11 @@ footer p {
     font-size: 1.25rem;
   }
 
+  main .main-content ul:not(.calendar),
+  main .main-content ol {
+    font-size: 1.25rem;
+  }
+
   .site-title {
     font-size: 12rem;
     margin-bottom: -2rem;
@@ -999,6 +1014,11 @@ footer p {
   }
 
   p {
+    font-size: 1rem;
+  }
+
+  main .main-content ul:not(.calendar),
+  main .main-content ol {
     font-size: 1rem;
   }
 
@@ -1071,6 +1091,11 @@ footer p {
   }
 
   p {
+    font-size: 1rem;
+  }
+
+  main .main-content ul:not(.calendar),
+  main .main-content ol {
     font-size: 1rem;
   }
 
@@ -1174,68 +1199,6 @@ footer p {
 
 @media (max-width: 768px) {
   .blog-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-/* Staticsignal styles (duplicate of blog styles) */
-.staticsignal-grid {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.staticsignal-card {
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-dark-gray);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.staticsignal-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.staticsignal-card a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.staticsignal-image {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
-
-.staticsignal-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.staticsignal-card h3 {
-  margin: 0;
-  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-  font-size: 1.5rem;
-  color: var(--color-bright-white);
-}
-
-.staticsignal-card p {
-  margin: 0;
-  padding: 0 1.5rem 1.5rem 1.5rem;
-  color: var(--color-light-text);
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .staticsignal-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
@@ -1740,7 +1703,3 @@ background: var(-(--color-dark-gray);
   font-size: 0.875rem;
   color: #6c757d;
 }
-
-
-
-

@@ -1,90 +1,116 @@
 ---
 import { getCollection, render } from 'astro:content';
-import PostLayout from '../../layouts/PostLayout.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import SocialMeta from '../../components/SocialMeta.astro';
 import { publishedContentFilter } from '../../lib/contentDraft';
 
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+
 const { slug } = Astro.params;
-const posts = await getCollection('staticsignal', publishedContentFilter(import.meta.env.DEV));
+const posts = await getCollection('staticsignal', publishedContentFilter(isDev));
 const post = posts.find((p) => p.id === slug);
 const rendered = post ? await render(post) : null;
 ---
 
-{post && post.data ? (
-  <PostLayout 
-    title={post.data.title}
-    description={post.data.description}
-    image={post.data.heroImage || 'https://static.kdzu.org/images/kdzu-header-1440@2x.jpg'}
-    pubDate={post.data.pubDate}
-    tags={post.data.tags}
-  >
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{post?.data.title ?? 'Post Not Found'} - KDZU</title>
+    <link rel="stylesheet" href={cssUrl} />
+
+    <link rel="icon" type="image/x-icon" href="https://static.kdzu.org/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="https://static.kdzu.org/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="https://static.kdzu.org/favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="https://static.kdzu.org/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#191919" />
+    {post?.data ? (
+      <SocialMeta
+        title={post.data.title}
+        description={post.data.description}
+        image={post.data.heroImage || 'https://static.kdzu.org/images/kdzu-header-1440@2x.jpg'}
+        type="article"
+      />
+    ) : (
+      <SocialMeta title="Post Not Found" type="website" />
+    )}
+    {post?.data?.pubDate && (
+      <meta property="article:published_time" content={post.data.pubDate.toISOString()} />
+    )}
+    {post?.data?.tags?.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
+  </head>
+  <body>
     <Header />
-    <main class="main-content static-post-page">
-      <article class="static-post">
-        <h1>{post.data.title}</h1>
-        <div class="static-post-meta">
-          <time datetime={post.data.pubDate.toISOString()}>
-            {post.data.pubDate.toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </time>
-          {post.data.tags.length > 0 && (
-            <div class="static-post-tags">
-              {post.data.tags.map((tag: string) => (
-                <span class="tag">{tag}</span>
-              ))}
+    <main>
+      <div class="main-content">
+        {post?.data ? (
+          <article class="static-post">
+            <h1>{post.data.title}</h1>
+            <div class="static-post-meta">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              {post.data.tags.length > 0 && (
+                <div class="static-post-tags">
+                  {post.data.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        {post.data.heroImage && (
-          <div class="static-post-hero">
-            <img
-              src={post.data.heroImage}
-              alt={post.data.title}
-              width="960"
-              height="540"
-            />
+            {post.data.heroImage && (
+              <div class="static-post-hero">
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  width="960"
+                  height="540"
+                />
+              </div>
+            )}
+            <p class="static-post-description">{post.data.description}</p>
+            <div class="static-post-content">
+              {rendered && <rendered.Content />}
+            </div>
+            <footer class="static-post-footer">
+              <a href="/static/" class="back-link">← Back to Static</a>
+            </footer>
+          </article>
+        ) : (
+          <div class="error-message">
+            <h1>Post Not Found</h1>
+            <p>The requested post could not be found.</p>
+            <a href="/static/" class="back-link">← Back to Static</a>
           </div>
         )}
-        <div class="static-post-description">{post.data.description}</div>
-        <div class="static-post-content">
-          {rendered && <rendered.Content />}
-        </div>
-        <footer class="static-post-footer">
-          <a href="/static/" class="back-link">← Back to Static</a>
-        </footer>
-      </article>
-    </main>
-    <Footer />
-  </PostLayout>
-) : (
-  <PostLayout title="Post Not Found">
-    <Header />
-    <main class="main-content static-post-page">
-      <div class="error-message">
-        <h1>Post Not Found</h1>
-        <p>The requested post could not be found.</p>
-        <p>Debug info: post = {JSON.stringify(post)}</p>
-        <p>Slug = {slug}</p>
-        <a href="/static/" class="back-link">← Back to Static</a>
       </div>
     </main>
     <Footer />
-  </PostLayout>
-)}
+  </body>
+</html>
 
 <style>
-  .static-post-page main {
+  main {
     display: block !important;
     grid-template-columns: 1fr !important;
   }
+
   .static-post {
     max-width: 800px;
     margin: 0 auto;
   }
+
   .static-post-meta {
     display: flex;
     justify-content: space-between;
@@ -93,11 +119,13 @@ const rendered = post ? await render(post) : null;
     gap: 1rem;
     margin-bottom: 1rem;
   }
+
   .static-post-tags {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
   }
+
   .tag {
     background: var(--color-accent);
     color: var(--color-background);
@@ -106,27 +134,32 @@ const rendered = post ? await render(post) : null;
     font-size: 0.8rem;
     font-weight: 500;
   }
+
   .static-post-hero {
     margin: 2rem 0;
     border-radius: 8px;
     overflow: hidden;
   }
+
   .static-post-hero img {
     width: 100%;
     height: auto;
     display: block;
   }
+
   .static-post-description {
     color: var(--color-light-text);
     font-size: 1.25rem;
     line-height: 1.6;
     margin: 0 0 2rem 0;
   }
+
   .static-post-content {
     line-height: 1.7;
     color: var(--color-text);
     min-width: 0;
   }
+
   .static-post-content :global(img) {
     max-width: 100%;
     height: auto;
@@ -135,13 +168,16 @@ const rendered = post ? await render(post) : null;
     border-radius: 8px;
     box-sizing: border-box;
   }
+
   .static-post-content :global(figure) {
     margin: 1.5rem 0;
     max-width: 100%;
   }
+
   .static-post-content :global(figure img) {
     margin: 0;
   }
+
   .static-post-content :global(figcaption) {
     margin-top: 0.75rem;
     font-size: 1.125rem;
@@ -149,20 +185,30 @@ const rendered = post ? await render(post) : null;
     color: var(--color-light-text);
     font-style: italic;
   }
+
+  @media (max-width: 768px) {
+    .static-post-content :global(figcaption) {
+      font-size: 1rem;
+    }
+  }
+
   .static-post-footer {
     margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid var(--color-border);
   }
+
   .back-link {
     color: var(--color-accent);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
   }
+
   .back-link:hover {
     color: var(--color-text);
   }
+
   .error-message {
     text-align: center;
     padding: 2rem;
