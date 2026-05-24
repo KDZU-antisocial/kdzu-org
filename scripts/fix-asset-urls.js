@@ -42,5 +42,5 @@ function walk(dir) {
 }
 
 console.log('[fix-asset-urls] Starting...');
-walk('./dist/_worker.js/pages');
+walk('./dist/server');
 console.log('[fix-asset-urls] Done.');
