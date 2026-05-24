@@ -7,7 +7,7 @@ echo "🚀 Deploying KDZU.org with trailing slash redirects..."
 
 # First, deploy the Astro-generated worker (no routes)
 echo "📦 Deploying Astro worker..."
-npx wrangler deploy --config wrangler-astro.toml --env production
+npx wrangler deploy --config dist/server/wrangler.json --name kdzu-org-astro-site-production
 
 # Then, deploy the main site worker (with routes and service binding)
 echo "🌐 Deploying main site worker..."
