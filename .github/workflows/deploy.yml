@@ -20,12 +20,12 @@ jobs:
         run: npm ci
         
       - name: Build site
-        run: npm run build
-        
+        run: npx astro build
+
       - name: Upload assets to R2
         run: |
-          find dist/_astro -type f | while read file; do
-            npx wrangler r2 object put kdzu-static/"_astro/${file#dist/_astro/}" --file "$file"
+          find dist/client/_astro -type f | while read file; do
+            npx wrangler r2 object put kdzu-static/"_astro/${file#dist/client/_astro/}" --file "$file"
           done
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

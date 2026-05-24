@@ -1,13 +1,14 @@
 name = "kdzu-org-astro-site"
-main = "dist/_worker.js/index.js"
+main = "dist/server/entry.mjs"
 compatibility_flags = ["nodejs_compat"]
 account_id = "38b2250cde779e4a92c63d139be80a9c"
 compatibility_date = "2024-09-23"
+no_bundle = true
 
 # Required by @astrojs/cloudflare: server.js calls env.ASSETS.fetch() for /_astro/* CSS & JS.
-# dist/.assetsignore must list "_worker.js" so Wrangler does not publish the server bundle as static files.
+# dist/client/.assetsignore excludes server bundle files from static assets.
 [assets]
-directory = "./dist"
+directory = "./dist/client"
 binding = "ASSETS"
 
 [env.production]
