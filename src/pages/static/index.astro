@@ -1,40 +1,81 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Footer from '../../components/Footer.astro'; // Import the Footer component
-import Header from '../../components/Header.astro'; // Import the Header component
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import SocialMeta from '../../components/SocialMeta.astro';
 import { publishedContentFilter } from '../../lib/contentDraft';
 
-const posts = await getCollection('staticsignal', publishedContentFilter(import.meta.env.DEV));
-const sortedPosts = posts
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const isDev = import.meta.env.DEV;
+const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
+
+const posts = await getCollection('staticsignal', publishedContentFilter(isDev));
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<body class="staticsignal">
-  <Layout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static is the Signal - KDZU</title>
+    <link rel="stylesheet" href={cssUrl} />
+
+    <link rel="icon" type="image/x-icon" href="https://static.kdzu.org/favicon/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="https://static.kdzu.org/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://static.kdzu.org/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="https://static.kdzu.org/favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="https://static.kdzu.org/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#191919" />
+    <SocialMeta
+      title="Static is the Signal"
+      description="KDZU's Field Guide to Tactical Mythmaking and Narrative Sabotage"
+      type="website"
+    />
+  </head>
+  <body>
     <Header />
     <main>
-      <h1>Static is the Signal</h1>
-      <p class="subtitle">KDZU's Field Guide to Tactical Mythmaking and Narrative Sabotage</p>
-      <div class="staticsignal-grid">
-        {sortedPosts.map((post) => (
-          <article class="staticsignal-card">
-            <a href={`/static/${post.id}/`}>
-              <div class="staticsignal-image">
-                <img
-                  src={post.data.heroImage}
-                  alt={post.data.title}
-                  width="960"
-                  height="540"
-                />
-              </div>
-              <h3>{post.data.title}</h3>
-              <p>{post.data.description}</p>
-            </a>
-          </article>
-        ))}
+      <div class="main-content">
+        <h1>Static is the Signal</h1>
+        <p class="subtitle">KDZU's Field Guide to Tactical Mythmaking and Narrative Sabotage</p>
+
+        <div class="blog-grid">
+          {sortedPosts.map((post) => (
+            <article class="blog-card">
+              <a href={`/static/${post.id}/`}>
+                {post.data.heroImage && (
+                  <div class="blog-image">
+                    <img
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      width="960"
+                      height="540"
+                    />
+                  </div>
+                )}
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        {sortedPosts.length === 0 && (
+          <section>
+            <h2>No Posts Yet</h2>
+            <p>No static posts have been published yet. Check back soon!</p>
+          </section>
+        )}
       </div>
     </main>
-  </Layout>
-  <Footer />
-</body> 
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+</style>
