@@ -16,13 +16,12 @@ interface Props {
       heroImage?: string;
       eventContent?: string;
     };
-    body: string;
-    slug: string;
   };
   href?: string;
 }
 
 const { event, href } = Astro.props;
+const hasBody = Astro.slots.has('default');
 const { date, time, title, subtitle, subtitleLink, location, address1, address2, addressLink, link, dayOfWeek, heroImage, eventContent } = event.data;
 ---
 
@@ -54,9 +53,9 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
             ) : subtitle}
           </div>
         )}
-        {event.body && (
+        {hasBody && (
           <div class="markdown">
-            <Fragment set:html={event.body} />
+            <slot />
           </div>
         )}
       </div>
@@ -122,9 +121,9 @@ const { date, time, title, subtitle, subtitleLink, location, address1, address2,
             ) : subtitle}
           </div>
         )}
-        {event.body && (
+        {hasBody && (
           <div class="markdown">
-            <Fragment set:html={event.body} />
+            <slot />
           </div>
         )}
       </div>

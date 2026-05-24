@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { renderEntries } from '../../lib/contentRender';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import TrackCard from '../../components/TrackCard.astro';
@@ -9,6 +10,8 @@ import Header from '../../components/Header.astro';
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const renderedTracks = await renderEntries(sortedTracks);
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
@@ -28,15 +31,12 @@ const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/gl
       <div class="main-content">
         <h1>Tracks We Love</h1>
         <div class="tracks-grid">
-          {sortedTracks.map((track) => (
+          {renderedTracks.map(({ entry, rendered: { Content } }) => (
             <TrackCard
-              track={{
-                data: track.data,
-                body: track.body || ''
-              }}
-              href={`/tracks-we-love/${track.slug}/`}
+              track={{ data: entry.data }}
+              href={`/tracks-we-love/${entry.id}/`}
             >
-              {track.body}
+              <Content />
             </TrackCard>
           ))}
         </div>

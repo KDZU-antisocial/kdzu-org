@@ -45,7 +45,7 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
           <h2>Upcoming Events</h2>
           <div class="link-buttons">
             {sortedEvents.map((event) => (
-              <a href={`/events/${event.slug}/`} class="link-button event-link">
+              <a href={`/events/${event.id}/`} class="link-button event-link">
                 <div class="event-info">
                   <span class="event-date">{event.data.date}</span>
                   <span class="event-title">{event.data.title}</span>

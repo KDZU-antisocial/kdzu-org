@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
@@ -7,11 +7,8 @@ import { publishedContentFilter } from '../../lib/contentDraft';
 
 const { slug } = Astro.params;
 const posts = await getCollection('staticsignal', publishedContentFilter(import.meta.env.DEV));
-const post = posts.find(p => p.slug === slug);
-let rendered = null;
-if (post) {
-  rendered = await post.render();
-}
+const post = posts.find((p) => p.id === slug);
+const rendered = post ? await render(post) : null;
 ---
 
 {post && post.data ? (

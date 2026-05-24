@@ -1,10 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import { renderEntries } from '../lib/contentRender';
 import TrackCard from './TrackCard.astro';
 
 const tracks = await getCollection('tracks');
 const sortedTracks = tracks.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const latestTracks = sortedTracks.slice(0, 2);
+const renderedTracks = await renderEntries(latestTracks);
 ---
 
 <section class="hot-new-tracks">
@@ -13,9 +15,9 @@ const latestTracks = sortedTracks.slice(0, 2);
     Hot Tracks We Love
   </h2>
   <div class="tracks-grid">
-    {latestTracks.map((track) => (
-      <TrackCard track={track}>
-        {track.body}
+    {renderedTracks.map(({ entry, rendered: { Content } }) => (
+      <TrackCard track={{ data: entry.data }}>
+        <Content />
       </TrackCard>
     ))}
   </div>

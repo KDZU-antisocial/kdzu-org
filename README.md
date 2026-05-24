@@ -164,7 +164,7 @@ done
 
 - **`wrangler-site.toml`**: Main site worker configuration (handles routes and redirects)
 - **`wrangler-astro.toml`**: Astro worker configuration (handles site logic)
-- **`wrangler.toml`**: Static assets worker configuration (serves R2 files)
+- **`wrangler-static.toml`**: Static assets worker configuration (serves R2 files)
 - **`site-worker.js`**: Main site worker code (trailing slash redirects)
 - **`static-proxy-worker.js`**: Static assets worker code (R2 proxy)
 

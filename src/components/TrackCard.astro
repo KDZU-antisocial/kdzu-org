@@ -12,13 +12,12 @@ interface Props {
       bandcamp?: string;
       spotify?: string;
     };
-    body: string;
   };
   href?: string;
 }
 
 const { track, href } = Astro.props;
-const hasContent = track.body && track.body.trim().length > 0;
+const hasContent = Astro.slots.has('default');
 ---
 
 <>

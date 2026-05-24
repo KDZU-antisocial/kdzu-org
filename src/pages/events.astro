@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import EventCard from '../components/EventCard.astro';
 import { getCollection } from 'astro:content';
 import { publishedContentFilter } from '../lib/contentDraft';
+import { renderEntries } from '../lib/contentRender';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
@@ -52,6 +53,9 @@ const sortedPastEvents = pastEvents.sort((a, b) => {
   
   return dateB.valueOf() - dateA.valueOf(); // Reverse order for past events
 });
+
+const renderedUpcomingEvents = await renderEntries(sortedUpcomingEvents);
+const renderedPastEvents = await renderEntries(sortedPastEvents);
 ---
 
 <!DOCTYPE html>
@@ -78,8 +82,10 @@ const sortedPastEvents = pastEvents.sort((a, b) => {
         <h1>Events</h1>
         <section>
           <ul class="calendar">
-            {sortedUpcomingEvents.map((event) => (
-              <EventCard event={event} href={`/events/${event.slug}/`} />
+            {renderedUpcomingEvents.map(({ entry, rendered: { Content } }) => (
+              <EventCard event={{ data: entry.data }} href={`/events/${entry.id}/`}>
+                <Content />
+              </EventCard>
             ))}
           </ul>
         </section>
@@ -88,8 +94,10 @@ const sortedPastEvents = pastEvents.sort((a, b) => {
           <section>
             <h2>Past Events</h2>
             <ul class="calendar">
-              {sortedPastEvents.map((event) => (
-                <EventCard event={event} href={`/events/${event.slug}/`} />
+              {renderedPastEvents.map(({ entry, rendered: { Content } }) => (
+                <EventCard event={{ data: entry.data }} href={`/events/${entry.id}/`}>
+                  <Content />
+                </EventCard>
               ))}
             </ul>
           </section>

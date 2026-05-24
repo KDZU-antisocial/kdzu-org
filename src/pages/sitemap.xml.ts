@@ -35,7 +35,7 @@ export const GET: APIRoute = async () => {
 
     // Tracks URLs
     const trackUrls = tracks.map(track => ({
-      url: `https://kdzu.org/tracks-we-love/${track.slug}/`,
+      url: `https://kdzu.org/tracks-we-love/${track.id}/`,
       lastmod: track.data.pubDate,
       priority: 0.7,
       changefreq: 'monthly'
@@ -43,7 +43,7 @@ export const GET: APIRoute = async () => {
 
     // Events URLs - individual event pages
     const eventUrls = events.map(event => ({
-      url: `https://kdzu.org/events/${event.slug}/`,
+      url: `https://kdzu.org/events/${event.id}/`,
       lastmod: event.data.pubDate,
       priority: 0.7,
       changefreq: 'monthly'
@@ -51,7 +51,7 @@ export const GET: APIRoute = async () => {
 
     // MDC posts URLs
     const mdcUrls = mdcPosts.map(post => ({
-      url: `https://kdzu.org/mdc/${post.slug}/`,
+      url: `https://kdzu.org/mdc/${post.id}/`,
       lastmod: post.data.pubDate,
       priority: 0.7,
       changefreq: 'monthly'
@@ -59,7 +59,7 @@ export const GET: APIRoute = async () => {
 
     // Staticsignal posts URLs
     const staticsignalUrls = staticsignalPosts.map(post => ({
-      url: `https://kdzu.org/static/${post.slug}/`,
+      url: `https://kdzu.org/static/${post.id}/`,
       lastmod: post.data.pubDate,
       priority: 0.7,
       changefreq: 'monthly'
@@ -67,7 +67,7 @@ export const GET: APIRoute = async () => {
 
     // All Is Not Lost posts URLs
     const allIsNotLostUrls = allIsNotLostPosts.map(post => ({
-      url: `https://kdzu.org/all-is-not-lost/${post.slug}/`,
+      url: `https://kdzu.org/all-is-not-lost/${post.id}/`,
       lastmod: post.data.pubDate,
       priority: 0.7,
       changefreq: 'monthly'

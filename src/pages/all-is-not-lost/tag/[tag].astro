@@ -47,7 +47,7 @@ const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.da
           {sortedPosts.length > 0 ? (
             sortedPosts.map((post) => (
               <article class="ainl-card">
-                <a href={`/all-is-not-lost/${post.slug}/`}>
+                <a href={`/all-is-not-lost/${post.id}/`}>
                   {post.data.heroImage && (
                     <div class="ainl-image">
                       <img
