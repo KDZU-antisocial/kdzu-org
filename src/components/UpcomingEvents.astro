@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { renderEntries } from '../lib/contentRender';
 import EventCard from './EventCard.astro';
 
 const events = await getCollection('events');
@@ -26,13 +27,17 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
   
   return dateA.valueOf() - dateB.valueOf();
 });
+
+const renderedEvents = await renderEntries(sortedEvents);
 ---
 
 <section>
   <h2>Upcoming Events</h2>
   <ul class="calendar">
-    {sortedEvents.map((event) => (
-      <EventCard event={event} />
+    {renderedEvents.map(({ entry, rendered: { Content } }) => (
+      <EventCard event={{ data: entry.data }}>
+        <Content />
+      </EventCard>
     ))}
   </ul>
 </section> 

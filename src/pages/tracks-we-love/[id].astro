@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
@@ -7,7 +7,9 @@ import TrackCard from '../../components/TrackCard.astro';
 
 const { id } = Astro.params;
 const tracks = await getCollection('tracks');
-const track = tracks.find((t) => t.slug === id);
+const track = tracks.find((t) => t.id === id);
+const rendered = track ? await render(track) : null;
+const { Content } = rendered ?? {};
 ---
 
 <body class="tracks-we-love">
@@ -17,11 +19,8 @@ const track = tracks.find((t) => t.slug === id);
       <div class="main-content" style="max-width: 960px; width: 100%; margin: 0 auto;">
         {track ? (
           <div style="max-width: 720px; width: 100%; margin: 3em auto;">
-            <TrackCard track={{
-              data: track.data,
-              body: track.body || ''
-            }}>
-              {track.body}
+            <TrackCard track={{ data: track.data }}>
+              {Content && <Content />}
             </TrackCard>
             <div style="margin-top: 2em; text-align: left;">
               <a href="/tracks-we-love/" style="color: var(--color-bright-blue); text-decoration: none; font-size: 1.1em; display: inline-flex; align-items: center; gap: 0.5em;">

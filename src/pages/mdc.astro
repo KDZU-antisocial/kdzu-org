@@ -147,7 +147,7 @@ const sortedPosts = posts
         <div class="mdc-grid">
           {sortedPosts.map((post) => (
             <article class="mdc-card">
-              <a href={`/mdc/${post.slug}/`}>
+              <a href={`/mdc/${post.id}/`}>
                 {post.data.heroImage && (
                   <div class="mdc-image">
                     <img

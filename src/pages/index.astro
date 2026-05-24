@@ -6,6 +6,7 @@ import TrackCard from '../components/TrackCard.astro';
 import EventCard from '../components/EventCard.astro';
 import SocialMeta from '../components/SocialMeta.astro';
 import { getCollection } from 'astro:content';
+import { renderEntries } from '../lib/contentRender';
 
 const isDev = import.meta.env.DEV;
 const cssUrl = isDev ? '/styles/global.css' : 'https://static.kdzu.org/styles/global.css';
@@ -44,6 +45,9 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
   
   return dateA.valueOf() - dateB.valueOf();
 });
+
+const renderedEvents = await renderEntries(sortedEvents);
+const renderedTracks = await renderEntries(sortedTracks);
 ---
 
 <!DOCTYPE html>
@@ -74,8 +78,10 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
         <section>
           <h2>Our Upcoming Events</h2>
           <ul class="calendar">
-            {sortedEvents.map((event) => (
-              <EventCard event={event} href={`/events/${event.slug}/`} />
+            {renderedEvents.map(({ entry, rendered: { Content } }) => (
+              <EventCard event={{ data: entry.data }} href={`/events/${entry.id}/`}>
+                <Content />
+              </EventCard>
             ))}
           </ul>
         </section>
@@ -88,13 +94,9 @@ const sortedEvents = upcomingEvents.sort((a, b) => {
         <section>
           <h2>🔥 Hot Tracks We Love</h2>
           <div class="tracks-grid">
-            {sortedTracks.map((track) => (
-              <TrackCard track={{
-                data: track.data,
-                slug: track.id,
-                body: track.body || ''
-              }}>
-                {track.body}
+            {renderedTracks.map(({ entry, rendered: { Content } }) => (
+              <TrackCard track={{ data: entry.data }}>
+                <Content />
               </TrackCard>
             ))}
   </div>

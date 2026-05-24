@@ -7,13 +7,12 @@
  */
 export type DraftableEntry = {
   id: string;
-  slug: string;
   data: { draft?: boolean };
 };
 
 export function isContentDraft(entry: DraftableEntry): boolean {
   if (entry.data.draft === true) return true;
-  if (entry.slug.startsWith('_')) return true;
+  if (entry.id.startsWith('_')) return true;
   const base = entry.id.split('/').pop() ?? entry.id;
   return base.startsWith('_');
 }

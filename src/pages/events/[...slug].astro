@@ -8,9 +8,9 @@ import { publishedContentFilter } from '../../lib/contentDraft';
 
 export async function getStaticPaths() {
   const events = await getCollection('events', publishedContentFilter(import.meta.env.DEV));
-  console.log('Available events:', events.map(e => e.slug));
+  console.log('Available events:', events.map((e) => e.id));
   return events.map((event) => ({
-    params: { slug: event.slug },
+    params: { slug: event.id },
     props: { event },
   }));
 }
@@ -25,7 +25,7 @@ if (propEvent) {
 } else {
   // Find the event by slug
   const events = await getCollection('events', publishedContentFilter(import.meta.env.DEV));
-  event = events.find(e => e.slug === slug);
+  event = events.find((e) => e.id === slug);
   
   if (!event) {
     throw new Error(`Event not found for slug: ${slug}`);

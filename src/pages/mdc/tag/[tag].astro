@@ -35,7 +35,7 @@ const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.da
           {sortedPosts.length > 0 ? (
             sortedPosts.map((post) => (
               <article class="mdc-card">
-                <a href={`/mdc/${post.slug}`}>
+                <a href={`/mdc/${post.id}`}>
                   {post.data.heroImage && (
                     <div class="mdc-image">
                       <img
