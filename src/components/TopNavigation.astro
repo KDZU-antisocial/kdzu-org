@@ -5,21 +5,84 @@ const navItems = [
   { href: '/tracks-we-love/', text: 'Tracks We Love' },
   { href: '/about/', text: 'About KDZU' },
 ];
+
+const projectLinks = [
+  { href: '/mdc/', text: 'Activating the MDC Mission' },
+  { href: '/basslines/', text: 'Basslines from the Broken Earth' },
+  { href: '/all-is-not-lost/', text: 'All Is Not Lost' },
+];
+
+const shoutLinks = [
+  { href: 'mailto:kdzu@kdzu.org', text: 'kdzu@kdzu.org' },
+  { href: 'https://instagram.com/kdzu_antisocial', text: '@kdzu_antisocial' },
+  { href: 'https://tldr.nettime.org/@KDZU', text: 'tldr.nettime.org/@KDZU' },
+  { href: 'https://bsky.app/profile/kdzu.org', text: 'bsky.app/profile/kdzu.org' },
+];
+
+const hammerLinks = [
+  { href: '/static/', text: "Static is the Signal: KDZU's Field Guide to Tactical Mythmaking" },
+  { href: 'https://prowrestling.fandom.com/wiki/Kayfabe', text: 'Kayfabe', external: true },
+  {
+    href: 'https://archive.org/download/139brechtashortorganumforthetheatre/139-Brecht_A_Short_Organum_for_the_Theatre.pdf',
+    text: "Brecht's Organum (pdf)",
+    external: true,
+  },
+];
 ---
 
 <nav class="top-nav">
-  <button class="hamburger" aria-label="Toggle menu">
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
     <span></span>
     <span></span>
     <span></span>
   </button>
-  <ul class="nav-links">
-    {navItems.map(item => (
-      <li>
-        <a href={item.href}>{item.text}</a>
-      </li>
-    ))}
-  </ul>
+  <div class="nav-links">
+    <ul class="nav-primary">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href}>{item.text}</a>
+        </li>
+      ))}
+    </ul>
+
+    <section class="nav-section nav-section--mobile" aria-label="Projects">
+      <h2>Projects</h2>
+      <ul>
+        {projectLinks.map((item) => (
+          <li>
+            <a href={item.href}>{item.text}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="nav-section nav-section--mobile" aria-label="Give Us a Shout!">
+      <h2>Give Us a Shout!</h2>
+      <ul>
+        {shoutLinks.map((item) => (
+          <li>
+            <a href={item.href}>{item.text}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="nav-section nav-section--mobile" aria-label="Swinging the Hammer">
+      <h2>Swinging the Hammer</h2>
+      <ul>
+        {hammerLinks.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
 </nav>
 
 <style>
@@ -30,7 +93,7 @@ const navItems = [
     justify-content: flex-end;
   }
 
-  .top-nav ul {
+  .nav-primary {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -48,6 +111,32 @@ const navItems = [
   .top-nav a:hover {
     color: var(--color-bright-white);
     opacity: 0.8;
+  }
+
+  .nav-section {
+    display: none;
+  }
+
+  .nav-section h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-bright-white);
+  }
+
+  .nav-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-section a {
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 400;
   }
 
   .hamburger {
@@ -69,7 +158,7 @@ const navItems = [
   }
 
   @media (max-width: 768px) {
-    .top-nav ul {
+    .nav-primary {
       gap: 1rem;
     }
 
@@ -82,7 +171,7 @@ const navItems = [
     .hamburger {
       display: block;
       position: absolute;
-      top: .5rem;
+      top: 0.5rem;
       right: 1rem;
     }
 
@@ -107,10 +196,11 @@ const navItems = [
       background-color: var(--color-dark-bg);
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      padding: 2rem;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 1.5rem;
+      padding: 4.5rem 1.5rem 2rem;
+      overflow-y: auto;
       transform: translateX(100%);
       transition: transform 0.3s ease;
       z-index: 999;
@@ -120,9 +210,46 @@ const navItems = [
       transform: translateX(0);
     }
 
-    .nav-links a {
-      font-size: 1.5rem;
+    .nav-primary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .nav-links h2 {
       color: var(--color-bright-white);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-links a {
+      color: var(--color-bright-blue);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-bright-blue);
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .nav-primary a {
+      font-size: 1.25rem;
+    }
+
+    .nav-section a {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .nav-section--mobile {
+      display: block;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--color-medium-gray);
+    }
+
+    .nav-section--mobile:first-of-type {
+      margin-top: 0.5rem;
     }
   }
 </style>
@@ -133,14 +260,16 @@ const navItems = [
   const links = document.querySelectorAll('.nav-links a');
 
   hamburger?.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
+    const isOpen = hamburger.classList.toggle('active');
     navLinks?.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
-  links.forEach(link => {
+  links.forEach((link) => {
     link.addEventListener('click', () => {
       hamburger?.classList.remove('active');
       navLinks?.classList.remove('active');
+      hamburger?.setAttribute('aria-expanded', 'false');
     });
   });
-</script> 
+</script>
